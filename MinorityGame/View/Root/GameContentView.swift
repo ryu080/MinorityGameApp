@@ -12,7 +12,7 @@ struct GameContentView: View {
 
     var body: some View {
         if viewModel.pageViewCount == 0{
-            QuestionerView()
+            QuestionView()
         }else if viewModel.pageViewCount == 1{
             DiscussionView()
         }else if viewModel.pageViewCount == 2{

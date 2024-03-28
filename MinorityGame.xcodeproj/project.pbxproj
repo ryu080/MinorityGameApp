@@ -20,7 +20,7 @@
 		B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35392BB51DEF002A87A6 /* StartGameView.swift */; };
 		B7FC353E2BB51EAD002A87A6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC353D2BB51EAD002A87A6 /* MainViewModel.swift */; };
 		B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC353F2BB52135002A87A6 /* EditGameView.swift */; };
-		B7FC35422BB52380002A87A6 /* QuestionerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35412BB52380002A87A6 /* QuestionerView.swift */; };
+		B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35412BB52380002A87A6 /* QuestionView.swift */; };
 		B7FC35442BB523BC002A87A6 /* RuleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35432BB523BC002A87A6 /* RuleGameView.swift */; };
 		B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35452BB52792002A87A6 /* DiscussionView.swift */; };
 		B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35472BB52906002A87A6 /* VoteListView.swift */; };
@@ -65,7 +65,7 @@
 		B7FC35392BB51DEF002A87A6 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
 		B7FC353D2BB51EAD002A87A6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B7FC353F2BB52135002A87A6 /* EditGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameView.swift; sourceTree = "<group>"; };
-		B7FC35412BB52380002A87A6 /* QuestionerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionerView.swift; sourceTree = "<group>"; };
+		B7FC35412BB52380002A87A6 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		B7FC35432BB523BC002A87A6 /* RuleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleGameView.swift; sourceTree = "<group>"; };
 		B7FC35452BB52792002A87A6 /* DiscussionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionView.swift; sourceTree = "<group>"; };
 		B7FC35472BB52906002A87A6 /* VoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteListView.swift; sourceTree = "<group>"; };
@@ -210,7 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FC35302BB51BF5002A87A6 /* component */,
-				B7FC35412BB52380002A87A6 /* QuestionerView.swift */,
+				B7FC35412BB52380002A87A6 /* QuestionView.swift */,
 				B7FC35452BB52792002A87A6 /* DiscussionView.swift */,
 				B7FC35472BB52906002A87A6 /* VoteListView.swift */,
 				B7FC354B2BB52D89002A87A6 /* ResultGameView.swift */,
@@ -374,7 +374,7 @@
 				B7FC353E2BB51EAD002A87A6 /* MainViewModel.swift in Sources */,
 				B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */,
 				B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */,
-				B7FC35422BB52380002A87A6 /* QuestionerView.swift in Sources */,
+				B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */,
 				B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */,
 				B7FC35322BB51C63002A87A6 /* User.swift in Sources */,
 				B7FC35542BB5318E002A87A6 /* GameContentView.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuestionerView: View {
+struct QuestionView: View {
     @EnvironmentObject var viewModel:GameViewModel
     @State var isQuestionView:Bool = false
     @State var isShowRuleView:Bool = false
@@ -82,6 +82,6 @@ struct QuestionerView: View {
 }
 
 #Preview {
-    QuestionerView()
+    QuestionView()
         .environmentObject(GameViewModel())
 }

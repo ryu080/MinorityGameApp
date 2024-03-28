@@ -15,6 +15,6 @@ struct Game: Identifiable, Equatable{
 
     var id: Int
     let users:[User]
-    var game:Int
-    var result:Bool
+    var gameCount:Int
+    var inGame:Bool
 }

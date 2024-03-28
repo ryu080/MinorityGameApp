@@ -13,14 +13,26 @@ struct StartGameView: View {
 
     var body: some View {
         NavigationView{
-            Button {
-                gameViewModel.setView = true
-            } label: {
-                Text("NewGame")
-            }
+            VStack{
+                VStack{
+                    Button {
+                        gameViewModel.setView = true
+                        gameViewModel.newGame()
+                    } label: {
+                        Text("新規ゲームを始める")
+                    }
+                }
+                if mainViewModel.game.inGame{
+                    VStack{
+                        Button {
+                            gameViewModel.setView = true
+                        } label: {
+                            Text("続きから再開する")
+                        }
+                    }
+                }else{
 
-            List(mainViewModel.games){game in
-
+                }
             }
         }
     }

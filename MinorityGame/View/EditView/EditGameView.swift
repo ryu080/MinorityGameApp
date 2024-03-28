@@ -118,6 +118,8 @@ struct EditGameView: View {
                 Spacer()
             }
             .padding(10)
+        }.onAppear(){
+            viewModel.continuationGame()
         }
     }
 }

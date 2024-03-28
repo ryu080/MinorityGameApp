@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct MinorityGameApp: App {
-    @EnvironmentObject var viewModel:GameViewModel
+    @StateObject var viewModel = GameViewModel()
 
     var body: some Scene {
         WindowGroup {
