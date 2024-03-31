@@ -18,14 +18,14 @@ struct ResultGameView: View {
                     ResultView()
                     if viewModel.nowGameCount < viewModel.maxGameCount {
                         Button("次のゲームへ"){
-                            viewModel.pageViewCount = 0
                             viewModel.continueGame()
+                            viewModel.gameView = .questionView
                         }
                     }
                     Button("ホーム"){
-                        viewModel.mainOrGameView = false
-                        viewModel.pageViewCount = 0
                         viewModel.resetGame()
+                        viewModel.rootView = .editView
+                        viewModel.gameView = .questionView
                     }
                 }else{
                     Button("結果を見る"){

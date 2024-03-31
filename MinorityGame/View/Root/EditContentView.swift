@@ -11,10 +11,11 @@ struct EditContentView: View {
     @EnvironmentObject var viewModel:GameViewModel
 
     var body: some View {
-        if viewModel.setView{
-            EditGameView()
-        }else {
+        switch viewModel.editView {
+        case .startGameView:
             StartGameView()
+        case .editGameView:
+            EditGameView()
         }
     }
 }

@@ -10,15 +10,20 @@ import Foundation
 class GameViewModel:ObservableObject{
 //    @Published var mainViewModel:MainViewModel = MainViewModel()
     @Published var game:Game = Game(id: 0, users: [User(id: 0, name: "サンプルた", point: 0, question: 0)], gameCount: 2, inGame: true)
+
     @Published var users:[User] = [User(id: 0, name: "サンプル太", point: 0, question: 0),User(id: 1, name: "一郎", point: 0, question: 0),User(id: 2, name: "二郎", point: 0, question: 0),User(id: 3, name: "三郎", point: 0, question: 0),User(id: 4, name: "四郎", point: 0, question: 0),User(id: 5, name: "五郎", point: 0, question: 0),User(id: 6, name: "六郎", point: 0, question: 0),User(id: 7, name: "七郎", point: 0, question: 0),User(id: 8, name: "八郎", point: 0, question: 0),User(id: 9, name: "九郎", point: 0, question: 0)]
+
     @Published var maxGameCount:Int = 2
     @Published var nowGameCount:Int = 1
     @Published var questionText:String = "今日は日曜日ですか？"
 
     @Published var userCount:Int = 0
-    @Published var mainOrGameView:Bool = false
-    @Published var setView:Bool = false
-    @Published var pageViewCount:Int = 0
+    @Published var isShowRule:Bool = false
+
+    @Published var rootView:RootView = .editView
+    @Published var editView:EditView = .startGameView
+    @Published var gameView:GameView = .questionView
+
     var yesUsers:[User] = []
     var noUsers:[User] = []
 
@@ -78,7 +83,7 @@ class GameViewModel:ObservableObject{
     //vote
     func voteCompleta(){
         if users.allSatisfy({$0.question != 0}){
-            pageViewCount = 3
+            gameView = .resultGameView
         }
     }
 
@@ -131,5 +136,6 @@ class GameViewModel:ObservableObject{
     func resetGame(){
         users = []
         questionText = ""
+        nowGameCount = 1
     }
 }

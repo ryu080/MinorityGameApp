@@ -10,7 +10,6 @@ import SwiftUI
 struct QuestionView: View {
     @EnvironmentObject var viewModel:GameViewModel
     @State var isQuestionView:Bool = false
-    @State var isShowRuleView:Bool = false
     @State var user:User = User(id: 0, name: "", point: 0, question: 0)
     var body: some View {
         ZStack{
@@ -46,7 +45,7 @@ struct QuestionView: View {
                             }
                     }
                     Button {
-                        viewModel.pageViewCount = 1
+                        viewModel.gameView = .discussionView
                     } label: {
                         Text("出題する")
                     }
@@ -66,16 +65,6 @@ struct QuestionView: View {
                     }
                 }
                 Spacer()
-                Button("ルール説明"){
-                    isShowRuleView.toggle()
-                }
-                .padding(.bottom,50)
-            }
-            .onAppear(){
-                isShowRuleView.toggle()
-            }
-            .sheet(isPresented: $isShowRuleView){
-                RuleGameView()
             }
         }
     }

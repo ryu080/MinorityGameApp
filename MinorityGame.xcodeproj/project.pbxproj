@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B760DAE22BB8F88400664A10 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DAE12BB8F88400664A10 /* RootView.swift */; };
 		B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */; };
 		B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35052BB51BA5002A87A6 /* MainContentView.swift */; };
 		B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FC35072BB51BA9002A87A6 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B760DAE12BB8F88400664A10 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		B7FC35002BB51BA5002A87A6 /* MinorityGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinorityGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityGameApp.swift; sourceTree = "<group>"; };
 		B7FC35052BB51BA5002A87A6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				B7FC35312BB51C63002A87A6 /* User.swift */,
 				B7FC35332BB51CFA002A87A6 /* Game.swift */,
+				B760DAE12BB8F88400664A10 /* RootView.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				B7FC35542BB5318E002A87A6 /* GameContentView.swift in Sources */,
 				B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */,
 				B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */,
+				B760DAE22BB8F88400664A10 /* RootView.swift in Sources */,
 				B7FC35522BB53141002A87A6 /* EditContentView.swift in Sources */,
 				B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */,
 				B7FC354A2BB5294A002A87A6 /* VoteView.swift in Sources */,

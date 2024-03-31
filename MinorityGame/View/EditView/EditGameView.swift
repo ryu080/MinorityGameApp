@@ -96,10 +96,10 @@ struct EditGameView: View {
                     .cornerRadius(20)
                     Button {
                         if viewModel.users.count == 0 {
-
+                            //アラート　最低人数を変更↑
                         }else {
-                            viewModel.setView = false
-                            viewModel.mainOrGameView = true
+                            viewModel.rootView = .gameView
+                            viewModel.editView = .startGameView
                         }
                     } label: {
                         Text("次へ")

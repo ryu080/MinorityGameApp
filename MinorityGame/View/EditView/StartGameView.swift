@@ -16,7 +16,7 @@ struct StartGameView: View {
             VStack{
                 VStack{
                     Button {
-                        gameViewModel.setView = true
+                        gameViewModel.editView = .editGameView
                         gameViewModel.newGame()
                     } label: {
                         Text("新規ゲームを始める")
@@ -25,7 +25,7 @@ struct StartGameView: View {
                 if mainViewModel.game.inGame{
                     VStack{
                         Button {
-                            gameViewModel.setView = true
+                            gameViewModel.editView = .editGameView
                         } label: {
                             Text("続きから再開する")
                         }

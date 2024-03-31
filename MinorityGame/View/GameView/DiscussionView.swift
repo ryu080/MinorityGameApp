@@ -30,7 +30,7 @@ struct DiscussionView: View {
                 Text("シンキングタイム")
                 //タイマーを設置
                 Button(action: {
-                    viewModel.pageViewCount = 2
+                    viewModel.gameView = .voteListView
                 }, label: {
                     Text("投票画面へ")
                 })

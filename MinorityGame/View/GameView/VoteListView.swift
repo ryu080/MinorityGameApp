@@ -9,7 +9,6 @@ import SwiftUI
 
 struct VoteListView: View {
     @EnvironmentObject var viewModel:GameViewModel
-    @State var isShowSheet = false
     var body: some View {
         NavigationView{
             ZStack{
@@ -42,19 +41,7 @@ struct VoteListView: View {
                     }
                     Spacer()
                 }
-                .sheet(isPresented: $isShowSheet){
-                    RuleGameView()
-                }
                 .navigationBarTitle("投票", displayMode:  .inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {
-                            isShowSheet.toggle()
-                        }) {
-                            Text("ルール")
-                        }
-                    }
-                }
             }
         }
     }

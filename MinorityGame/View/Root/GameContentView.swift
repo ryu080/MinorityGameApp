@@ -11,14 +11,36 @@ struct GameContentView: View {
     @EnvironmentObject var viewModel:GameViewModel
 
     var body: some View {
-        if viewModel.pageViewCount == 0{
-            QuestionView()
-        }else if viewModel.pageViewCount == 1{
-            DiscussionView()
-        }else if viewModel.pageViewCount == 2{
-            VoteListView()
-        }else {
-            ResultGameView()
+        NavigationView{
+            Group{
+                switch viewModel.gameView {
+                case .questionView:
+                    QuestionView()
+                case .discussionView:
+                    DiscussionView()
+                case .voteListView:
+                    VoteListView()
+                case .resultGameView:
+                    ResultGameView()
+                }
+            }
+            .sheet(isPresented: $viewModel.isShowRule){
+                RuleGameView()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("ゲーム数:\(viewModel.nowGameCount)/\(viewModel.maxGameCount)")
+                        .font(.title3)
+                        .bold()
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        viewModel.isShowRule.toggle()
+                    }) {
+                        Text("ルール")
+                    }
+                }
+            }
         }
     }
 }
