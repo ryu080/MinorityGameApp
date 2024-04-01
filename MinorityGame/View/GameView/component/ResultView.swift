@@ -27,8 +27,10 @@ struct ResultView: View {
                     Spacer()
                     if user.question == 1{
                         Text("YES")
+                            .foregroundStyle(.blue)
                     }else if user.question == 2 {
                         Text("NO")
+                            .foregroundStyle(.red)
                     }
                     Text("\(user.point)")
                 }

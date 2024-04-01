@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DiscussionView: View {
     @EnvironmentObject var viewModel:GameViewModel
+    @ObservedObject var timerViewModel = TimerViewModel()
 
     var body: some View {
         ZStack{
@@ -28,9 +29,36 @@ struct DiscussionView: View {
                     Spacer()
                 }
                 Text("シンキングタイム")
-                //タイマーを設置
+
+                Text(timerViewModel.dateFormat(minutes: timerViewModel.timeCount.minutesCount, seconds: timerViewModel.timeCount.secondsCount))
+                    .font(.largeTitle)
+                HStack{
+                    if timerViewModel.timer == nil{
+                        Button(action: {
+                            timerViewModel.startCountDown()
+                        }, label: {
+                            Image(systemName: "play.fill")
+                                .font(.title)
+                        })
+                    } else{
+                        Button(action: {
+                            timerViewModel.stopCountDown()
+                        }, label: {
+                            Image(systemName: "pause.fill")
+                                .font(.title)
+                        })
+                    }
+                    Button(action: {
+
+                    }, label: {
+                        Text("+1分")
+                            .font(.title)
+                    })
+                }
                 Button(action: {
                     viewModel.gameView = .voteListView
+                    timerViewModel.stopCountDown()
+                    timerViewModel.setCountDown()
                 }, label: {
                     Text("投票画面へ")
                 })
