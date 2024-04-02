@@ -48,12 +48,24 @@ struct DiscussionView: View {
                                 .font(.title)
                         })
                     }
+                }
+                HStack{
+                    Spacer()
+                    Text("1min")
+                        .font(.title)
                     Button(action: {
-
+                        timerViewModel.plusMinutes()
                     }, label: {
-                        Text("+1分")
+                        Text("+")
                             .font(.title)
                     })
+                    Button(action: {
+                        timerViewModel.minusMinutes()
+                    }, label: {
+                        Text("-")
+                            .font(.title)
+                    })
+                    Spacer()
                 }
                 Button(action: {
                     viewModel.gameView = .voteListView

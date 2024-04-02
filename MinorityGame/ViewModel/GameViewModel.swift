@@ -113,14 +113,14 @@ class GameViewModel:ObservableObject{
     func resultVote() -> String{
         let yes = yesUserCount()
         let no = noUserCount()
-        if yes<no {
+        if yes<no && 0<yes{
             userPoint(yes: 1, no: -1)
             return "少数派はYES"
-        }else if yes>no {
+        }else if no<yes && 0<no{
             userPoint(yes: -1, no: 1)
             return "少数派はNO"
         }else {
-            userPoint(yes: -1, no: -1)
+            userPoint(yes: 0, no: 0)
             return "ドロー"
         }
     }
