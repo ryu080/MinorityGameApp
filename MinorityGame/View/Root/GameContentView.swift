@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct GameContentView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
 
     var body: some View {
         NavigationView{
             Group{
-                switch viewModel.gameView {
+                switch gameViewModel.gameView {
                 case .questionView:
                     QuestionView()
                 case .discussionView:
@@ -24,18 +25,18 @@ struct GameContentView: View {
                     ResultGameView()
                 }
             }
-            .sheet(isPresented: $viewModel.isShowRule){
+            .sheet(isPresented: $gameViewModel.isShowRule){
                 RuleGameView()
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Text("ゲーム数:\(viewModel.nowGameCount)/\(viewModel.maxGameCount)")
+                    Text("ゲーム数:\(gameViewModel.game.nowGameCount)/\(gameViewModel.game.maxGameCount)")
                         .font(.title3)
                         .bold()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        viewModel.isShowRule.toggle()
+                        gameViewModel.isShowRule.toggle()
                     }) {
                         Text("ルール")
                     }
@@ -48,4 +49,5 @@ struct GameContentView: View {
 #Preview {
     GameContentView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

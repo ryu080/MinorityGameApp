@@ -13,8 +13,8 @@ struct Game: Identifiable, Equatable{
         return lhs.id == rhs.id
     }
 
-    var id: Int
-    let users:[User]
-    var gameCount:Int
-    var inGame:Bool
+    var id:Int
+    var users:[User]
+    var nowGameCount:Int
+    var maxGameCount:Int
 }

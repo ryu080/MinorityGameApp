@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+
     @State var isQuestionView:Bool = false
     @State var user:User = User(id: 0, name: "", point: 0, question: 0)
     var body: some View {
@@ -24,7 +25,7 @@ struct QuestionView: View {
                     Text("\(user.name)さん")
                         .font(.largeTitle)
                     ZStack{
-                        TextEditor(text: $viewModel.questionText)
+                        TextEditor(text: $gameViewModel.questionText)
                             .scrollContentBackground(Visibility.hidden)
                             .font(.title)
                             .multilineTextAlignment(.center)
@@ -34,7 +35,7 @@ struct QuestionView: View {
                             .border(.black, width: 5)
                             .overlay(alignment: .center) {
                                 // 未入力の時、プレースホルダーを表示
-                                if viewModel.questionText.isEmpty {
+                                if gameViewModel.questionText.isEmpty {
                                     Text("出題者はYES/NOで答えられる質問をしてください。")
                                         .font(.title)
                                         .bold()
@@ -45,14 +46,14 @@ struct QuestionView: View {
                             }
                     }
                     Button {
-                        viewModel.gameView = .discussionView
+                        gameViewModel.gameView = .discussionView
                     } label: {
                         Text("出題する")
                     }
                 }else{
                     Spacer()
                     Button {
-                        user = viewModel.chooseQuestioner()
+                        user = gameViewModel.chooseQuestioner()
                         isQuestionView = true
                     } label: {
                         Text("表示する")
@@ -73,4 +74,5 @@ struct QuestionView: View {
 #Preview {
     QuestionView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

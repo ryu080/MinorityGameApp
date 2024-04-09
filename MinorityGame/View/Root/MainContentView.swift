@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MainContentView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
 
     var body: some View {
-        switch viewModel.rootView {
+        switch gameViewModel.rootView {
         case .editView:
             EditContentView()
         case .gameView:
@@ -23,4 +24,5 @@ struct MainContentView: View {
 #Preview {
     MainContentView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

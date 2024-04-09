@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct ResultView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
     @State var yesCount:Int = 0
     @State var noCount:Int = 0
     @State var winer:String = ""
 
     var body: some View {
         VStack{
-            Text(viewModel.questionText)
+            Text(gameViewModel.questionText)
             HStack{
                 Text("YES\(yesCount)人")
                 Text("NO\(noCount)人")
             }
             Text(winer)
-            List(viewModel.users){user in
+            List(gameViewModel.game.users.reversed()){user in
                 HStack{
                     Text(user.name)
                     Spacer()
@@ -40,9 +40,9 @@ struct ResultView: View {
             .cornerRadius(20)
         }
         .onAppear(){
-            self.yesCount = viewModel.yesUserCount()
-            self.noCount = viewModel.noUserCount()
-            self.winer = viewModel.resultVote()
+            self.yesCount = gameViewModel.yesUserCount()
+            self.noCount = gameViewModel.noUserCount()
+            self.winer = gameViewModel.resultVote()
         }
     }
 }

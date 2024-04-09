@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct VoteListView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
+
     var body: some View {
         NavigationView{
             ZStack{
                 VStack{
                     List{
-                        ForEach(viewModel.users){ user in
+                        ForEach(gameViewModel.game.users){ user in
                             HStack{
                                 Text(user.name)
                                     .font(.title2)
@@ -37,7 +39,7 @@ struct VoteListView: View {
                     }
                     .scrollContentBackground(.hidden)
                     Button("投票を終わる"){
-                        viewModel.voteCompleta()
+                        gameViewModel.voteCompleta()
                     }
                     Spacer()
                 }
@@ -50,4 +52,5 @@ struct VoteListView: View {
 #Preview {
     VoteListView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }
