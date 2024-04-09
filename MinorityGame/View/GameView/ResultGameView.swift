@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ResultGameView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
+
     @State var isShowResultView:Bool = false
 
     var body: some View {
@@ -16,20 +18,22 @@ struct ResultGameView: View {
             VStack{
                 if isShowResultView {
                     ResultView()
-                    if viewModel.nowGameCount < viewModel.maxGameCount {
+                    if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
                         Button("次のゲームへ"){
-                            viewModel.continueGame()
-                            viewModel.gameView = .questionView
+                            gameViewModel.continueGame()
+                            realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
+                            gameViewModel.gameView = .questionView
                         }
                     }
                     Button("ホーム"){
-                        viewModel.resetGame()
-                        viewModel.rootView = .editView
-                        viewModel.gameView = .questionView
+                        gameViewModel.resetGame()
+                        gameViewModel.rootView = .editView
+                        gameViewModel.gameView = .questionView
                     }
                 }else{
                     Button("結果を見る"){
                         isShowResultView.toggle()
+                        realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
                     }
                 }
             }.padding(20)
@@ -40,4 +44,5 @@ struct ResultGameView: View {
 #Preview {
     ResultGameView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

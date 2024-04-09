@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct VoteView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
     @Environment(\.dismiss) var dismiss
     
     var user:User
@@ -16,7 +17,7 @@ struct VoteView: View {
         ZStack{
             VStack{
                 ZStack{
-                    Text(viewModel.questionText)
+                    Text(gameViewModel.questionText)
                         .font(.title)
                         .bold()
                         .frame(alignment: .center)
@@ -25,13 +26,13 @@ struct VoteView: View {
                 HStack{
                     Spacer()
                     Button("YES"){
-                        viewModel.questionUser(id: user.id, question: 1)
+                        gameViewModel.questionUser(id: user.id, question: 1)
                         dismiss()
                     }.font(.title)
                         .bold()
                     Spacer()
                     Button("NO"){
-                        viewModel.questionUser(id: user.id, question: 2)
+                        gameViewModel.questionUser(id: user.id, question: 2)
                         dismiss()
                     }
                     .font(.title)
@@ -46,5 +47,7 @@ struct VoteView: View {
 }
 
 #Preview {
-    VoteView(user: User(id: 1, name: "サンプル太", point: 0, question: 0)).environmentObject(GameViewModel())
+    VoteView(user: User(id: 1, name: "サンプル太", point: 0, question: 0))
+        .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

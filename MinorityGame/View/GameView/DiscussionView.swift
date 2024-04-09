@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct DiscussionView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
     @ObservedObject var timerViewModel = TimerViewModel()
 
     var body: some View {
         ZStack{
             VStack{
                 ZStack{
-                    Text(viewModel.questionText)
+                    Text(gameViewModel.questionText)
                         .font(.largeTitle)
                         .bold()
                         .frame(alignment: .center)
@@ -48,15 +49,27 @@ struct DiscussionView: View {
                                 .font(.title)
                         })
                     }
+                }
+                HStack{
+                    Spacer()
+                    Text("1min")
+                        .font(.title)
                     Button(action: {
-
+                        timerViewModel.plusMinutes()
                     }, label: {
-                        Text("+1分")
+                        Text("+")
                             .font(.title)
                     })
+                    Button(action: {
+                        timerViewModel.minusMinutes()
+                    }, label: {
+                        Text("-")
+                            .font(.title)
+                    })
+                    Spacer()
                 }
                 Button(action: {
-                    viewModel.gameView = .voteListView
+                    gameViewModel.gameView = .voteListView
                     timerViewModel.stopCountDown()
                     timerViewModel.setCountDown()
                 }, label: {
@@ -70,4 +83,5 @@ struct DiscussionView: View {
 #Preview {
     DiscussionView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

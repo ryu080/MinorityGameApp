@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct EditGameView: View {
-    @EnvironmentObject var viewModel:GameViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
+
     @State var isShowAlert = false
     @State var isStringCount = false
     @State var inputText = ""
@@ -21,13 +23,45 @@ struct EditGameView: View {
                         .font(.title2)
                         .bold()
                     HStack{
+                        Text("人数: \(gameViewModel.game.users.count)")
+                            .bold()
+                        Spacer()
+                        Text("ゲーム数: \(gameViewModel.game.maxGameCount)")
+                            .bold()
+                            .padding(5)
+                        Button("-"){gameViewModel.subGameCount()}
+                            .font(.title)
+                            .frame(width: 35 ,height: 35)
+                            .foregroundColor(.white)
+                            .background(.red)
+                            .cornerRadius(5)
+
+                        Button("+"){gameViewModel.addGameCount()}
+                            .font(.title)
+                            .frame(width: 35 ,height: 35)
+                            .foregroundColor(.white)
+                            .background(.blue)
+                            .cornerRadius(5)
+                    }
+                    Text("参加プレイヤー")
+                        .font(.title3)
+                        .bold()
+                    HStack{
                         TextField("プレイヤー名（12文字以内）", text: $inputText)
                             .textFieldStyle(.roundedBorder)
                         Spacer()
                         Button {
                             if 0 < inputText.count && inputText.count <= 12 {
-                                viewModel.addUser(name: inputText)
-                                inputText = ""
+                                gameViewModel.addUser(name: inputText)
+
+                                //inputText = "" が反応しないため追加
+                                if !self.inputText.isEmpty {
+                                    self.inputText = self.inputText + " "
+                                    Task { @MainActor in
+                                        self.inputText = ""
+                                    }
+                                }
+
                             }else {
                                 isStringCount.toggle()
                             }
@@ -49,31 +83,8 @@ struct EditGameView: View {
                         }
 
                     }
-                    HStack{
-                        Text("人数: \(viewModel.users.count)")
-                            .bold()
-                        Spacer()
-                        Text("ゲーム数: \(viewModel.maxGameCount)")
-                            .bold()
-                            .padding(5)
-                        Button("-"){viewModel.subGameCount()}
-                            .font(.title)
-                            .frame(width: 35 ,height: 35)
-                            .foregroundColor(.white)
-                            .background(.red)
-                            .cornerRadius(5)
 
-                        Button("+"){viewModel.addGameCount()}
-                            .font(.title)
-                            .frame(width: 35 ,height: 35)
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .cornerRadius(5)
-                    }
-                    Text("参加プレイヤー")
-                        .font(.title3)
-                        .bold()
-                    List(viewModel.users){user in
+                    List(gameViewModel.game.users.reversed()){user in
                         HStack{
                             Text(user.name)
                                 .font(.title2)
@@ -82,7 +93,7 @@ struct EditGameView: View {
                             Spacer()
                             Button(action: {
                                 //削除機能
-                                viewModel.deleteUser(id: user.id)
+                                gameViewModel.deleteUser(id: user.id)
                             }, label: {
                                 Image(systemName: "trash.fill")
                                     .font(.title3)
@@ -95,11 +106,12 @@ struct EditGameView: View {
                     .scrollContentBackground(.hidden)
                     .cornerRadius(20)
                     Button {
-                        if viewModel.users.count == 0 {
+                        if gameViewModel.game.users.count == 0 {
                             //アラート　最低人数を変更↑
                         }else {
-                            viewModel.rootView = .gameView
-                            viewModel.editView = .startGameView
+                            realmViewModel.createGame(game: gameViewModel.game)
+                            gameViewModel.rootView = .gameView
+                            gameViewModel.editView = .startGameView
                         }
                     } label: {
                         Text("次へ")
@@ -118,12 +130,12 @@ struct EditGameView: View {
                 Spacer()
             }
             .padding(10)
-        }.onAppear(){
-            viewModel.continuationGame()
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 #Preview {
     EditGameView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

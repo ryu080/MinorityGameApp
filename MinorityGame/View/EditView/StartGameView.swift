@@ -8,30 +8,30 @@
 import SwiftUI
 
 struct StartGameView: View {
-    @ObservedObject var mainViewModel = MainViewModel()
     @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var realmViewModel:RealmViewModel
 
     var body: some View {
         NavigationView{
             VStack{
                 VStack{
                     Button {
+                        realmViewModel.deleteGame(id: 0)
                         gameViewModel.editView = .editGameView
-                        gameViewModel.newGame()
                     } label: {
                         Text("新規ゲームを始める")
                     }
                 }
-                if mainViewModel.game.inGame{
+                if realmViewModel.readGame(id: 0) != nil{
                     VStack{
                         Button {
-                            gameViewModel.editView = .editGameView
+                            gameViewModel.game = realmViewModel.readGame(id: 0)!
+                            gameViewModel.continueGame()
+                            gameViewModel.rootView = .gameView
                         } label: {
                             Text("続きから再開する")
                         }
                     }
-                }else{
-
                 }
             }
         }
@@ -41,4 +41,5 @@ struct StartGameView: View {
 #Preview {
     StartGameView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
 }

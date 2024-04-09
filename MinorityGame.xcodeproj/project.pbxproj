@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E3C12BBD8F2600755473 /* RealmModel.swift */; };
 		B760DAE22BB8F88400664A10 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DAE12BB8F88400664A10 /* RootView.swift */; };
+		B76258EC2BBE936400463203 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B76258EB2BBE936400463203 /* Realm */; };
+		B76258EE2BBE936400463203 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B76258ED2BBE936400463203 /* RealmSwift */; };
+		B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76258EF2BBF9EC300463203 /* RealmViewModel.swift */; };
+		B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB552BBAEEC000266B02 /* TimerViewModel.swift */; };
+		B767EB582BBAF13D00266B02 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB572BBAF13D00266B02 /* Time.swift */; };
 		B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */; };
 		B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35052BB51BA5002A87A6 /* MainContentView.swift */; };
 		B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FC35072BB51BA9002A87A6 /* Assets.xcassets */; };
@@ -19,7 +25,6 @@
 		B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35332BB51CFA002A87A6 /* Game.swift */; };
 		B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */; };
 		B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35392BB51DEF002A87A6 /* StartGameView.swift */; };
-		B7FC353E2BB51EAD002A87A6 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC353D2BB51EAD002A87A6 /* MainViewModel.swift */; };
 		B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC353F2BB52135002A87A6 /* EditGameView.swift */; };
 		B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35412BB52380002A87A6 /* QuestionView.swift */; };
 		B7FC35442BB523BC002A87A6 /* RuleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35432BB523BC002A87A6 /* RuleGameView.swift */; };
@@ -50,7 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B743E3C12BBD8F2600755473 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		B760DAE12BB8F88400664A10 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B76258EF2BBF9EC300463203 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		B767EB552BBAEEC000266B02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		B767EB572BBAF13D00266B02 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		B7FC35002BB51BA5002A87A6 /* MinorityGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinorityGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityGameApp.swift; sourceTree = "<group>"; };
 		B7FC35052BB51BA5002A87A6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -65,7 +74,6 @@
 		B7FC35332BB51CFA002A87A6 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		B7FC35392BB51DEF002A87A6 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
-		B7FC353D2BB51EAD002A87A6 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		B7FC353F2BB52135002A87A6 /* EditGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameView.swift; sourceTree = "<group>"; };
 		B7FC35412BB52380002A87A6 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		B7FC35432BB523BC002A87A6 /* RuleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleGameView.swift; sourceTree = "<group>"; };
@@ -83,6 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B76258EE2BBE936400463203 /* RealmSwift in Frameworks */,
+				B76258EC2BBE936400463203 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +113,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B743E3C02BBD8EDE00755473 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				B743E3C12BBD8F2600755473 /* RealmModel.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		B743E3C32BBD920C00755473 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B7FC34F72BB51BA5002A87A6 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +135,7 @@
 				B7FC35132BB51BAA002A87A6 /* MinorityGameTests */,
 				B7FC351D2BB51BAA002A87A6 /* MinorityGameUITests */,
 				B7FC35012BB51BA5002A87A6 /* Products */,
+				B743E3C32BBD920C00755473 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,8 +190,9 @@
 		B7FC352D2BB51BBA002A87A6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B7FC353D2BB51EAD002A87A6 /* MainViewModel.swift */,
+				B76258EF2BBF9EC300463203 /* RealmViewModel.swift */,
 				B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */,
+				B767EB552BBAEEC000266B02 /* TimerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -183,8 +210,10 @@
 		B7FC352F2BB51BE5002A87A6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B743E3C02BBD8EDE00755473 /* Realm */,
 				B7FC35312BB51C63002A87A6 /* User.swift */,
 				B7FC35332BB51CFA002A87A6 /* Game.swift */,
+				B767EB572BBAF13D00266B02 /* Time.swift */,
 				B760DAE12BB8F88400664A10 /* RootView.swift */,
 			);
 			path = Model;
@@ -255,6 +284,10 @@
 			dependencies = (
 			);
 			name = MinorityGame;
+			packageProductDependencies = (
+				B76258EB2BBE936400463203 /* Realm */,
+				B76258ED2BBE936400463203 /* RealmSwift */,
+			);
 			productName = MinorityGame;
 			productReference = B7FC35002BB51BA5002A87A6 /* MinorityGame.app */;
 			productType = "com.apple.product-type.application";
@@ -327,6 +360,9 @@
 				Base,
 			);
 			mainGroup = B7FC34F72BB51BA5002A87A6;
+			packageReferences = (
+				B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = B7FC35012BB51BA5002A87A6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -370,22 +406,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7FC35442BB523BC002A87A6 /* RuleGameView.swift in Sources */,
+				B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */,
 				B7FC354C2BB52D89002A87A6 /* ResultGameView.swift in Sources */,
 				B7FC354E2BB52DBF002A87A6 /* ResultView.swift in Sources */,
 				B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */,
 				B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */,
-				B7FC353E2BB51EAD002A87A6 /* MainViewModel.swift in Sources */,
 				B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */,
 				B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */,
 				B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */,
 				B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */,
 				B7FC35322BB51C63002A87A6 /* User.swift in Sources */,
 				B7FC35542BB5318E002A87A6 /* GameContentView.swift in Sources */,
+				B767EB582BBAF13D00266B02 /* Time.swift in Sources */,
+				B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */,
 				B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */,
 				B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */,
 				B760DAE22BB8F88400664A10 /* RootView.swift in Sources */,
 				B7FC35522BB53141002A87A6 /* EditContentView.swift in Sources */,
 				B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */,
+				B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */,
 				B7FC354A2BB5294A002A87A6 /* VoteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,8 +595,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,8 +626,10 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -716,6 +759,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B76258EB2BBE936400463203 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		B76258ED2BBE936400463203 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B7FC34F82BB51BA5002A87A6 /* Project object */;
 }
