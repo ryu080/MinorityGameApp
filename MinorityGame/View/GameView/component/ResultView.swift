@@ -24,6 +24,7 @@ struct ResultView: View {
             List(gameViewModel.game.users.reversed()){user in
                 HStack{
                     Text(user.name)
+                    Text("合計\(user.totalPoints)")
                     Spacer()
                     if user.question == 1{
                         Text("YES")

@@ -11,9 +11,7 @@ import RealmSwift
 class GameViewModel:ObservableObject{
     //    @Published var mainViewModel:MainViewModel = MainViewModel()
     @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
-
-    @Published var questionText:String = "今日は日曜日ですか？"
-
+    @Published var questionText:String = ""
     @Published var isShowRule:Bool = false
 
     //新しいViewModelを作っても良いかも
@@ -45,7 +43,7 @@ class GameViewModel:ObservableObject{
     //user
     func addUser(name:String) {
         if game.users.count < 20{
-            let user = User(id: setId(), name: name, point: 0,question: 0)
+            let user = User(id: setId(), name: name,point: 0, totalPoints: 0,question: 0)
             game.users.append(user)
         }
     }
@@ -83,9 +81,11 @@ class GameViewModel:ObservableObject{
     func userPoint(yes:Int,no:Int) {
         for i in game.users.indices {
             if(game.users[i].question == 1){
-                game.users[i].point += yes
+                game.users[i].totalPoints += yes
+                game.users[i].point = yes
             }else if (game.users[i].question == 2){
-                game.users[i].point += no
+                game.users[i].totalPoints += no
+                game.users[i].point = no
             }
         }
     }
@@ -119,5 +119,13 @@ class GameViewModel:ObservableObject{
         game.users = []
         questionText = ""
         game.nowGameCount = 1
+    }
+
+    func winnerUser()->[User]{
+        guard let maxPoint = game.users.max(by: { $0.totalPoints < $1.totalPoints })?.totalPoints else {
+            return [] 
+        }
+        let winner = game.users.filter({$0.totalPoints == maxPoint})
+        return winner
     }
 }

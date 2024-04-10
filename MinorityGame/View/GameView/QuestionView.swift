@@ -11,7 +11,7 @@ struct QuestionView: View {
     @EnvironmentObject var gameViewModel:GameViewModel
 
     @State var isQuestionView:Bool = false
-    @State var user:User = User(id: 0, name: "", point: 0, question: 0)
+    @State var user:User = User(id: 0, name: "",point: 0, totalPoints: 0, question: 0)
     var body: some View {
         ZStack{
             VStack{

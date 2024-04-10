@@ -11,5 +11,6 @@ struct User: Identifiable {
     let id:Int
     let name:String
     var point:Int
+    var totalPoints:Int
     var question:Int
 }
