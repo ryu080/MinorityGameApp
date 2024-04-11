@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E3C12BBD8F2600755473 /* RealmModel.swift */; };
+		B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74E118F2BC68B0D00223975 /* AlertViewModel.swift */; };
 		B760DAE22BB8F88400664A10 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DAE12BB8F88400664A10 /* RootView.swift */; };
 		B76258EC2BBE936400463203 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B76258EB2BBE936400463203 /* Realm */; };
 		B76258EE2BBE936400463203 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B76258ED2BBE936400463203 /* RealmSwift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		B743E3C12BBD8F2600755473 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		B74E118F2BC68B0D00223975 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		B760DAE12BB8F88400664A10 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		B76258EF2BBF9EC300463203 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		B767EB552BBAEEC000266B02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				B76258EF2BBF9EC300463203 /* RealmViewModel.swift */,
 				B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */,
 				B767EB552BBAEEC000266B02 /* TimerViewModel.swift */,
+				B74E118F2BC68B0D00223975 /* AlertViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */,
 				B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */,
 				B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */,
+				B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */,
 				B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */,
 				B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */,
 				B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */,

@@ -40,7 +40,7 @@ class RealmViewModel: ObservableObject {
                 let gameObject = GameObject()
                 gameObject.id = game.id
                 gameObject.nowGameCount = game.nowGameCount
-                gameObject.maxGameCount = gameObject.maxGameCount
+                gameObject.maxGameCount = game.maxGameCount
 
                 for user in game.users {
                     let userObject = UserObject()

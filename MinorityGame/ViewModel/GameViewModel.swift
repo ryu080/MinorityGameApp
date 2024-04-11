@@ -10,7 +10,7 @@ import RealmSwift
 
 class GameViewModel:ObservableObject{
     //    @Published var mainViewModel:MainViewModel = MainViewModel()
-    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
+    @Published var game:Game = Game(id: 0,users: [User(id: 0, name: "1", point: 0, totalPoints: 0, question: 0),User(id: 1, name: "2", point: 0, totalPoints: 0, question: 0),User(id: 2, name: "3", point: 0, totalPoints: 0, question: 0)], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
     @Published var isShowRule:Bool = false
 
@@ -59,9 +59,12 @@ class GameViewModel:ObservableObject{
     }
 
     //vote
-    func voteCompleta(){
+    func voteComplete()->Bool{
         if game.users.allSatisfy({$0.question != 0}){
             gameView = .resultGameView
+            return true
+        }else{
+            return false
         }
     }
 

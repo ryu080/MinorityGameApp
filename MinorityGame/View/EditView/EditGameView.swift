@@ -10,10 +10,9 @@ import SwiftUI
 struct EditGameView: View {
     @EnvironmentObject var gameViewModel:GameViewModel
     @EnvironmentObject var realmViewModel:RealmViewModel
+    @EnvironmentObject var alertViewModel:AlertViewModel
 
-    @State var isShowAlert = false
-    @State var isStringCount = false
-    @State var inputText = ""
+    @State var name = ""
 
     var body: some View {
         ZStack{
@@ -47,23 +46,23 @@ struct EditGameView: View {
                         .font(.title3)
                         .bold()
                     HStack{
-                        TextField("プレイヤー名（12文字以内）", text: $inputText)
+                        TextField("プレイヤー名（12文字以内）", text: $name)
                             .textFieldStyle(.roundedBorder)
                         Spacer()
                         Button {
-                            if 0 < inputText.count && inputText.count <= 12 {
-                                gameViewModel.addUser(name: inputText)
+                            if 0 < name.count && name.count <= 12 {
+                                gameViewModel.addUser(name: name)
 
                                 //inputText = "" が反応しないため追加
-                                if !self.inputText.isEmpty {
-                                    self.inputText = self.inputText + " "
+                                if !self.name.isEmpty {
+                                    self.name = self.name + " "
                                     Task { @MainActor in
-                                        self.inputText = ""
+                                        self.name = ""
                                     }
                                 }
 
                             }else {
-                                isStringCount.toggle()
+                                alertViewModel.playerNameAlert(name: name)
                             }
                         } label: {
                             Text("追加")
@@ -73,15 +72,6 @@ struct EditGameView: View {
                         .padding(7)
                         .background(.blue)
                         .cornerRadius(5)
-                        .alert("注意", isPresented: $isStringCount) {
-                        } message: {
-                            if inputText == ""{
-                                Text("プレイヤー名が入力されていません。\n1~12文字以内で入力してください。")
-                            }else{
-                                Text("プレイヤー名は\n12文字以内で入力してください")
-                            }
-                        }
-
                     }
 
                     List(gameViewModel.game.users.reversed()){user in
@@ -99,6 +89,7 @@ struct EditGameView: View {
                                     .font(.title3)
                                     .foregroundColor(.red)
                             })
+                            .buttonStyle(PlainButtonStyle())
                         }
                         .listRowBackground(Color.gray)
                     }
@@ -106,8 +97,8 @@ struct EditGameView: View {
                     .scrollContentBackground(.hidden)
                     .cornerRadius(20)
                     Button {
-                        if gameViewModel.game.users.count == 0 {
-                            //アラート　最低人数を変更↑
+                        if gameViewModel.game.users.count < 3 {
+                            alertViewModel.emptyPlayerAlert()
                         }else {
                             realmViewModel.createGame(game: gameViewModel.game)
                             gameViewModel.rootView = .gameView
@@ -122,14 +113,14 @@ struct EditGameView: View {
                     .frame(width: 100,height: 50)
                     .background(.blue)
                     .cornerRadius(10)
-                    .alert("プレイヤーがいません。", isPresented: $isShowAlert) {
-                    } message: {
-                        Text("プレイヤーを追加してください\n※最低3人登録してください")
-                    }
                 }
                 Spacer()
             }
             .padding(10)
+            .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
+            } message: {
+                Text(alertViewModel.alertMessage)
+            }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
@@ -138,4 +129,5 @@ struct EditGameView: View {
     EditGameView()
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
+        .environmentObject(AlertViewModel())
 }

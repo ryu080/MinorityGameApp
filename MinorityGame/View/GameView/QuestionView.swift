@@ -9,6 +9,7 @@ import SwiftUI
 
 struct QuestionView: View {
     @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject var alertViewModel:AlertViewModel
 
     @State var isQuestionView:Bool = false
     @State var user:User = User(id: 0, name: "",point: 0, totalPoints: 0, question: 0)
@@ -46,7 +47,7 @@ struct QuestionView: View {
                             }
                     }
                     Button {
-                        gameViewModel.gameView = .discussionView
+                        alertViewModel.questionTextAlert(text: gameViewModel.questionText)
                     } label: {
                         Text("出題する")
                     }
@@ -68,6 +69,16 @@ struct QuestionView: View {
                 Spacer()
             }
         }
+        .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
+            if alertViewModel.alertType == .success{
+                Button("戻る",role: .cancel){}
+                Button("OK"){
+                    gameViewModel.gameView = .discussionView
+                }
+            }
+        } message: {
+            Text(alertViewModel.alertMessage)
+        }
     }
 }
 
@@ -75,4 +86,5 @@ struct QuestionView: View {
     QuestionView()
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
+        .environmentObject(AlertViewModel())
 }

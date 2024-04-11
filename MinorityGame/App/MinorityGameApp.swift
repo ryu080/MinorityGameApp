@@ -11,12 +11,14 @@ import SwiftUI
 struct MinorityGameApp: App {
     @StateObject var gameViewModel = GameViewModel()
     @StateObject var dateViewModel = RealmViewModel()
+    @StateObject var alertViewModel = AlertViewModel()
 
     var body: some Scene {
         WindowGroup {
             MainContentView()
                 .environmentObject(gameViewModel)
                 .environmentObject(dateViewModel)
+                .environmentObject(alertViewModel)
         }
     }
 }
