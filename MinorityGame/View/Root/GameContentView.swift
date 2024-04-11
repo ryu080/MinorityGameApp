@@ -32,13 +32,16 @@ struct GameContentView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("ゲーム数:\(gameViewModel.game.nowGameCount)/\(gameViewModel.game.maxGameCount)")
                         .font(.title3)
-                        .bold()
+                        .foregroundStyle(Color.champagne)
+                        .fontWeight(.black)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         gameViewModel.isShowRule.toggle()
                     }) {
                         Text("ルール")
+                            .font(.title3)
+                            .fontWeight(.black)
                     }
                 }
             }

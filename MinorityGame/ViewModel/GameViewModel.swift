@@ -9,9 +9,11 @@ import Foundation
 import RealmSwift
 
 class GameViewModel:ObservableObject{
-    //    @Published var mainViewModel:MainViewModel = MainViewModel()
-    @Published var game:Game = Game(id: 0,users: [User(id: 0, name: "1", point: 0, totalPoints: 0, question: 0),User(id: 1, name: "2", point: 0, totalPoints: 0, question: 0),User(id: 2, name: "3", point: 0, totalPoints: 0, question: 0)], nowGameCount: 1, maxGameCount: 2)
+    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
+
+//    @Published var game:Game = Game(id: 0,users: [User(id: 0, name: "ああああああああ", point: 0, totalPoints: 0, question: 2),User(id: 1, name: "2", point: 0, totalPoints: 0, question: 1),User(id: 2, name: "3", point: 0, totalPoints: 0, question: 2)], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
+//    @Published var questionText:String = "ふと思うのですがこの前見た下鏡は本物だったのだろうか今考えても思い出す、あれは自分だったのだろうか？"
     @Published var isShowRule:Bool = false
 
     //新しいViewModelを作っても良いかも
@@ -73,13 +75,13 @@ class GameViewModel:ObservableObject{
         return game.users[i]
     }
 
-    func yesUserCount() -> Int{
+    func yesUser() -> [User]{
         let yesUsers:[User] = game.users.filter({$0.question == 1})
-        return yesUsers.count
+        return yesUsers
     }
-    func noUserCount() -> Int{
+    func noUser() -> [User]{
         let noUsers:[User] = game.users.filter({$0.question == 2})
-        return noUsers.count
+        return noUsers
     }
     func userPoint(yes:Int,no:Int) {
         for i in game.users.indices {
@@ -94,8 +96,8 @@ class GameViewModel:ObservableObject{
     }
 
     func resultVote() -> String{
-        let yes = yesUserCount()
-        let no = noUserCount()
+        let yes = yesUser().count
+        let no = noUser().count
         if yes<no && 0<yes{
             userPoint(yes: 1, no: -1)
             return "少数派はYES"

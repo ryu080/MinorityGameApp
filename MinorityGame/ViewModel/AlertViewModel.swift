@@ -18,7 +18,7 @@ class AlertViewModel: ObservableObject {
     @Published var alertTitle = ""
     @Published var alertMessage = ""
 
-    func emptyPlayerAlert(){
+    func playerCountAlert(){
         alertTitle = "注意"
         alertMessage = "3人以上プレイヤーを追加してください。"
         alertType = .error
@@ -26,13 +26,13 @@ class AlertViewModel: ObservableObject {
     }
 
     func playerNameAlert(name:String){
-        if name == ""{
-            alertTitle = "注意"
-            alertMessage = "プレイヤー名が入力されていません。\n1~12文字以内で入力してください。"
-        }else{
-            alertTitle = "注意"
-            alertMessage = "プレイヤー名は\n12文字以内で入力してください。"
-        }
+            if name == ""{
+                alertTitle = "注意"
+                alertMessage = "プレイヤー名が入力されていません。\n1~8文字以内で入力してください。"
+            }else{
+                alertTitle = "注意"
+                alertMessage = "プレイヤー名は\n8文字以内で入力してください。"
+            }
         alertType = .error
         isShowAlert.toggle()
     }
@@ -55,6 +55,12 @@ class AlertViewModel: ObservableObject {
         isShowAlert.toggle()
     }
 
+    func discussionAlert(){
+        alertTitle = "確認"
+        alertMessage = "Thinking Timeを\n終了してもよろしいですか？"
+        alertType = .success
+        isShowAlert.toggle()
+    }
     func voteAlert(){
         alertTitle = "注意"
         alertMessage = "YESかNO\nどちらかに投票してください。"

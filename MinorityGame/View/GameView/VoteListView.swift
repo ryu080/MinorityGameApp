@@ -15,37 +15,60 @@ struct VoteListView: View {
 
     var body: some View {
         ZStack{
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
             VStack{
+                Spacer()
                 List{
                     ForEach(gameViewModel.game.users){ user in
                         HStack{
                             Text(user.name)
                                 .font(.title2)
-                                .bold()
-                                .frame(height: 40)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.pennBlue)
                             Spacer()
                             if user.question == 0{
                                 NavigationLink(""){
                                     VoteView(user: user)
-                                }
+                                }.frame(width: 20)
                             }else{
-                                Text("投票済")
-                                    .font(.title3)
-                                    .bold()
-                                    .foregroundStyle(.red)
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.system(size: 30))
+                                    .foregroundStyle(.green)
                             }
 
-                        }.padding(10)
+                        }
+                        .padding(10)
+                        .listRowBackground(Color.champagne)
                     }
                 }
+                .frame(height: UIScreen.main.bounds.height/2)
                 .scrollContentBackground(.hidden)
-                Button("投票を終わる"){
+                Spacer()
+                Button {
                     alertViewModel.voteListAlert(complete: gameViewModel.voteComplete())
+                } label: {
+                    Text("投票を終わる")
+                        .font(.title)
+                        .fontWeight(.black)
+                        .foregroundStyle(Color.pennBlue)
                 }
+                .padding(10)
+                .background(Color.champagne)
+                .cornerRadius(10)
+
                 Spacer()
             }
         }
-        .navigationBarTitle("投票", displayMode:  .inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("投票")
+                    .foregroundColor(Color.champagne)
+                    .fontWeight(.black)
+                    .font(.title2)
+            }
+        }
+
 
         .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
         } message: {

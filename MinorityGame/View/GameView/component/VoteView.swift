@@ -19,14 +19,25 @@ struct VoteView: View {
     var user:User
     var body: some View {
         ZStack{
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
             VStack{
+                Spacer()
+                Text("YESかNOを選んでください。")
+                    .font(.title)
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.champagne)
+                Spacer()
                 ZStack{
                     Text(gameViewModel.questionText)
                         .font(.title)
                         .bold()
-                        .frame(alignment: .center)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color.pennBlue)
+                        .frame(width: UIScreen.main.bounds.width-20, height:150)
+                        .background(Color.champagne)
+                        .cornerRadius(20)
                 }
+                Spacer()
                 HStack{
                     Spacer()
                     Button("YES"){
@@ -34,7 +45,7 @@ struct VoteView: View {
                         buttonColor = false
                     }
                     .font(.title)
-                    .bold()
+                    .fontWeight(.black)
                     .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):.blue)
                     Spacer()
                     Button("NO"){
@@ -42,10 +53,11 @@ struct VoteView: View {
                         buttonColor = true
                     }
                     .font(.title)
-                    .bold()
+                    .fontWeight(.black)
                     .foregroundColor((buttonColor ?? false) ? .red :.gray.opacity(0.7))
                     Spacer()
                 }
+                Spacer()
                 Button(action: {
                     if vote == 0{
                         alertViewModel.voteAlert()
@@ -55,9 +67,23 @@ struct VoteView: View {
                         buttonColor = nil
                     }
                 }, label: {
-                     Text("投票する")
+                    Text("投票する")
+                        .font(.title)
+                        .fontWeight(.black)
+                        .foregroundStyle(Color.pennBlue)
                 })
-                .navigationTitle("\(user.name)さんの回答")
+                .padding(10)
+                .background(Color.champagne)
+                .cornerRadius(10)
+                Spacer()
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text("\(user.name)さんの回答")
+                                .foregroundColor(Color.champagne)
+                                .fontWeight(.black)
+                                .font(.title2)
+                        }
+                    }
             }
         }
     }

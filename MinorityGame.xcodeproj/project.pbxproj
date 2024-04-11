@@ -16,6 +16,7 @@
 		B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB552BBAEEC000266B02 /* TimerViewModel.swift */; };
 		B767EB582BBAF13D00266B02 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB572BBAF13D00266B02 /* Time.swift */; };
 		B7785D8D2BC6386000ECC340 /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7785D8C2BC6386000ECC340 /* WinnerView.swift */; };
+		B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7828A6B2BC7AB4E00C4AE08 /* Color.swift */; };
 		B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */; };
 		B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35052BB51BA5002A87A6 /* MainContentView.swift */; };
 		B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FC35072BB51BA9002A87A6 /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 		B767EB552BBAEEC000266B02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B767EB572BBAF13D00266B02 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		B7785D8C2BC6386000ECC340 /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
+		B7828A6B2BC7AB4E00C4AE08 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B7FC35002BB51BA5002A87A6 /* MinorityGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinorityGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityGameApp.swift; sourceTree = "<group>"; };
 		B7FC35052BB51BA5002A87A6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				B7FC35312BB51C63002A87A6 /* User.swift */,
 				B7FC35332BB51CFA002A87A6 /* Game.swift */,
 				B767EB572BBAF13D00266B02 /* Time.swift */,
+				B7828A6B2BC7AB4E00C4AE08 /* Color.swift */,
 				B760DAE12BB8F88400664A10 /* RootView.swift */,
 			);
 			path = Model;
@@ -416,6 +419,7 @@
 				B7FC354C2BB52D89002A87A6 /* ResultGameView.swift in Sources */,
 				B7FC354E2BB52DBF002A87A6 /* ResultView.swift in Sources */,
 				B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */,
+				B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */,
 				B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */,
 				B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */,
 				B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */,

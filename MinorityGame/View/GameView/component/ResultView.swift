@@ -9,41 +9,121 @@ import SwiftUI
 
 struct ResultView: View {
     @EnvironmentObject var gameViewModel:GameViewModel
-    @State var yesCount:Int = 0
-    @State var noCount:Int = 0
+    @State var yesUsers:[User] = []
+    @State var noUsers:[User] = []
     @State var winer:String = ""
 
     var body: some View {
-        VStack{
-            Text(gameViewModel.questionText)
-            HStack{
-                Text("YES\(yesCount)人")
-                Text("NO\(noCount)人")
-            }
-            Text(winer)
-            List(gameViewModel.game.users.reversed()){user in
-                HStack{
-                    Text(user.name)
-                    Text("合計\(user.totalPoints)")
-                    Spacer()
-                    if user.question == 1{
-                        Text("YES")
-                            .foregroundStyle(.blue)
-                    }else if user.question == 2 {
-                        Text("NO")
-                            .foregroundStyle(.red)
+        ZStack{
+            Color.pennBlue
+            VStack{
+                Spacer()
+                Text(winer)
+                    .font(.largeTitle)
+                    .frame(width: UIScreen.main.bounds.width,height: 50)
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.pennBlue)
+                    .background(Color.champagne)
+                Spacer()
+                List{
+                    Section{
+                        ForEach(yesUsers){user in
+                            HStack{
+                                Text(user.name)
+                                    .font(.title3)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                                Spacer()
+                                if user.question == 1{
+                                    Text("YES")
+                                        .font(.title3)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(.blue)
+                                }else if user.question == 2 {
+                                    Text("NO")
+                                        .font(.title3)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(.red)
+                                }
+                                Text("\(user.point)")
+                                    .font(.title3)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                                Text("合計\(user.totalPoints)P")
+                                    .font(.title3)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                            }
+                            .padding(10)
+                            .listRowBackground(Color.champagne)
+                        }
+                    }header: {
+                        HStack{
+                            Text("YES")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(.blue)
+                            Text("\(yesUsers.count)人")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.champagne)
+                            Spacer()
+                        }
                     }
-                    Text("\(user.point)")
+                    Section{
+                        ForEach(noUsers){user in
+                            HStack{
+                                Text(user.name)
+                                    .font(.title3)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                                Spacer()
+                                if user.question == 1{
+                                    Text("YES")
+                                        .font(.title3)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(.blue)
+                                }else if user.question == 2 {
+                                    Text("NO")
+                                        .font(.title3)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(.red)
+                                }
+                                Text("\(user.point)")
+                                    .font(.title3)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                                Text("合計\(user.totalPoints)P")
+                                    .font(.title3)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                            }
+                            .padding(10)
+                            .listRowBackground(Color.champagne)
+                        }
+                    }header: {
+                        HStack{
+                            Text("NO")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(.red)
+                            Text("\(noUsers.count)人")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.champagne)
+                            Spacer()
+                        }
+                    }
                 }
+                .scrollContentBackground(.hidden)
+                .frame(height: UIScreen.main.bounds.height/2)
+                Spacer()
             }
-            .scrollContentBackground(.hidden)
-            .frame(height: 400)
-            .cornerRadius(20)
-        }
-        .onAppear(){
-            self.yesCount = gameViewModel.yesUserCount()
-            self.noCount = gameViewModel.noUserCount()
-            self.winer = gameViewModel.resultVote()
+            .onAppear(){
+                self.winer = gameViewModel.resultVote()
+                self.yesUsers = gameViewModel.yesUser()
+                self.noUsers = gameViewModel.noUser()
+            }
         }
     }
 }

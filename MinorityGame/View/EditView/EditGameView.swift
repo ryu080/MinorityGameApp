@@ -16,41 +16,60 @@ struct EditGameView: View {
 
     var body: some View {
         ZStack{
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
             VStack{
                 VStack(){
                     Text("ゲーム設定")
                         .font(.title2)
+                        .fontWeight(.black)
                         .bold()
+                        .foregroundStyle(Color.champagne)
                     HStack{
                         Text("人数: \(gameViewModel.game.users.count)")
+                            .fontWeight(.black)
                             .bold()
+                            .foregroundStyle(Color.champagne)
                         Spacer()
                         Text("ゲーム数: \(gameViewModel.game.maxGameCount)")
+                            .fontWeight(.black)
                             .bold()
+                            .foregroundStyle(Color.champagne)
                             .padding(5)
-                        Button("-"){gameViewModel.subGameCount()}
-                            .font(.title)
-                            .frame(width: 35 ,height: 35)
-                            .foregroundColor(.white)
-                            .background(.red)
-                            .cornerRadius(5)
-
-                        Button("+"){gameViewModel.addGameCount()}
-                            .font(.title)
-                            .frame(width: 35 ,height: 35)
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .cornerRadius(5)
+                        Button {
+                            gameViewModel.addGameCount()
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.title3)
+                                .bold()
+                        }
+                        .frame(width: 30 ,height: 30)
+                        .background(Color.champagne)
+                        .cornerRadius(5)
+                        Button {
+                            gameViewModel.subGameCount()
+                        } label: {
+                            Image(systemName: "minus")
+                                .font(.title3)
+                                .foregroundStyle(.red)
+                                .bold()
+                        }
+                        .frame(width: 30 ,height: 30)
+                        .background(Color.champagne)
+                        .cornerRadius(5)
                     }
                     Text("参加プレイヤー")
                         .font(.title3)
+                        .fontWeight(.black)
                         .bold()
+                        .foregroundStyle(Color.champagne)
                     HStack{
-                        TextField("プレイヤー名（12文字以内）", text: $name)
+                        TextField("プレイヤー名（8文字以内）", text: $name)
                             .textFieldStyle(.roundedBorder)
+                            .bold()
                         Spacer()
                         Button {
-                            if 0 < name.count && name.count <= 12 {
+                            if 0 < name.count && name.count <= 8 {
                                 gameViewModel.addUser(name: name)
 
                                 //inputText = "" が反応しないため追加
@@ -60,17 +79,16 @@ struct EditGameView: View {
                                         self.name = ""
                                     }
                                 }
-
-                            }else {
+                            }else{
                                 alertViewModel.playerNameAlert(name: name)
                             }
                         } label: {
                             Text("追加")
                                 .bold()
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.pennBlue)
                         }
                         .padding(7)
-                        .background(.blue)
+                        .background(Color.champagne)
                         .cornerRadius(5)
                     }
 
@@ -78,8 +96,8 @@ struct EditGameView: View {
                         HStack{
                             Text(user.name)
                                 .font(.title2)
-                                .bold()
-                                .frame(height: 40)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.pennBlue)
                             Spacer()
                             Button(action: {
                                 //削除機能
@@ -90,15 +108,14 @@ struct EditGameView: View {
                                     .foregroundColor(.red)
                             })
                             .buttonStyle(PlainButtonStyle())
-                        }
-                        .listRowBackground(Color.gray)
+                        }.padding(10)
+                        .listRowBackground(Color.champagne)
                     }
                     .frame(height: UIScreen.main.bounds.height/2)
                     .scrollContentBackground(.hidden)
-                    .cornerRadius(20)
                     Button {
                         if gameViewModel.game.users.count < 3 {
-                            alertViewModel.emptyPlayerAlert()
+                            alertViewModel.playerCountAlert()
                         }else {
                             realmViewModel.createGame(game: gameViewModel.game)
                             gameViewModel.rootView = .gameView
@@ -108,10 +125,10 @@ struct EditGameView: View {
                         Text("次へ")
                             .font(.title)
                             .bold()
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.pennBlue)
                     }
                     .frame(width: 100,height: 50)
-                    .background(.blue)
+                    .background(Color.champagne)
                     .cornerRadius(10)
                 }
                 Spacer()

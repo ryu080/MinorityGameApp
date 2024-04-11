@@ -15,56 +15,76 @@ struct QuestionView: View {
     @State var user:User = User(id: 0, name: "",point: 0, totalPoints: 0, question: 0)
     var body: some View {
         ZStack{
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
             VStack{
                 Spacer()
                 Text("出題者は...")
                     .font(.largeTitle)
-                    .bold()
-                    .foregroundStyle(.red)
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.champagne)
                     .padding(10)
                 if isQuestionView {
                     Text("\(user.name)さん")
                         .font(.largeTitle)
+                        .fontWeight(.black)
+                        .foregroundStyle(Color.champagne)
+                    Spacer()
                     ZStack{
                         TextEditor(text: $gameViewModel.questionText)
                             .scrollContentBackground(Visibility.hidden)
                             .font(.title)
                             .multilineTextAlignment(.center)
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color.pennBlue)
                             .frame(width: UIScreen.main.bounds.width-20, height:150)
-                            .border(.black, width: 5)
+                            .background(Color.champagne)
+                            .cornerRadius(20)
                             .overlay(alignment: .center) {
                                 // 未入力の時、プレースホルダーを表示
                                 if gameViewModel.questionText.isEmpty {
-                                    Text("出題者はYES/NOで答えられる質問をしてください。")
-                                        .font(.title)
+                                    Text("出題者はYES/NO\nで答えられる質問をしてください。\n※52文字以内")
+                                        .font(.title2)
                                         .bold()
                                         .allowsHitTesting(false)
                                         .foregroundColor(Color(uiColor: .placeholderText))
                                         .padding(6)
                                 }
+//                                RoundedRectangle(cornerRadius: 20)
+//                                    .stroke(Color.champagne, lineWidth: 5)
                             }
                     }
+                    Spacer()
                     Button {
                         alertViewModel.questionTextAlert(text: gameViewModel.questionText)
                     } label: {
                         Text("出題する")
+                            .font(.largeTitle)
+                            .fontWeight(.black)
+                            .foregroundStyle(Color.pennBlue)
                     }
+                    .padding(15)
+                    .background(Color.champagne)
+                    .cornerRadius(10)
+                    Spacer()
                 }else{
+                    Spacer()
+                    ProgressView()
+                        .scaleEffect(x: 3, y: 3, anchor: .center)
+                        .progressViewStyle(CircularProgressViewStyle(tint: Color.champagne))
                     Spacer()
                     Button {
                         user = gameViewModel.chooseQuestioner()
                         isQuestionView = true
                     } label: {
                         Text("表示する")
-                            .font(.title)
-                            .bold()
-                            .foregroundStyle(.white)
-                            .padding(10)
-                            .background(.blue)
-                            .cornerRadius(10)
+                            .font(.largeTitle)
+                            .fontWeight(.black)
+                            .foregroundStyle(Color.pennBlue)
                     }
+                    .padding(15)
+                    .background(Color.champagne)
+                    .cornerRadius(10)
                 }
                 Spacer()
             }
