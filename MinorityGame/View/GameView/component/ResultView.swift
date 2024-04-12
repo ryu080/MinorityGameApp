@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ResultView: View {
     @EnvironmentObject var gameViewModel:GameViewModel
-    @State var yesUsers:[User] = []
-    @State var noUsers:[User] = []
-    @State var winer:String = ""
+    @State private var yesUsers:[User] = []
+    @State private var noUsers:[User] = []
+    @State private var winer:String = ""
 
     var body: some View {
         ZStack{

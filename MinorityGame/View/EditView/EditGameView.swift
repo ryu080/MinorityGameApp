@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditGameView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
     @EnvironmentObject var realmViewModel:RealmViewModel
     @EnvironmentObject var alertViewModel:AlertViewModel
@@ -118,8 +119,8 @@ struct EditGameView: View {
                             alertViewModel.playerCountAlert()
                         }else {
                             realmViewModel.createGame(game: gameViewModel.game)
-                            gameViewModel.rootView = .gameView
-                            gameViewModel.editView = .startGameView
+                            rootViewModel.mainView = .gameView
+                            rootViewModel.editView = .startGameView
                         }
                     } label: {
                         Text("次へ")
@@ -144,6 +145,7 @@ struct EditGameView: View {
 }
 #Preview {
     EditGameView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())

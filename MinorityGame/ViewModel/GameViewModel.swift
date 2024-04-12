@@ -10,17 +10,10 @@ import RealmSwift
 
 class GameViewModel:ObservableObject{
     @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
-
 //    @Published var game:Game = Game(id: 0,users: [User(id: 0, name: "ああああああああ", point: 0, totalPoints: 0, question: 2),User(id: 1, name: "2", point: 0, totalPoints: 0, question: 1),User(id: 2, name: "3", point: 0, totalPoints: 0, question: 2)], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
 //    @Published var questionText:String = "ふと思うのですがこの前見た下鏡は本物だったのだろうか今考えても思い出す、あれは自分だったのだろうか？"
     @Published var isShowRule:Bool = false
-
-    //新しいViewModelを作っても良いかも
-    @Published var rootView:RootView = .editView
-    @Published var editView:EditView = .startGameView
-    @Published var gameView:GameView = .questionView
-
 
 
     func addGameCount(){
@@ -63,7 +56,6 @@ class GameViewModel:ObservableObject{
     //vote
     func voteComplete()->Bool{
         if game.users.allSatisfy({$0.question != 0}){
-            gameView = .resultGameView
             return true
         }else{
             return false

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WinnerView: View {
-    var winnerUser:[User]
+     var winnerUser:[User]
 
     var body: some View {
         ZStack{
@@ -40,6 +40,6 @@ struct WinnerView: View {
 }
 
 #Preview {
-    WinnerView( winnerUser: [User(id: 0, name: "小粋", point: 1, totalPoints: 6, question: 2)])
+    WinnerView(winnerUser: [User(id: 0, name: "小粋", point: 1, totalPoints: 6, question: 2)])
         .environmentObject(GameViewModel())
 }

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct GameContentView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
 
     var body: some View {
         NavigationView{
             Group{
-                switch gameViewModel.gameView {
+                switch rootViewModel.gameView {
                 case .questionView:
                     QuestionView()
                 case .discussionView:
@@ -51,6 +51,6 @@ struct GameContentView: View {
 
 #Preview {
     GameContentView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
-        .environmentObject(RealmViewModel())
 }

@@ -9,11 +9,10 @@ import SwiftUI
 
 struct VoteView: View {
     @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
     @EnvironmentObject var alertViewModel:AlertViewModel
     @Environment(\.dismiss) var dismiss
 
-    @State var vote:Int = 0
+    @State private var vote:Int = 0
     @State private var buttonColor:Bool?
 
     var user:User
@@ -92,6 +91,5 @@ struct VoteView: View {
 #Preview {
     VoteView(user: User(id: 1, name: "サンプル太",point: 0, totalPoints: 0, question: 0))
         .environmentObject(GameViewModel())
-        .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())
 }

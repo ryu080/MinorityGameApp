@@ -9,8 +9,8 @@ import SwiftUI
 import RealmSwift
 
 struct VoteListView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
-    //    @EnvironmentObject var realmViewModel:RealmViewModel
     @EnvironmentObject var alertViewModel:AlertViewModel
 
     var body: some View {
@@ -46,7 +46,7 @@ struct VoteListView: View {
                 .scrollContentBackground(.hidden)
                 Spacer()
                 Button {
-                    alertViewModel.voteListAlert(complete: gameViewModel.voteComplete())
+                    gameViewModel.voteComplete() ? rootViewModel.gameView = .resultGameView: alertViewModel.voteListAlert()
                 } label: {
                     Text("投票を終わる")
                         .font(.title)
@@ -79,7 +79,7 @@ struct VoteListView: View {
 
 #Preview {
     VoteListView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
-    //        .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())
 }

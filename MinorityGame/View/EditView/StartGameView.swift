@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartGameView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
     @EnvironmentObject var realmViewModel:RealmViewModel
 
@@ -24,7 +25,7 @@ struct StartGameView: View {
                 Spacer()
                 Button {
                     realmViewModel.deleteGame(id: 0)
-                    gameViewModel.editView = .editGameView
+                    rootViewModel.editView = .editGameView
                 } label: {
                     Text("新規ゲームを始める")
                         .font(.title)
@@ -38,7 +39,7 @@ struct StartGameView: View {
                     Button {
                         gameViewModel.game = realmViewModel.readGame(id: 0)!
                         gameViewModel.continueGame()
-                        gameViewModel.rootView = .gameView
+                        rootViewModel.mainView = .gameView
                     } label: {
                         Text("続きから再開する")
                             .font(.title)
@@ -59,6 +60,7 @@ struct StartGameView: View {
 
 #Preview {
     StartGameView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
 }

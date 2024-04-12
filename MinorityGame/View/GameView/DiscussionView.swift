@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct DiscussionView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
     @EnvironmentObject var realmViewModel:RealmViewModel
     @EnvironmentObject var alertViewModel:AlertViewModel
-    @ObservedObject var timerViewModel = TimerViewModel()
+    @ObservedObject private var timerViewModel = TimerViewModel()
 
     var body: some View {
         ZStack{
@@ -113,7 +114,7 @@ struct DiscussionView: View {
         .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
             Button("戻る",role: .cancel){}
             Button("投票へ"){
-                gameViewModel.gameView = .voteListView
+                rootViewModel.gameView = .voteListView
                 timerViewModel.stopCountDown()
                 timerViewModel.setCountDown()
             }
@@ -125,6 +126,7 @@ struct DiscussionView: View {
 
 #Preview {
     DiscussionView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())

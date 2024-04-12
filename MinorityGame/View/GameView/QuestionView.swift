@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct QuestionView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
     @EnvironmentObject var alertViewModel:AlertViewModel
 
-    @State var isQuestionView:Bool = false
-    @State var user:User = User(id: 0, name: "",point: 0, totalPoints: 0, question: 0)
+    @State private var isQuestionView:Bool = false
+    @State private var user:User?
+    
     var body: some View {
         ZStack{
             Color.pennBlue
@@ -25,7 +27,7 @@ struct QuestionView: View {
                     .foregroundStyle(Color.champagne)
                     .padding(10)
                 if isQuestionView {
-                    Text("\(user.name)さん")
+                    Text("\(user!.name)さん")
                         .font(.largeTitle)
                         .fontWeight(.black)
                         .foregroundStyle(Color.champagne)
@@ -93,7 +95,7 @@ struct QuestionView: View {
             if alertViewModel.alertType == .success{
                 Button("戻る",role: .cancel){}
                 Button("OK"){
-                    gameViewModel.gameView = .discussionView
+                    rootViewModel.gameView = .discussionView
                 }
             }
         } message: {
@@ -104,6 +106,7 @@ struct QuestionView: View {
 
 #Preview {
     QuestionView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())

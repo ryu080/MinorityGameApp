@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum RootView{
+enum MainView{
     case editView
     case gameView
 }

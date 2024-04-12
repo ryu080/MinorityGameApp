@@ -68,13 +68,10 @@ class AlertViewModel: ObservableObject {
         isShowAlert.toggle()
     }
 
-    func voteListAlert(complete:Bool){
-        if complete {
-        }else{
+    func voteListAlert(){
             alertTitle = "注意"
             alertMessage = "全員の投票が終わっていません。"
             alertType = .error
             isShowAlert.toggle()
-        }
     }
 }

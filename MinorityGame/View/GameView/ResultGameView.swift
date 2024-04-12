@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ResultGameView: View {
+    @EnvironmentObject var rootViewModel:RootViewModel
     @EnvironmentObject var gameViewModel:GameViewModel
     @EnvironmentObject var realmViewModel:RealmViewModel
 
-    @State var isShowResultView:Int = 0
+    @State private var isShowResult:Bool?
 
     var body: some View {
         ZStack{
@@ -19,15 +20,15 @@ struct ResultGameView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack{
                 Spacer()
-                if isShowResultView == 1{
+                if isShowResult == true {
                     ResultView()
                     Spacer()
                     if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
                         Button("次のゲームへ"){
                             gameViewModel.continueGame()
                             realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
-                            gameViewModel.gameView = .questionView
-                            isShowResultView = 0
+                            rootViewModel.gameView = .questionView
+                            isShowResult = nil
                         }
                         .font(.title)
                         .fontWeight(.black)
@@ -38,9 +39,9 @@ struct ResultGameView: View {
                         Button("ゲームを終了する"){
                             gameViewModel.resetGame()
                             realmViewModel.deleteGame(id: 0)
-                            gameViewModel.rootView = .editView
-                            gameViewModel.gameView = .questionView
-                            isShowResultView = 0
+                            rootViewModel.mainView = .editView
+                            rootViewModel.gameView = .questionView
+                            isShowResult = nil
                         }
                         .font(.title)
                         .fontWeight(.black)
@@ -53,7 +54,7 @@ struct ResultGameView: View {
                         Spacer()
                     }else{
                         Button {
-                            isShowResultView = 2
+                            isShowResult = false
                         } label: {
                             Text("結果発表")
                                 .font(.title)
@@ -64,14 +65,14 @@ struct ResultGameView: View {
                         .background(Color.champagne)
                         .cornerRadius(10)
                     }
-                }else if isShowResultView == 2{
+                }else if isShowResult == false{
                     WinnerView(winnerUser: gameViewModel.winnerUser())
                     Button("ホーム"){
                         gameViewModel.resetGame()
                         realmViewModel.deleteGame(id: 0)
-                        gameViewModel.rootView = .editView
-                        gameViewModel.gameView = .questionView
-                        isShowResultView = 0
+                        rootViewModel.mainView = .editView
+                        rootViewModel.gameView = .questionView
+                        isShowResult = nil
                     }
                     .font(.title)
                     .fontWeight(.black)
@@ -87,7 +88,7 @@ struct ResultGameView: View {
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.champagne))
                     ZStack{
                         Button("少数派は..."){
-                            isShowResultView = 1
+                            isShowResult = true
                             realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
                         }
                         .font(.title)
@@ -106,6 +107,7 @@ struct ResultGameView: View {
 
 #Preview {
     ResultGameView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
 }
