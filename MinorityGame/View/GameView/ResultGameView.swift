@@ -82,7 +82,7 @@ struct ResultGameView: View {
                     ProgressView()
                         .frame(height: 200)
                         .scaleEffect(x: 5, y: 5, anchor: .center)
-                        .progressViewStyle(CircularProgressViewStyle(tint: Color.champagne))
+                        .progressViewStyle(CircularProgressViewStyle(tint: Color.amaranthPurple))
                     ZStack{
                         Button("少数派は..."){
                             isShowResult = true

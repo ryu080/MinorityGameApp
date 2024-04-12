@@ -53,7 +53,7 @@ struct QuestionView: View {
                                         .padding(6)
                                 }
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.umber, lineWidth: 5)
+                                    .stroke(Color.amaranthPurple, lineWidth: 5)
                             }
                     }
                     Spacer()
@@ -73,7 +73,7 @@ struct QuestionView: View {
                     Spacer()
                     ProgressView()
                         .scaleEffect(x: 3, y: 3, anchor: .center)
-                        .progressViewStyle(CircularProgressViewStyle(tint: Color.champagne))
+                        .progressViewStyle(CircularProgressViewStyle(tint: Color.amaranthPurple))
                     Spacer()
                     Button {
                         user = gameViewModel.chooseQuestioner()

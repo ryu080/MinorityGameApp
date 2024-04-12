@@ -37,7 +37,7 @@ struct VoteView: View {
                         .cornerRadius(20)
                         .overlay() {
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.umber, lineWidth: 5)
+                                .stroke(Color.amaranthPurple, lineWidth: 5)
                         }
                 }
                 Spacer()
