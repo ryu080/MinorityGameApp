@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct QuestionView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var alertViewModel:AlertViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
 
     @State private var isQuestionView:Bool = false
     @State private var user:User?
@@ -52,8 +52,8 @@ struct QuestionView: View {
                                         .foregroundColor(Color(uiColor: .placeholderText))
                                         .padding(6)
                                 }
-//                                RoundedRectangle(cornerRadius: 20)
-//                                    .stroke(Color.champagne, lineWidth: 5)
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.umber, lineWidth: 5)
                             }
                     }
                     Spacer()

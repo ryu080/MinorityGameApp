@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WinnerView: View {
-     var winnerUser:[User]
+    var winnerUser:[User]
 
     var body: some View {
         ZStack{

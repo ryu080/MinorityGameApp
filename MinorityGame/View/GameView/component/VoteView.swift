@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct VoteView: View {
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var alertViewModel:AlertViewModel
-    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
+    @Environment(\.dismiss) private var dismiss
 
     @State private var vote:Int = 0
     @State private var buttonColor:Bool?
@@ -35,6 +35,10 @@ struct VoteView: View {
                         .frame(width: UIScreen.main.bounds.width-20, height:150)
                         .background(Color.champagne)
                         .cornerRadius(20)
+                        .overlay() {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.umber, lineWidth: 5)
+                        }
                 }
                 Spacer()
                 HStack{

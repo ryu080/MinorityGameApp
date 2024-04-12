@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct StartGameView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
 
     var body: some View {
         ZStack{

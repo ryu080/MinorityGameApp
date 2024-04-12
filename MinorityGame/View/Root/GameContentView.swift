@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct GameContentView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
 
     var body: some View {
         NavigationView{
@@ -45,7 +45,7 @@ struct GameContentView: View {
                     }
                 }
             }
-        }
+        }.navigationViewStyle(.stack)
     }
 }
 

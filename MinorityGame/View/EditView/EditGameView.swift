@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct EditGameView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
-    @EnvironmentObject var alertViewModel:AlertViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
 
-    @State var name = ""
+    @State private var name = ""
 
     var body: some View {
         ZStack{
@@ -92,8 +92,8 @@ struct EditGameView: View {
                         .background(Color.champagne)
                         .cornerRadius(5)
                     }
-
-                    List(gameViewModel.game.users.reversed()){user in
+                    Spacer()
+                    List(gameViewModel.game.users){user in
                         HStack{
                             Text(user.name)
                                 .font(.title2)
@@ -114,6 +114,7 @@ struct EditGameView: View {
                     }
                     .frame(height: UIScreen.main.bounds.height/2)
                     .scrollContentBackground(.hidden)
+                    Spacer()
                     Button {
                         if gameViewModel.game.users.count < 3 {
                             alertViewModel.playerCountAlert()
@@ -131,8 +132,8 @@ struct EditGameView: View {
                     .frame(width: 100,height: 50)
                     .background(Color.champagne)
                     .cornerRadius(10)
+                    Spacer()
                 }
-                Spacer()
             }
             .padding(10)
             .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {

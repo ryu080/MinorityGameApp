@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditContentView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
 
     var body: some View {
         switch rootViewModel.editView {

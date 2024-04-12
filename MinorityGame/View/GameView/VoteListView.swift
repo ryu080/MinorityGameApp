@@ -9,9 +9,9 @@ import SwiftUI
 import RealmSwift
 
 struct VoteListView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var alertViewModel:AlertViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
 
     var body: some View {
         ZStack{
@@ -68,8 +68,6 @@ struct VoteListView: View {
                     .font(.title2)
             }
         }
-
-
         .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
         } message: {
             Text(alertViewModel.alertMessage)

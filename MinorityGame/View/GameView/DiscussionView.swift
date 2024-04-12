@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct DiscussionView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
-    @EnvironmentObject var alertViewModel:AlertViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
     @ObservedObject private var timerViewModel = TimerViewModel()
 
     var body: some View {
@@ -82,6 +82,11 @@ struct DiscussionView: View {
                         .frame(width: UIScreen.main.bounds.width-20, height:150)
                         .background(Color.champagne)
                         .cornerRadius(20)
+                        .overlay() {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.umber, lineWidth: 5)
+                        }
+
                 }
                 HStack{
                     Spacer()

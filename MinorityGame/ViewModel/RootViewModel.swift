@@ -12,4 +12,6 @@ class RootViewModel: ObservableObject{
     @Published var editView:EditView = .startGameView
     @Published var gameView:GameView = .questionView
 
+    @Published var loadingView:Bool = false
+
 }

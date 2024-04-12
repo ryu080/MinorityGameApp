@@ -7,12 +7,7 @@
 
 import Foundation
 
-struct Game: Identifiable, Equatable{
-    //比較に必要　要勉強
-    static func == (lhs: Game, rhs: Game) -> Bool {
-        return lhs.id == rhs.id
-    }
-
+struct Game: Identifiable{
     var id:Int
     var users:[User]
     var nowGameCount:Int

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ResultGameView: View {
-    @EnvironmentObject var rootViewModel:RootViewModel
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
 
     @State private var isShowResult:Bool?
 
@@ -29,6 +29,7 @@ struct ResultGameView: View {
                             realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
                             rootViewModel.gameView = .questionView
                             isShowResult = nil
+                            rootViewModel.loadingView = false
                         }
                         .font(.title)
                         .fontWeight(.black)
@@ -37,11 +38,7 @@ struct ResultGameView: View {
                         .background(Color.champagne)
                         .cornerRadius(10)
                         Button("ゲームを終了する"){
-                            gameViewModel.resetGame()
-                            realmViewModel.deleteGame(id: 0)
-                            rootViewModel.mainView = .editView
-                            rootViewModel.gameView = .questionView
-                            isShowResult = nil
+                            isShowResult = false
                         }
                         .font(.title)
                         .fontWeight(.black)
@@ -83,12 +80,13 @@ struct ResultGameView: View {
 
                 }else{
                     ProgressView()
-                        .frame(height: 300)
-                        .scaleEffect(x: 10, y: 10, anchor: .center)
+                        .frame(height: 200)
+                        .scaleEffect(x: 5, y: 5, anchor: .center)
                         .progressViewStyle(CircularProgressViewStyle(tint: Color.champagne))
                     ZStack{
                         Button("少数派は..."){
                             isShowResult = true
+                            rootViewModel.loadingView = false
                             realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
                         }
                         .font(.title)

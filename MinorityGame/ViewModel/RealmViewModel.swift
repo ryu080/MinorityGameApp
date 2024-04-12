@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 
 class RealmViewModel: ObservableObject {
-    let version:UInt64 = 2
+    private let version:UInt64 = 2
 
     init() {
         //realmのマイグレーション
@@ -33,7 +33,6 @@ class RealmViewModel: ObservableObject {
        }
 
 
-    //Realm C
         func createGame(game:Game){
             let realm = try! Realm()
             try! realm.write {
@@ -54,7 +53,7 @@ class RealmViewModel: ObservableObject {
                 realm.add(gameObject)
             }
         }
-        //Realm R
+
         func readGame(id:Int) -> Game? {
                 let realm = try! Realm()
             if let gameObject = realm.object(ofType:GameObject.self, forPrimaryKey: id) {
@@ -67,7 +66,7 @@ class RealmViewModel: ObservableObject {
                 }
                 return nil
             }
-        //Realm U
+
         func updateGame(id:Int, updatedGame: Game) {
                 let realm = try! Realm()
                 if let gameObject = realm.object(ofType:GameObject.self, forPrimaryKey: id) {
@@ -88,7 +87,7 @@ class RealmViewModel: ObservableObject {
                     }
                 }
             }
-        //Realm D
+
         func deleteGame(id:Int) {
                 let realm = try! Realm()
                 if let gameObject = realm.object(ofType:GameObject.self, forPrimaryKey: id) {
