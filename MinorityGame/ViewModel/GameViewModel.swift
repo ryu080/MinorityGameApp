@@ -9,10 +9,8 @@ import Foundation
 import RealmSwift
 
 class GameViewModel:ObservableObject{
-//    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
-    @Published var game:Game = Game(id: 0,users: [User(id: 0, name: "ああああああああ", point: 0, totalPoints: 0, question: 2),User(id: 1, name: "いいいいいい", point: 0, totalPoints: 0, question: 1),User(id: 2, name: "うううううう", point: 0, totalPoints: 0, question: 2)], nowGameCount: 1, maxGameCount: 2)
+    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
-//    @Published var questionText:String = "ふと思うのですがこの前見た下鏡は本物だったのだろうか今考えても思い出す、あれは自分だったのだろうか？"
     @Published var isShowRule:Bool = false
 
 
