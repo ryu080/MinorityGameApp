@@ -11,14 +11,14 @@ struct WinnerView: View {
     var winnerUser:[User]
 
     var body: some View {
-        ZStack{
+        ZStack {
             Color.pennBlue
-            VStack{
+            VStack {
                 Text("🎉Winner🎉")
                     .font(.largeTitle)
                     .fontWeight(.black)
                     .foregroundStyle(Color.champagne)
-                List(winnerUser){user in
+                List(winnerUser) { user in
                     HStack{
                         Text(user.name)
                             .font(.largeTitle)

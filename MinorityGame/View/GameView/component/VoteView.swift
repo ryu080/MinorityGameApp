@@ -17,17 +17,17 @@ struct VoteView: View {
 
     var user:User
     var body: some View {
-        ZStack{
+        ZStack {
             Color.pennBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 Spacer()
                 Text("YESかNOを選んでください。")
                     .font(.title)
                     .fontWeight(.black)
                     .foregroundStyle(Color.champagne)
                 Spacer()
-                ZStack{
+                ZStack {
                     Text(gameViewModel.questionText)
                         .font(.title)
                         .bold()
@@ -41,9 +41,9 @@ struct VoteView: View {
                         }
                 }
                 Spacer()
-                HStack{
+                HStack {
                     Spacer()
-                    Button("YES"){
+                    Button("YES") {
                         vote = 1
                         buttonColor = false
                     }
@@ -51,7 +51,7 @@ struct VoteView: View {
                     .fontWeight(.black)
                     .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):.blue)
                     Spacer()
-                    Button("NO"){
+                    Button("NO") {
                         vote = 2
                         buttonColor = true
                     }
@@ -62,10 +62,10 @@ struct VoteView: View {
                 }
                 Spacer()
                 Button(action: {
-                    if vote == 0{
+                    if vote == 0 {
                         alertViewModel.voteAlert()
-                    }else{
-                        gameViewModel.questionUser(id: user.id, question: vote)
+                    } else {
+                        gameViewModel.updateUserQuestion(id: user.id, question: vote)
                         dismiss()
                         buttonColor = nil
                     }

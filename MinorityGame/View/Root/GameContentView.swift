@@ -12,8 +12,8 @@ struct GameContentView: View {
     @EnvironmentObject private var gameViewModel:GameViewModel
 
     var body: some View {
-        NavigationView{
-            Group{
+        NavigationView {
+            Group {
                 switch rootViewModel.gameView {
                 case .questionView:
                     QuestionView()
@@ -25,7 +25,7 @@ struct GameContentView: View {
                     ResultGameView()
                 }
             }
-            .sheet(isPresented: $gameViewModel.isShowRule){
+            .sheet(isPresented: $gameViewModel.isShowRule) {
                 RuleGameView()
             }
             .toolbar {
@@ -36,9 +36,9 @@ struct GameContentView: View {
                         .fontWeight(.black)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
+                    Button {
                         gameViewModel.isShowRule.toggle()
-                    }) {
+                    } label: {
                         Text("ルール")
                             .font(.title3)
                             .fontWeight(.black)

@@ -18,33 +18,36 @@ struct DiscussionView: View {
         ZStack{
             Color.pennBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 Spacer()
                 Text("Thinking Time")
                     .font(.title)
                     .fontWeight(.black)
                     .foregroundStyle(Color.champagne)
-                VStack{
-                Text(timerViewModel.dateFormat(minutes: timerViewModel.timeCount.minutesCount, seconds: timerViewModel.timeCount.secondsCount))
+                VStack {
+                Text(timerViewModel.dateFormat(minutes: timerViewModel.timeCount.minutesCount,
+                                               seconds: timerViewModel.timeCount.secondsCount))
                     .font(.system(size: 50))
                     .fontWeight(.black)
                     .foregroundStyle(Color.champagne)
-                    HStack{
+                    HStack {
                         Spacer()
-                        if timerViewModel.timer == nil{
-                            Button(action: {
-                                timerViewModel.startCountDown()
-                            }, label: {
-                                Image(systemName: "play.fill")
-                                    .font(.title)
-                            })
-                        } else{
-                            Button(action: {
-                                timerViewModel.stopCountDown()
-                            }, label: {
-                                Image(systemName: "pause.fill")
-                                    .font(.title)
-                            })
+                        Group {
+                            if timerViewModel.timer == nil {
+                                Button(action: {
+                                    timerViewModel.startCountDown()
+                                }, label: {
+                                    Image(systemName: "play.fill")
+                                        .font(.title)
+                                })
+                            } else {
+                                Button(action: {
+                                    timerViewModel.stopCountDown()
+                                }, label: {
+                                    Image(systemName: "pause.fill")
+                                        .font(.title)
+                                })
+                            }
                         }
                         Spacer()
                         Text("1min")
@@ -74,7 +77,7 @@ struct DiscussionView: View {
                     .background(Color.champagne)
                     .cornerRadius(20)
                 }.padding(10)
-                ZStack{
+                ZStack {
                     Text(gameViewModel.questionText)
                         .font(.title)
                         .bold()
@@ -88,7 +91,7 @@ struct DiscussionView: View {
                         }
 
                 }
-                HStack{
+                HStack {
                     Spacer()
                     Text("YES")
                         .font(.title)

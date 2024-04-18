@@ -13,10 +13,10 @@ struct StartGameView: View {
     @EnvironmentObject private var realmViewModel:RealmViewModel
 
     var body: some View {
-        ZStack{
+        ZStack {
             Color.pennBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 Spacer()
                 Text("少数決ゲーム")
                     .font(.largeTitle)
@@ -35,7 +35,7 @@ struct StartGameView: View {
                 .padding(10)
                 .background(Color.champagne)
                 .cornerRadius(10)
-                if realmViewModel.readGame(id: 0) != nil{
+                if realmViewModel.readGame(id: 0) != nil {
                     Button {
                         gameViewModel.game = realmViewModel.readGame(id: 0)!
                         gameViewModel.continueGame()

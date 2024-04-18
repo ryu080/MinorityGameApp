@@ -15,21 +15,62 @@ struct ResultGameView: View {
     @State private var isShowResult:Bool?
 
     var body: some View {
-        ZStack{
+        ZStack {
             Color.pennBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 Spacer()
-                if isShowResult == true {
-                    ResultView()
-                    Spacer()
-                    if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
-                        Button("次のゲームへ"){
-                            gameViewModel.continueGame()
-                            realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
+                Group {
+                    if isShowResult == true {
+                        ResultView()
+                        Spacer()
+                        if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
+                            Button("次のゲームへ") {
+                                gameViewModel.continueGame()
+                                realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
+                                rootViewModel.gameView = .questionView
+                                isShowResult = nil
+                                rootViewModel.loadingView = false
+                            }
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundColor(Color.pennBlue)
+                            .padding(10)
+                            .background(Color.champagne)
+                            .cornerRadius(10)
+                            Button("ゲームを終了する") {
+                                isShowResult = false
+                            }
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundStyle(Color.champagne)
+                            .padding(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.champagne, lineWidth: 4)
+                            )
+                            Spacer()
+                        } else {
+                            Button {
+                                isShowResult = false
+                            } label: {
+                                Text("結果発表")
+                                    .font(.title)
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.pennBlue)
+                            }
+                            .padding(10)
+                            .background(Color.champagne)
+                            .cornerRadius(10)
+                        }
+                    } else if isShowResult == false {
+                        WinnerView(winnerUser: gameViewModel.winnerUser())
+                        Button("ホーム"){
+                            gameViewModel.resetGame()
+                            realmViewModel.deleteGame(id: 0)
+                            rootViewModel.mainView = .editView
                             rootViewModel.gameView = .questionView
                             isShowResult = nil
-                            rootViewModel.loadingView = false
                         }
                         .font(.title)
                         .fontWeight(.black)
@@ -37,64 +78,25 @@ struct ResultGameView: View {
                         .padding(10)
                         .background(Color.champagne)
                         .cornerRadius(10)
-                        Button("ゲームを終了する"){
-                            isShowResult = false
-                        }
-                        .font(.title)
-                        .fontWeight(.black)
-                        .foregroundStyle(Color.champagne)
-                        .padding(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.champagne, lineWidth: 4)
-                        )
-                        Spacer()
-                    }else{
-                        Button {
-                            isShowResult = false
-                        } label: {
-                            Text("結果発表")
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundStyle(Color.pennBlue)
-                        }
-                        .padding(10)
-                        .background(Color.champagne)
-                        .cornerRadius(10)
-                    }
-                }else if isShowResult == false{
-                    WinnerView(winnerUser: gameViewModel.winnerUser())
-                    Button("ホーム"){
-                        gameViewModel.resetGame()
-                        realmViewModel.deleteGame(id: 0)
-                        rootViewModel.mainView = .editView
-                        rootViewModel.gameView = .questionView
-                        isShowResult = nil
-                    }
-                    .font(.title)
-                    .fontWeight(.black)
-                    .foregroundColor(Color.pennBlue)
-                    .padding(10)
-                    .background(Color.champagne)
-                    .cornerRadius(10)
 
-                }else{
-                    ProgressView()
-                        .frame(height: 200)
-                        .scaleEffect(x: 5, y: 5, anchor: .center)
-                        .progressViewStyle(CircularProgressViewStyle(tint: Color.amaranthPurple))
-                    ZStack{
-                        Button("少数派は..."){
-                            isShowResult = true
-                            rootViewModel.loadingView = false
-                            realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
+                    } else {
+                        ProgressView()
+                            .frame(height: 200)
+                            .scaleEffect(x: 5, y: 5, anchor: .center)
+                            .progressViewStyle(CircularProgressViewStyle(tint: Color.amaranthPurple))
+                        ZStack{
+                            Button("少数派は..."){
+                                isShowResult = true
+                                rootViewModel.loadingView = false
+                                realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
+                            }
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundColor(Color.pennBlue)
+                            .padding(10)
+                            .background(Color.champagne)
+                            .cornerRadius(10)
                         }
-                        .font(.title)
-                        .fontWeight(.black)
-                        .foregroundColor(Color.pennBlue)
-                        .padding(10)
-                        .background(Color.champagne)
-                        .cornerRadius(10)
                     }
                 }
                 Spacer()

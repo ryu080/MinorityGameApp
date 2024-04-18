@@ -11,10 +11,10 @@ struct RuleGameView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        ZStack{
+        ZStack {
             Color.pennBlue.opacity(0.8)
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 Spacer()
                 Text("少数決ゲーム")
                     .font(.largeTitle)
@@ -25,8 +25,8 @@ struct RuleGameView: View {
                     .foregroundStyle(Color.champagne)
                     .fontWeight(.black)
                 Spacer()
-                ScrollView{
-                    VStack{
+                ScrollView {
+                    VStack {
                         Text("ゲームの流れ")
                             .font(.title3)
                             .fontWeight(.black)

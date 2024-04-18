@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 
 struct VoteListView: View {
     @EnvironmentObject private var rootViewModel:RootViewModel
@@ -14,29 +13,30 @@ struct VoteListView: View {
     @EnvironmentObject private var alertViewModel:AlertViewModel
 
     var body: some View {
-        ZStack{
+        ZStack {
             Color.pennBlue
                 .edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack {
                 Spacer()
-                List{
-                    ForEach(gameViewModel.game.users){ user in
-                        HStack{
+                List {
+                    ForEach(gameViewModel.game.users) { user in
+                        HStack {
                             Text(user.name)
                                 .font(.title2)
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.pennBlue)
                             Spacer()
-                            if user.question == 0{
-                                NavigationLink(""){
-                                    VoteView(user: user)
-                                }.frame(width: 20)
-                            }else{
-                                Image(systemName: "checkmark.circle.fill")
-                                    .font(.system(size: 30))
-                                    .foregroundStyle(.green)
+                            Group {
+                                if user.question == 0 {
+                                    NavigationLink(""){
+                                        VoteView(user: user)
+                                    }.frame(width: 20)
+                                } else {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.system(size: 30))
+                                        .foregroundStyle(.green)
+                                }
                             }
-
                         }
                         .padding(10)
                         .listRowBackground(Color.champagne)
