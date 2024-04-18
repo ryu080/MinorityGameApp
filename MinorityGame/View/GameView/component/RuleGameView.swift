@@ -16,7 +16,7 @@ struct RuleGameView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                Text("少数決ゲーム")
+                Text("少数派ゲーム")
                     .font(.largeTitle)
                     .foregroundStyle(Color.champagne)
                     .fontWeight(.black)
@@ -42,7 +42,7 @@ struct RuleGameView: View {
                             .fontWeight(.black)
                             .foregroundStyle(.red)
                             .padding(5)
-                        Text("・お題はyes/noで答えられるものにする。\n・投票は嘘をついてもよい。\n・YES/NOが同数の場合、0ポイント")
+                        Text("・お題はYES/NOで答えられるものにする。\n・投票は嘘をついてもよい。\n・YES/NOが同数の場合、0ポイント")
                             .padding(.trailing)
                             .font(.headline)
                             .bold()
