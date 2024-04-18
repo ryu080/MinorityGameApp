@@ -8,31 +8,51 @@
 import SwiftUI
 
 struct StartGameView: View {
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
 
     var body: some View {
-        NavigationView{
-            VStack{
-                VStack{
+        ZStack {
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Spacer()
+                Text("少数決ゲーム")
+                    .font(.largeTitle)
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.champagne)
+                Spacer()
+                Button {
+                    realmViewModel.deleteGame(id: 0)
+                    rootViewModel.editView = .editGameView
+                } label: {
+                    Text("新規ゲームを始める")
+                        .font(.title)
+                        .fontWeight(.black)
+                        .foregroundStyle(Color.pennBlue)
+                }
+                .padding(10)
+                .background(Color.champagne)
+                .cornerRadius(10)
+                if realmViewModel.readGame(id: 0) != nil {
                     Button {
-                        realmViewModel.deleteGame(id: 0)
-                        gameViewModel.editView = .editGameView
+                        gameViewModel.game = realmViewModel.readGame(id: 0)!
+                        gameViewModel.continueGame()
+                        rootViewModel.mainView = .gameView
                     } label: {
-                        Text("新規ゲームを始める")
+                        Text("続きから再開する")
+                            .font(.title)
+                            .fontWeight(.black)
+                            .foregroundStyle(Color.champagne)
                     }
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.champagne, lineWidth: 4)
+                    )
                 }
-                if realmViewModel.readGame(id: 0) != nil{
-                    VStack{
-                        Button {
-                            gameViewModel.game = realmViewModel.readGame(id: 0)!
-                            gameViewModel.continueGame()
-                            gameViewModel.rootView = .gameView
-                        } label: {
-                            Text("続きから再開する")
-                        }
-                    }
-                }
+                Spacer()
             }
         }
     }
@@ -40,6 +60,7 @@ struct StartGameView: View {
 
 #Preview {
     StartGameView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
 }

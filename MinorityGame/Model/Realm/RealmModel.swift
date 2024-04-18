@@ -11,6 +11,7 @@ class UserObject: Object {
     @Persisted var id: Int
     @Persisted var name:String
     @Persisted var point:Int
+    @Persisted var totalPoints:Int
     @Persisted var question:Int
 }
 

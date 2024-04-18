@@ -6,106 +6,110 @@
 //
 
 import Foundation
-import RealmSwift
 
-class GameViewModel:ObservableObject{
-    //    @Published var mainViewModel:MainViewModel = MainViewModel()
+@MainActor
+final class GameViewModel:ObservableObject {
     @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
-
-    @Published var questionText:String = "今日は日曜日ですか？"
-
+    @Published var questionText:String = ""
     @Published var isShowRule:Bool = false
 
-    //新しいViewModelを作っても良いかも
-    @Published var rootView:RootView = .editView
-    @Published var editView:EditView = .startGameView
-    @Published var gameView:GameView = .questionView
-
-
-
-    func addGameCount(){
+    func gameCountUp() {
         if 10 > game.maxGameCount {
             game.maxGameCount += 1
         }
     }
 
-    func subGameCount(){
+    func gameCountDown() {
         if 1 < game.maxGameCount {
             game.maxGameCount -= 1
         }
     }
-    func setId()->Int{
+
+    private func createId() -> Int {
         if game.users.isEmpty{
             return 1
-        }else{
+        } else {
             return game.users.last!.id+1
         }
     }
 
-    //user
-    func addUser(name:String) {
-        if game.users.count < 20{
-            let user = User(id: setId(), name: name, point: 0,question: 0)
+    func createUser(name:String) {
+        if game.users.count < 20 {
+            let user = User(id: createId(), name: name,point: 0, totalPoints: 0,question: 0)
             game.users.append(user)
         }
     }
-    func questionUser(id:Int, question:Int){
+
+    func updateUserQuestion(id:Int, question:Int) {
         for i in game.users.indices {
-            if(game.users[i].id == id){
+            if(game.users[i].id == id) {
                 game.users[i].question = question
             }
         }
     }
-    func deleteUser(id:Int){
-        game.users = game.users.filter({$0.id != (id)})
-    }
 
-    //vote
-    func voteCompleta(){
-        if game.users.allSatisfy({$0.question != 0}){
-            gameView = .resultGameView
-        }
-    }
-
-    func chooseQuestioner()->User{
-        let i = Int.random(in: 0..<game.users.count)
-        return game.users[i]
-    }
-
-    func yesUserCount() -> Int{
-        let yesUsers:[User] = game.users.filter({$0.question == 1})
-        return yesUsers.count
-    }
-    func noUserCount() -> Int{
-        let noUsers:[User] = game.users.filter({$0.question == 2})
-        return noUsers.count
-    }
-    func userPoint(yes:Int,no:Int) {
+    func updateUserPoint(yes:Int,no:Int) {
         for i in game.users.indices {
-            if(game.users[i].question == 1){
-                game.users[i].point += yes
-            }else if (game.users[i].question == 2){
-                game.users[i].point += no
+            if(game.users[i].question == 1) {
+                game.users[i].totalPoints += yes
+                game.users[i].point = yes
+            }else if (game.users[i].question == 2) {
+                game.users[i].totalPoints += no
+                game.users[i].point = no
             }
         }
     }
 
-    func resultVote() -> String{
-        let yes = yesUserCount()
-        let no = noUserCount()
+    func deleteUser(id:Int) {
+        game.users = game.users.filter({$0.id != (id)})
+    }
+
+    func chooseQuestioner() -> User {
+        let i = Int.random(in: 0..<game.users.count)
+        return game.users[i]
+    }
+
+    func voteComplete()->Bool {
+        if game.users.allSatisfy({$0.question != 0}) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func yesUser() -> [User] {
+        let yesUsers:[User] = game.users.filter({$0.question == 1})
+        return yesUsers
+    }
+    func noUser() -> [User] {
+        let noUsers:[User] = game.users.filter({$0.question == 2})
+        return noUsers
+    }
+
+    func resultVote() -> String {
+        let yes = yesUser().count
+        let no = noUser().count
         if yes<no && 0<yes{
-            userPoint(yes: 1, no: -1)
+            updateUserPoint(yes: 1, no: -1)
             return "少数派はYES"
         }else if no<yes && 0<no{
-            userPoint(yes: -1, no: 1)
+            updateUserPoint(yes: -1, no: 1)
             return "少数派はNO"
         }else {
-            userPoint(yes: 0, no: 0)
+            updateUserPoint(yes: 0, no: 0)
             return "ドロー"
         }
     }
 
-    func continueGame(){
+    func winnerUser()->[User]{
+        guard let maxPoint = game.users.max(by: { $0.totalPoints < $1.totalPoints })?.totalPoints else {
+            return []
+        }
+        let winner = game.users.filter({$0.totalPoints == maxPoint})
+        return winner
+    }
+
+    func continueGame() {
         if game.users.allSatisfy({$0.question != 0}){
             for i in game.users.indices {
                 game.users[i].question = 0
@@ -115,7 +119,7 @@ class GameViewModel:ObservableObject{
         }
     }
 
-    func resetGame(){
+    func resetGame() {
         game.users = []
         questionText = ""
         game.nowGameCount = 1

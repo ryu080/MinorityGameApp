@@ -8,49 +8,76 @@
 import SwiftUI
 
 struct VoteListView: View {
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
 
     var body: some View {
-        NavigationView{
-            ZStack{
-                VStack{
-                    List{
-                        ForEach(gameViewModel.game.users){ user in
-                            HStack{
-                                Text(user.name)
-                                    .font(.title2)
-                                    .bold()
-                                    .frame(height: 40)
-                                Spacer()
-                                if user.question == 0{
+        ZStack {
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Spacer()
+                List {
+                    ForEach(gameViewModel.game.users) { user in
+                        HStack {
+                            Text(user.name)
+                                .font(.title2)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.pennBlue)
+                            Spacer()
+                            Group {
+                                if user.question == 0 {
                                     NavigationLink(""){
                                         VoteView(user: user)
-                                    }
-                                }else{
-                                    Text("投票済")
-                                        .font(.title3)
-                                        .bold()
-                                        .foregroundStyle(.red)
+                                    }.frame(width: 20)
+                                } else {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.system(size: 30))
+                                        .foregroundStyle(.green)
                                 }
-
-                            }.padding(10)
+                            }
                         }
+                        .padding(10)
+                        .listRowBackground(Color.champagne)
                     }
-                    .scrollContentBackground(.hidden)
-                    Button("投票を終わる"){
-                        gameViewModel.voteCompleta()
-                    }
-                    Spacer()
                 }
-                .navigationBarTitle("投票", displayMode:  .inline)
+                .frame(height: UIScreen.main.bounds.height/2)
+                .scrollContentBackground(.hidden)
+                Spacer()
+                Button {
+                    gameViewModel.voteComplete() ? rootViewModel.gameView = .resultGameView: alertViewModel.voteListAlert()
+                } label: {
+                    Text("投票を終わる")
+                        .font(.title)
+                        .fontWeight(.black)
+                        .foregroundStyle(Color.pennBlue)
+                }
+                .padding(10)
+                .background(Color.champagne)
+                .cornerRadius(10)
+
+                Spacer()
             }
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("投票")
+                    .foregroundColor(Color.champagne)
+                    .fontWeight(.black)
+                    .font(.title2)
+            }
+        }
+        .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
+        } message: {
+            Text(alertViewModel.alertMessage)
         }
     }
 }
 
 #Preview {
     VoteListView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
-        .environmentObject(RealmViewModel())
+        .environmentObject(AlertViewModel())
 }

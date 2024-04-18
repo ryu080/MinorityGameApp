@@ -8,46 +8,92 @@
 import SwiftUI
 
 struct VoteView: View {
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
-    @Environment(\.dismiss) var dismiss
-    
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
+    @Environment(\.dismiss) private var dismiss
+
+    @State private var vote:Int = 0
+    @State private var buttonColor:Bool?
+
     var user:User
     var body: some View {
-        ZStack{
-            VStack{
-                ZStack{
+        ZStack {
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Spacer()
+                Text("YESかNOを選んでください。")
+                    .font(.title)
+                    .fontWeight(.black)
+                    .foregroundStyle(Color.champagne)
+                Spacer()
+                ZStack {
                     Text(gameViewModel.questionText)
                         .font(.title)
                         .bold()
-                        .frame(alignment: .center)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color.pennBlue)
+                        .frame(width: UIScreen.main.bounds.width-20, height:150)
+                        .background(Color.champagne)
+                        .cornerRadius(20)
+                        .overlay() {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.amaranthPurple, lineWidth: 5)
+                        }
                 }
-                HStack{
+                Spacer()
+                HStack {
                     Spacer()
-                    Button("YES"){
-                        gameViewModel.questionUser(id: user.id, question: 1)
-                        dismiss()
-                    }.font(.title)
-                        .bold()
-                    Spacer()
-                    Button("NO"){
-                        gameViewModel.questionUser(id: user.id, question: 2)
-                        dismiss()
+                    Button("YES") {
+                        vote = 1
+                        buttonColor = false
                     }
                     .font(.title)
-                    .bold()
-                    .foregroundColor(.red)
+                    .fontWeight(.black)
+                    .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):.blue)
+                    Spacer()
+                    Button("NO") {
+                        vote = 2
+                        buttonColor = true
+                    }
+                    .font(.title)
+                    .fontWeight(.black)
+                    .foregroundColor((buttonColor ?? false) ? .red :.gray.opacity(0.7))
                     Spacer()
                 }
-                .navigationTitle("\(user.name)さんの回答")
+                Spacer()
+                Button(action: {
+                    if vote == 0 {
+                        alertViewModel.voteAlert()
+                    } else {
+                        gameViewModel.updateUserQuestion(id: user.id, question: vote)
+                        dismiss()
+                        buttonColor = nil
+                    }
+                }, label: {
+                    Text("投票する")
+                        .font(.title)
+                        .fontWeight(.black)
+                        .foregroundStyle(Color.pennBlue)
+                })
+                .padding(10)
+                .background(Color.champagne)
+                .cornerRadius(10)
+                Spacer()
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            Text("\(user.name)さんの回答")
+                                .foregroundColor(Color.champagne)
+                                .fontWeight(.black)
+                                .font(.title2)
+                        }
+                    }
             }
         }
     }
 }
 
 #Preview {
-    VoteView(user: User(id: 1, name: "サンプル太", point: 0, question: 0))
+    VoteView(user: User(id: 1, name: "サンプル太",point: 0, totalPoints: 0, question: 0))
         .environmentObject(GameViewModel())
-        .environmentObject(RealmViewModel())
+        .environmentObject(AlertViewModel())
 }

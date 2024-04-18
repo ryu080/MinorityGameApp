@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E3C12BBD8F2600755473 /* RealmModel.swift */; };
-		B760DAE22BB8F88400664A10 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DAE12BB8F88400664A10 /* RootView.swift */; };
+		B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74E118F2BC68B0D00223975 /* AlertViewModel.swift */; };
+		B760DAE22BB8F88400664A10 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DAE12BB8F88400664A10 /* Root.swift */; };
 		B76258EC2BBE936400463203 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B76258EB2BBE936400463203 /* Realm */; };
 		B76258EE2BBE936400463203 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B76258ED2BBE936400463203 /* RealmSwift */; };
 		B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76258EF2BBF9EC300463203 /* RealmViewModel.swift */; };
 		B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB552BBAEEC000266B02 /* TimerViewModel.swift */; };
 		B767EB582BBAF13D00266B02 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB572BBAF13D00266B02 /* Time.swift */; };
+		B7785D8D2BC6386000ECC340 /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7785D8C2BC6386000ECC340 /* WinnerView.swift */; };
+		B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7828A6B2BC7AB4E00C4AE08 /* Color.swift */; };
+		B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78297E72BC8BA3000655492 /* RootViewModel.swift */; };
 		B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */; };
 		B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35052BB51BA5002A87A6 /* MainContentView.swift */; };
 		B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FC35072BB51BA9002A87A6 /* Assets.xcassets */; };
@@ -56,10 +60,14 @@
 
 /* Begin PBXFileReference section */
 		B743E3C12BBD8F2600755473 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
-		B760DAE12BB8F88400664A10 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B74E118F2BC68B0D00223975 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		B760DAE12BB8F88400664A10 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		B76258EF2BBF9EC300463203 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
 		B767EB552BBAEEC000266B02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B767EB572BBAF13D00266B02 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
+		B7785D8C2BC6386000ECC340 /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
+		B7828A6B2BC7AB4E00C4AE08 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		B78297E72BC8BA3000655492 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		B7FC35002BB51BA5002A87A6 /* MinorityGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinorityGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityGameApp.swift; sourceTree = "<group>"; };
 		B7FC35052BB51BA5002A87A6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -192,7 +200,9 @@
 			children = (
 				B76258EF2BBF9EC300463203 /* RealmViewModel.swift */,
 				B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */,
+				B78297E72BC8BA3000655492 /* RootViewModel.swift */,
 				B767EB552BBAEEC000266B02 /* TimerViewModel.swift */,
+				B74E118F2BC68B0D00223975 /* AlertViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -214,7 +224,8 @@
 				B7FC35312BB51C63002A87A6 /* User.swift */,
 				B7FC35332BB51CFA002A87A6 /* Game.swift */,
 				B767EB572BBAF13D00266B02 /* Time.swift */,
-				B760DAE12BB8F88400664A10 /* RootView.swift */,
+				B7828A6B2BC7AB4E00C4AE08 /* Color.swift */,
+				B760DAE12BB8F88400664A10 /* Root.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 				B7FC35432BB523BC002A87A6 /* RuleGameView.swift */,
 				B7FC35492BB5294A002A87A6 /* VoteView.swift */,
 				B7FC354D2BB52DBF002A87A6 /* ResultView.swift */,
+				B7785D8C2BC6386000ECC340 /* WinnerView.swift */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -410,18 +422,22 @@
 				B7FC354C2BB52D89002A87A6 /* ResultGameView.swift in Sources */,
 				B7FC354E2BB52DBF002A87A6 /* ResultView.swift in Sources */,
 				B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */,
+				B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */,
 				B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */,
 				B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */,
+				B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */,
 				B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */,
 				B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */,
 				B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */,
 				B7FC35322BB51C63002A87A6 /* User.swift in Sources */,
+				B7785D8D2BC6386000ECC340 /* WinnerView.swift in Sources */,
 				B7FC35542BB5318E002A87A6 /* GameContentView.swift in Sources */,
 				B767EB582BBAF13D00266B02 /* Time.swift in Sources */,
 				B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */,
 				B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */,
 				B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */,
-				B760DAE22BB8F88400664A10 /* RootView.swift in Sources */,
+				B760DAE22BB8F88400664A10 /* Root.swift in Sources */,
+				B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */,
 				B7FC35522BB53141002A87A6 /* EditContentView.swift in Sources */,
 				B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */,
 				B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */,
@@ -514,7 +530,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -571,7 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -595,15 +611,16 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryuji.MinorityGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -626,15 +643,16 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryuji.MinorityGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -652,7 +670,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FJVWD9ZV84;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryuji.MinorityGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -672,7 +690,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FJVWD9ZV84;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryuji.MinorityGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

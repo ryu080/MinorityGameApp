@@ -8,134 +8,143 @@
 import SwiftUI
 
 struct EditGameView: View {
-    @EnvironmentObject var gameViewModel:GameViewModel
-    @EnvironmentObject var realmViewModel:RealmViewModel
+    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
+    @EnvironmentObject private var alertViewModel:AlertViewModel
 
-    @State var isShowAlert = false
-    @State var isStringCount = false
-    @State var inputText = ""
+    @State private var name = ""
 
     var body: some View {
-        ZStack{
-            VStack{
-                VStack(){
-                    Text("ゲーム設定")
-                        .font(.title2)
+        ZStack {
+            Color.pennBlue
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("ゲーム設定")
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .bold()
+                    .foregroundStyle(Color.champagne)
+                HStack {
+                    Text("人数: \(gameViewModel.game.users.count)")
+                        .fontWeight(.black)
                         .bold()
-                    HStack{
-                        Text("人数: \(gameViewModel.game.users.count)")
-                            .bold()
-                        Spacer()
-                        Text("ゲーム数: \(gameViewModel.game.maxGameCount)")
-                            .bold()
-                            .padding(5)
-                        Button("-"){gameViewModel.subGameCount()}
-                            .font(.title)
-                            .frame(width: 35 ,height: 35)
-                            .foregroundColor(.white)
-                            .background(.red)
-                            .cornerRadius(5)
-
-                        Button("+"){gameViewModel.addGameCount()}
-                            .font(.title)
-                            .frame(width: 35 ,height: 35)
-                            .foregroundColor(.white)
-                            .background(.blue)
-                            .cornerRadius(5)
-                    }
-                    Text("参加プレイヤー")
-                        .font(.title3)
+                        .foregroundStyle(Color.champagne)
+                    Spacer()
+                    Text("ゲーム数: \(gameViewModel.game.maxGameCount)")
+                        .fontWeight(.black)
                         .bold()
-                    HStack{
-                        TextField("プレイヤー名（12文字以内）", text: $inputText)
-                            .textFieldStyle(.roundedBorder)
-                        Spacer()
-                        Button {
-                            if 0 < inputText.count && inputText.count <= 12 {
-                                gameViewModel.addUser(name: inputText)
-
-                                //inputText = "" が反応しないため追加
-                                if !self.inputText.isEmpty {
-                                    self.inputText = self.inputText + " "
-                                    Task { @MainActor in
-                                        self.inputText = ""
-                                    }
-                                }
-
-                            }else {
-                                isStringCount.toggle()
-                            }
-                        } label: {
-                            Text("追加")
-                                .bold()
-                                .foregroundStyle(.white)
-                        }
-                        .padding(7)
-                        .background(.blue)
-                        .cornerRadius(5)
-                        .alert("注意", isPresented: $isStringCount) {
-                        } message: {
-                            if inputText == ""{
-                                Text("プレイヤー名が入力されていません。\n1~12文字以内で入力してください。")
-                            }else{
-                                Text("プレイヤー名は\n12文字以内で入力してください")
-                            }
-                        }
-
-                    }
-
-                    List(gameViewModel.game.users.reversed()){user in
-                        HStack{
-                            Text(user.name)
-                                .font(.title2)
-                                .bold()
-                                .frame(height: 40)
-                            Spacer()
-                            Button(action: {
-                                //削除機能
-                                gameViewModel.deleteUser(id: user.id)
-                            }, label: {
-                                Image(systemName: "trash.fill")
-                                    .font(.title3)
-                                    .foregroundColor(.red)
-                            })
-                        }
-                        .listRowBackground(Color.gray)
-                    }
-                    .frame(height: UIScreen.main.bounds.height/2)
-                    .scrollContentBackground(.hidden)
-                    .cornerRadius(20)
+                        .foregroundStyle(Color.champagne)
+                        .padding(5)
                     Button {
-                        if gameViewModel.game.users.count == 0 {
-                            //アラート　最低人数を変更↑
-                        }else {
-                            realmViewModel.createGame(game: gameViewModel.game)
-                            gameViewModel.rootView = .gameView
-                            gameViewModel.editView = .startGameView
+                        gameViewModel.gameCountUp()
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.title3)
+                            .bold()
+                    }
+                    .frame(width: 30 ,height: 30)
+                    .background(Color.champagne)
+                    .cornerRadius(5)
+                    Button {
+                        gameViewModel.gameCountDown()
+                    } label: {
+                        Image(systemName: "minus")
+                            .font(.title3)
+                            .foregroundStyle(.red)
+                            .bold()
+                    }
+                    .frame(width: 30 ,height: 30)
+                    .background(Color.champagne)
+                    .cornerRadius(5)
+                }
+                Text("参加プレイヤー")
+                    .font(.title3)
+                    .fontWeight(.black)
+                    .bold()
+                    .foregroundStyle(Color.champagne)
+                HStack {
+                    TextField("プレイヤー名（8文字以内）", text: $name)
+                        .textFieldStyle(.roundedBorder)
+                        .bold()
+                    Spacer()
+                    Button {
+                        if 0 < name.count && name.count <= 8 {
+                            gameViewModel.createUser(name: name)
+                            //inputText = "" が反応しないため追加
+                            if !self.name.isEmpty {
+                                self.name = self.name + " "
+                                Task { @MainActor in
+                                    self.name = ""
+                                }
+                            }
+                        } else {
+                            alertViewModel.playerNameAlert(name: name)
                         }
                     } label: {
-                        Text("次へ")
-                            .font(.title)
+                        Text("追加")
                             .bold()
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.pennBlue)
                     }
-                    .frame(width: 100,height: 50)
-                    .background(.blue)
-                    .cornerRadius(10)
-                    .alert("プレイヤーがいません。", isPresented: $isShowAlert) {
-                    } message: {
-                        Text("プレイヤーを追加してください\n※最低3人登録してください")
-                    }
+                    .padding(7)
+                    .background(Color.champagne)
+                    .cornerRadius(5)
                 }
+                Spacer()
+                List(gameViewModel.game.users){ user in
+                    HStack{
+                        Text(user.name)
+                            .font(.title2)
+                            .fontWeight(.black)
+                            .foregroundStyle(Color.pennBlue)
+                        Spacer()
+                        Button(action: {
+                            //削除機能
+                            gameViewModel.deleteUser(id: user.id)
+                        }, label: {
+                            Image(systemName: "trash.fill")
+                                .font(.title3)
+                                .foregroundColor(.red)
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                    }.padding(10)
+                        .listRowBackground(Color.champagne)
+                }
+                .frame(height: UIScreen.main.bounds.height/2)
+                .scrollContentBackground(.hidden)
+                Spacer()
+                Button {
+                    if gameViewModel.game.users.count < 3 {
+                        alertViewModel.playerCountAlert()
+                    } else {
+                        realmViewModel.createGame(game: gameViewModel.game)
+                        rootViewModel.mainView = .gameView
+                        rootViewModel.editView = .startGameView
+                    }
+                } label: {
+                    Text("次へ")
+                        .font(.title)
+                        .bold()
+                        .foregroundStyle(Color.pennBlue)
+                }
+                .frame(width: 100,height: 50)
+                .background(Color.champagne)
+                .cornerRadius(10)
                 Spacer()
             }
             .padding(10)
+            .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
+            } message: {
+                Text(alertViewModel.alertMessage)
+            }
         }
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 #Preview {
     EditGameView()
+        .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
+        .environmentObject(AlertViewModel())
 }
