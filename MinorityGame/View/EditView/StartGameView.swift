@@ -18,7 +18,7 @@ struct StartGameView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                Text("少数決ゲーム")
+                Text("少数派ゲーム")
                     .font(.largeTitle)
                     .fontWeight(.black)
                     .foregroundStyle(Color.champagne)
