@@ -12,7 +12,7 @@ struct DiscussionView: View {
     @EnvironmentObject private var gameViewModel:GameViewModel
     @EnvironmentObject private var realmViewModel:RealmViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
-    @ObservedObject private var timerViewModel = TimerViewModel()
+    @StateObject private var timerViewModel = TimerViewModel()
 
     var body: some View {
         ZStack{

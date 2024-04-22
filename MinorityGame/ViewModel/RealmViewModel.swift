@@ -9,44 +9,48 @@ import SwiftUI
 import RealmSwift
 
 final class RealmViewModel: ObservableObject {
-    private let version:UInt64 = 2
+    private var realm:Realm
 
     init() {
         //realmのマイグレーション
         let config = Realm.Configuration(
-            schemaVersion: version,
+            schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < self.version) {
+                if (oldSchemaVersion < 3) {
+
                 }
             })
+
         Realm.Configuration.defaultConfiguration = config
-        _ = try! Realm()
+        realm = try! Realm()
     }
 
     func createGame(game:Game){
-        let realm = try! Realm()
-        try! realm.write {
-            let gameObject = GameObject()
-            gameObject.id = game.id
-            gameObject.nowGameCount = game.nowGameCount
-            gameObject.maxGameCount = game.maxGameCount
+        do{
+            try realm.write {
+                let realmGame = RealmGame()
+                realmGame.id = game.id
+                realmGame.nowGameCount = game.nowGameCount
+                realmGame.maxGameCount = game.maxGameCount
 
-            for user in game.users {
-                let userObject = UserObject()
-                userObject.id = user.id
-                userObject.name = user.name
-                userObject.point = user.point
-                userObject.totalPoints = user.totalPoints
-                userObject.question = user.question
-                gameObject.users.append(userObject)
+                for user in game.users {
+                    let realmUser = RealmUser()
+                    realmUser.id = user.id
+                    realmUser.name = user.name
+                    realmUser.point = user.point
+                    realmUser.totalPoints = user.totalPoints
+                    realmUser.question = user.question
+                    realmGame.users.append(realmUser)
+                }
+                realm.add(realmGame)
             }
-            realm.add(gameObject)
+        } catch {
+            print("Error saving questions to Realm: \(error)")
         }
     }
 
     func readGame(id:Int) -> Game? {
-        let realm = try! Realm()
-        if let gameObject = realm.object(ofType:GameObject.self, forPrimaryKey: id) {
+        if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
             var users: [User] = []
             for userObject in gameObject.users {
                 let user = User(id: userObject.id, name: userObject.name, point: userObject.point, totalPoints: userObject.totalPoints, question: userObject.question)
@@ -58,32 +62,68 @@ final class RealmViewModel: ObservableObject {
     }
 
     func updateGame(id:Int, updatedGame: Game) {
-        let realm = try! Realm()
-        if let gameObject = realm.object(ofType:GameObject.self, forPrimaryKey: id) {
-            try! realm.write {
-                gameObject.nowGameCount = updatedGame.nowGameCount
-                gameObject.maxGameCount = updatedGame.maxGameCount
-                gameObject.users.removeAll()
+        do{
+            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
+                try realm.write {
+                    gameObject.nowGameCount = updatedGame.nowGameCount
+                    gameObject.maxGameCount = updatedGame.maxGameCount
+                    gameObject.users.removeAll()
 
-                for user in updatedGame.users {
-                    let userObject = UserObject()
-                    userObject.id = user.id
-                    userObject.name = user.name
-                    userObject.point = user.point
-                    userObject.totalPoints = user.totalPoints
-                    userObject.question = user.question
-                    gameObject.users.append(userObject)
+                    for user in updatedGame.users {
+                        let userObject = RealmUser()
+                        userObject.id = user.id
+                        userObject.name = user.name
+                        userObject.point = user.point
+                        userObject.totalPoints = user.totalPoints
+                        userObject.question = user.question
+                        gameObject.users.append(userObject)
+                    }
                 }
             }
+        } catch {
+            print("Error saving questions to Realm: \(error)")
         }
     }
 
     func deleteGame(id:Int) {
-        let realm = try! Realm()
-        if let gameObject = realm.object(ofType:GameObject.self, forPrimaryKey: id) {
-            try! realm.write {
-                realm.delete(gameObject)
+        do {
+            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
+                try realm.write {
+                    realm.delete(gameObject)
+                }
             }
+        } catch {
+            print("Error saving questions to Realm: \(error)")
+        }
+    }
+
+    func setQuestions(questions: [FirestoreQuestion]) {
+        do {
+            try realm.write {
+                // Firestoreから取得した全てのQuestionをRealmQuestionに変換して保存
+                for firestoreQuestion in questions {
+                    let realmQuestion = RealmQuestion()
+                    realmQuestion.id = ObjectId.generate()
+                    realmQuestion.text = firestoreQuestion.text
+                    realmQuestion.choice1 = firestoreQuestion.choice1
+                    realmQuestion.choice2 = firestoreQuestion.choice2
+
+                    realm.add(realmQuestion)
+                }
+            }
+        } catch {
+            print("Error saving questions to Realm: \(error)")
+        }
+    }
+
+    func getRandomQuestion() async -> RealmQuestion? {
+        return realm.objects(RealmQuestion.self).randomElement()
+    }
+
+    func getAllSelfQuestions() -> [RealmQuestion] {
+        let realmQuestions = realm.objects(RealmQuestion.self)
+        return realmQuestions.map { realmQuestion in
+            return  realmQuestion
         }
     }
 

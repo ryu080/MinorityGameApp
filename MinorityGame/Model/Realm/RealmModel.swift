@@ -7,7 +7,7 @@
 
 import RealmSwift
 
-class UserObject: Object {
+class RealmUser: Object {
     @Persisted var id: Int
     @Persisted var name:String
     @Persisted var point:Int
@@ -15,9 +15,25 @@ class UserObject: Object {
     @Persisted var question:Int
 }
 
-class GameObject: Object, ObjectKeyIdentifiable {
+class RealmGame: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:Int
-    @Persisted var users = List<UserObject>()
+    @Persisted var users = List<RealmUser>()
     @Persisted var nowGameCount:Int
     @Persisted var maxGameCount:Int
+}
+
+class RealmQuestion: Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var id:ObjectId
+    @Persisted var genre:String
+    @Persisted var text: String
+    @Persisted var choice1: String
+    @Persisted var choice2: String
+}
+
+class RealmSelfQuestion:Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var id:ObjectId
+    @Persisted var genre:String
+    @Persisted var text: String
+    @Persisted var choice1: String
+    @Persisted var choice2: String
 }
