@@ -10,6 +10,7 @@ import SwiftUI
 struct VoteView: View {
     @EnvironmentObject private var gameViewModel:GameViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
+    @EnvironmentObject private var questionViewModel:QuestionViewModel
     @Environment(\.dismiss) private var dismiss
 
     @State private var vote:Int = 0
@@ -22,13 +23,13 @@ struct VoteView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                Text("YESかNOを選んでください。")
+                Text("どちらかを選んでください。")
                     .font(.title)
                     .fontWeight(.black)
                     .foregroundStyle(Color.champagne)
                 Spacer()
                 ZStack {
-                    Text(gameViewModel.questionText)
+                    Text(questionViewModel.question!.text)
                         .font(.title)
                         .bold()
                         .foregroundStyle(Color.pennBlue)
@@ -43,7 +44,7 @@ struct VoteView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button("YES") {
+                    Button(questionViewModel.question!.choice1) {
                         vote = 1
                         buttonColor = false
                     }
@@ -51,7 +52,7 @@ struct VoteView: View {
                     .fontWeight(.black)
                     .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):.blue)
                     Spacer()
-                    Button("NO") {
+                    Button(questionViewModel.question!.choice2) {
                         vote = 2
                         buttonColor = true
                     }
@@ -96,4 +97,5 @@ struct VoteView: View {
     VoteView(user: User(id: 1, name: "サンプル太",point: 0, totalPoints: 0, question: 0))
         .environmentObject(GameViewModel())
         .environmentObject(AlertViewModel())
+        .environmentObject(QuestionViewModel())
 }

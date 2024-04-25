@@ -24,6 +24,7 @@ struct MinorityGameApp: App {
     @StateObject var gameViewModel = GameViewModel()
     @StateObject var dateViewModel = RealmViewModel()
     @StateObject var alertViewModel = AlertViewModel()
+    @StateObject var questionViewModel = QuestionViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -32,6 +33,7 @@ struct MinorityGameApp: App {
                 .environmentObject(gameViewModel)
                 .environmentObject(dateViewModel)
                 .environmentObject(alertViewModel)
+                .environmentObject(questionViewModel)
         }
     }
 }

@@ -28,7 +28,7 @@ struct ResultGameView: View {
                             Button("次のゲームへ") {
                                 gameViewModel.continueGame()
                                 realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
-                                rootViewModel.gameView = .questionView
+                                rootViewModel.gameView = .discussionView
                                 isShowResult = nil
                                 rootViewModel.loadingView = false
                             }
@@ -69,7 +69,7 @@ struct ResultGameView: View {
                             gameViewModel.resetGame()
                             realmViewModel.deleteGame(id: 0)
                             rootViewModel.mainView = .editView
-                            rootViewModel.gameView = .questionView
+                            rootViewModel.gameView = .discussionView
                             isShowResult = nil
                         }
                         .font(.title)

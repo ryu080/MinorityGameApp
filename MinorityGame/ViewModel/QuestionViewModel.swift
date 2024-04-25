@@ -5,26 +5,39 @@
 //  Created by 辻野竜志 on 2024/04/21.
 //
 
-import Foundation
+import SwiftUI
 import RealmSwift
 
 class QuestionViewModel:ObservableObject {
-    private let firestoreDataBase = FirestoreDataBase()
+    private let firestoreDataBase = FirestoreClient()
 //    private let realmRepository = RealmRepository()
 
-    @Published var question: RealmQuestion?
+    @Published var questions:[RealmQuestion] = []
+    @Published var question:RealmQuestion?
+    @Published var isShowProgress:Bool?
 
     func setQuestionsRealm(realm:RealmViewModel) async {
         do {
-            let firestoreQuestions = try await firestoreDataBase.getAllQuestions()
-            realm.setQuestions(questions: firestoreQuestions)
+                let firestoreQuestions = try await firestoreDataBase.getAllQuestions()
+            DispatchQueue.main.async{
+                realm.getFirestoreQuestions(questions: firestoreQuestions)
+                self.questions = realm.setRealmQuestions()
+                self.isShowProgress = false
+            }
         } catch {
-            print("Error fetching and saving questions: \(error)")
+            //エラーの場合再起動orAlertとで落とす
+            print("setQuestionsRealm: \(error)")
+            DispatchQueue.main.async{
+                self.isShowProgress = true
+            }
         }
     }
-    func getRandomQuestionRealm(realm:RealmViewModel) async {
-        self.question = await realm.getRandomQuestion()
+    func getRandomQuestionRealm()  {
+        self.question = questions.randomElement()
     }
+//    func getRandomQuestionRealm(realm:RealmViewModel) async {
+//        self.question = await realm.getRandomQuestion()
+//    }
     func selfQuestions(realm:RealmViewModel)->[RealmQuestion]{
         return realm.getAllSelfQuestions()
     }

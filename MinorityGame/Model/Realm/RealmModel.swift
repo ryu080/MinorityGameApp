@@ -23,7 +23,7 @@ class RealmGame: Object, ObjectKeyIdentifiable {
 }
 
 class RealmQuestion: Object, ObjectKeyIdentifiable {
-    @Persisted(primaryKey: true) var id:ObjectId
+    @Persisted(primaryKey: true) var id:String
     @Persisted var genre:String
     @Persisted var text: String
     @Persisted var choice1: String

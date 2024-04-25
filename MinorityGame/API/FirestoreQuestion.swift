@@ -17,50 +17,50 @@ struct FirestoreQuestion: Codable {
 }
 
 
-import FirebaseFirestore
-
-class FirestoreRepository {
-    private let db = Firestore.firestore()
-
-    func getAllQuestions() async throws -> [FirestoreQuestion] {
-        let querySnapshot = try await db.collection("questions").getDocuments()
-        return try querySnapshot.documents.compactMap {
-            try $0.data(as: FirestoreQuestion.self)
-        }
-    }
-}
-
-import RealmSwift
-
-class RealmRepository {
-    func saveQuestions( questions: [FirestoreQuestion]) {
-        do {
-            let realm = try  Realm()
-            try realm.write {
-                // Firestoreから取得した全てのQuestionをRealmQuestionに変換して保存
-                for firestoreQuestion in questions {
-                    let realmQuestion = RealmQuestion()
-                    realmQuestion.id = ObjectId.generate()
-                    realmQuestion.text = firestoreQuestion.text
-                    realmQuestion.choice1 = firestoreQuestion.choice1
-                    realmQuestion.choice2 = firestoreQuestion.choice2
-
-                    realm.add(realmQuestion)
-                }
-            }
-        } catch {
-            print("Error saving questions to Realm: \(error)")
-        }
-    }
-
-    func getRandomQuestion() async -> RealmQuestion? {
-        let realm = try! await Realm()
-        return realm.objects(RealmQuestion.self).randomElement()
-    }
-}
-
-import SwiftUI
-import RealmSwift
+//import FirebaseFirestore
+//
+//class FirestoreRepository {
+//    private let db = Firestore.firestore()
+//
+//    func getAllQuestions() async throws -> [FirestoreQuestion] {
+//        let querySnapshot = try await db.collection("questions").getDocuments()
+//        return try querySnapshot.documents.compactMap {
+//            try $0.data(as: FirestoreQuestion.self)
+//        }
+//    }
+//}
+//
+//import RealmSwift
+//
+//class RealmRepository {
+//    func saveQuestions( questions: [FirestoreQuestion]) {
+//        do {
+//            let realm = try  Realm()
+//            try realm.write {
+//                // Firestoreから取得した全てのQuestionをRealmQuestionに変換して保存
+//                for firestoreQuestion in questions {
+//                    let realmQuestion = RealmQuestion()
+//                    realmQuestion.id = ObjectId.generate()
+//                    realmQuestion.text = firestoreQuestion.text
+//                    realmQuestion.choice1 = firestoreQuestion.choice1
+//                    realmQuestion.choice2 = firestoreQuestion.choice2
+//
+//                    realm.add(realmQuestion)
+//                }
+//            }
+//        } catch {
+//            print("Error saving questions to Realm: \(error)")
+//        }
+//    }
+//
+//    func getRandomQuestion() async -> RealmQuestion? {
+//        let realm = try! await Realm()
+//        return realm.objects(RealmQuestion.self).randomElement()
+//    }
+//}
+//
+//import SwiftUI
+//import RealmSwift
 
 //class QuestionViewModel: ObservableObject {
 //    private let firestoreRepository = FirestoreRepository()

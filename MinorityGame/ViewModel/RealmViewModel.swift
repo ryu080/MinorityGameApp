@@ -17,8 +17,7 @@ final class RealmViewModel: ObservableObject {
             schemaVersion: 3,
             migrationBlock: { migration, oldSchemaVersion in
                 if (oldSchemaVersion < 3) {
-
-                }
+                    }
             })
 
         Realm.Configuration.defaultConfiguration = config
@@ -97,27 +96,46 @@ final class RealmViewModel: ObservableObject {
         }
     }
 
-    func setQuestions(questions: [FirestoreQuestion]) {
+    func getFirestoreQuestions(questions: [FirestoreQuestion]) {
         do {
             try realm.write {
                 // Firestoreから取得した全てのQuestionをRealmQuestionに変換して保存
                 for firestoreQuestion in questions {
-                    let realmQuestion = RealmQuestion()
-                    realmQuestion.id = ObjectId.generate()
-                    realmQuestion.text = firestoreQuestion.text
-                    realmQuestion.choice1 = firestoreQuestion.choice1
-                    realmQuestion.choice2 = firestoreQuestion.choice2
-
-                    realm.add(realmQuestion)
+                    if let sameQuestion = realm.object(ofType: RealmQuestion.self, forPrimaryKey: firestoreQuestion.id) {
+                        // 既存の質問がある場合は更新
+                        sameQuestion.genre = firestoreQuestion.genre
+                        sameQuestion.text = firestoreQuestion.text
+                        sameQuestion.choice1 = firestoreQuestion.choice1
+                        sameQuestion.choice2 = firestoreQuestion.choice2
+                    } else {
+                        // 既存の質問がない場合は新規追加
+                        let realmQuestion = RealmQuestion()
+                        realmQuestion.id = firestoreQuestion.id!
+                        realmQuestion.genre = firestoreQuestion.genre
+                        realmQuestion.text = firestoreQuestion.text
+                        realmQuestion.choice1 = firestoreQuestion.choice1
+                        realmQuestion.choice2 = firestoreQuestion.choice2
+                        realm.add(realmQuestion)
+                    }
                 }
             }
+            print(realm.objects(RealmQuestion.self))
         } catch {
             print("Error saving questions to Realm: \(error)")
         }
     }
+    func setRealmQuestions() -> [RealmQuestion] {
+        let RealmQuestions = realm.objects(RealmQuestion.self)
+        var questions:[RealmQuestion] = []
+        for question in RealmQuestions {
+            questions.append(question)
+        }
+        return questions
+    }
 
     func getRandomQuestion() async -> RealmQuestion? {
-        return realm.objects(RealmQuestion.self).randomElement()
+        let randomQuestion = realm.objects(RealmQuestion.self).randomElement()
+        return randomQuestion
     }
 
     func getAllSelfQuestions() -> [RealmQuestion] {

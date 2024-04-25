@@ -25,14 +25,14 @@ struct BlurView: View {
             Spacer()
             ProgressView()
                 .scaleEffect(x: 10, y: 10, anchor: .center)
-                .progressViewStyle(CircularProgressViewStyle(tint: Color.bittersweet))
+                .progressViewStyle(CircularProgressViewStyle(tint: Color.electricBlue))
             Spacer()
             HStack(spacing: 1) {
                 ForEach(0..<characters.count) { num in
                     Text(String(self.characters[num]))
-                        .font(.largeTitle)
+                        .font(.system(size: textSize))
                         .fontWeight(.black)
-                        .foregroundStyle(Color.bittersweet)
+                        .foregroundStyle(Color.electricBlue)
                         .blur(radius: blurValue)
                         .opacity(opacity)
                         .animation(.easeInOut.delay(Double(num) * 0.15), value: blurValue)
@@ -65,5 +65,5 @@ struct BlurView: View {
 }
 
 #Preview {
-    BlurView(text: "集計中...", textSize: 30, startTime: 1)
+    BlurView(text: "集計中...", textSize: 50, startTime: 1)
 }

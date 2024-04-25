@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E3C12BBD8F2600755473 /* RealmModel.swift */; };
 		B74CBD872BD52E1F0087D7C3 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B74CBD862BD52E1F0087D7C3 /* FirebaseFirestoreSwift */; };
-		B74CBD892BD5381B0087D7C3 /* FirestoreDataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD882BD5381B0087D7C3 /* FirestoreDataBase.swift */; };
+		B74CBD892BD5381B0087D7C3 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */; };
 		B74CBD8B2BD5581E0087D7C3 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */; };
 		B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74E118F2BC68B0D00223975 /* AlertViewModel.swift */; };
 		B751BBA52BD6786A00AADCD3 /* CreateQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */; };
@@ -72,7 +72,7 @@
 
 /* Begin PBXFileReference section */
 		B743E3C12BBD8F2600755473 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
-		B74CBD882BD5381B0087D7C3 /* FirestoreDataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDataBase.swift; sourceTree = "<group>"; };
+		B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		B74E118F2BC68B0D00223975 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionView.swift; sourceTree = "<group>"; };
@@ -182,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */,
+				B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -281,7 +282,6 @@
 				B767EB572BBAF13D00266B02 /* Time.swift */,
 				B7828A6B2BC7AB4E00C4AE08 /* Color.swift */,
 				B760DAE12BB8F88400664A10 /* Root.swift */,
-				B74CBD882BD5381B0087D7C3 /* FirestoreDataBase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 				B751BBAA2BD68DC500AADCD3 /* BlurView.swift in Sources */,
 				B792C6A02BD3C80F002BCD96 /* Question.swift in Sources */,
 				B7FC35522BB53141002A87A6 /* EditContentView.swift in Sources */,
-				B74CBD892BD5381B0087D7C3 /* FirestoreDataBase.swift in Sources */,
+				B74CBD892BD5381B0087D7C3 /* FirestoreClient.swift in Sources */,
 				B751BBAD2BD692EC00AADCD3 /* AnswerView.swift in Sources */,
 				B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */,
 				B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */,

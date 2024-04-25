@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-class FirestoreDataBase{
+class FirestoreClient{
     private let db = Firestore.firestore()
 
     func getAllQuestions() async throws -> [FirestoreQuestion] {

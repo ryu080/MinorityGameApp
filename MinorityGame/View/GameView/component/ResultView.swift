@@ -10,6 +10,7 @@ import SwiftUI
 struct ResultView: View {
     @EnvironmentObject private var rootViewModel:RootViewModel
     @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var questionViewModel:QuestionViewModel
 
     @State private var yesUsers:[User] = []
     @State private var noUsers:[User] = []
@@ -38,21 +39,21 @@ struct ResultView: View {
                                             .fontWeight(.black)
                                             .foregroundStyle(Color.pennBlue)
                                         Spacer()
-                                        if user.question == 1 {
-                                            Text("YES")
-                                                .font(.title3)
-                                                .fontWeight(.black)
-                                                .foregroundStyle(.blue)
-                                        } else if user.question == 2 {
-                                            Text("NO")
-                                                .font(.title3)
-                                                .fontWeight(.black)
-                                                .foregroundStyle(.red)
-                                        }
-                                        Text("\(user.point)")
-                                            .font(.title3)
-                                            .fontWeight(.black)
-                                            .foregroundStyle(Color.pennBlue)
+//                                        if user.question == 1 {
+//                                            Text("YES")
+//                                                .font(.title3)
+//                                                .fontWeight(.black)
+//                                                .foregroundStyle(.blue)
+//                                        } else if user.question == 2 {
+//                                            Text("NO")
+//                                                .font(.title3)
+//                                                .fontWeight(.black)
+//                                                .foregroundStyle(.red)
+//                                        }
+//                                        Text("\(user.point)")
+//                                            .font(.title3)
+//                                            .fontWeight(.black)
+//                                            .foregroundStyle(Color.pennBlue)
                                         Text("合計\(user.totalPoints)P")
                                             .font(.title3)
                                             .fontWeight(.black)
@@ -63,7 +64,7 @@ struct ResultView: View {
                                 }
                             }header: {
                                 HStack{
-                                    Text("YES")
+                                    Text(questionViewModel.question!.choice1)
                                         .font(.title)
                                         .fontWeight(.black)
                                         .foregroundStyle(.blue)
@@ -86,21 +87,21 @@ struct ResultView: View {
                                             .fontWeight(.black)
                                             .foregroundStyle(Color.pennBlue)
                                         Spacer()
-                                        if user.question == 1 {
-                                            Text("YES")
-                                                .font(.title3)
-                                                .fontWeight(.black)
-                                                .foregroundStyle(.blue)
-                                        } else if user.question == 2 {
-                                            Text("NO")
-                                                .font(.title3)
-                                                .fontWeight(.black)
-                                                .foregroundStyle(.red)
-                                        }
-                                        Text("\(user.point)")
-                                            .font(.title3)
-                                            .fontWeight(.black)
-                                            .foregroundStyle(Color.pennBlue)
+//                                        if user.question == 1 {
+//                                            Text("YES")
+//                                                .font(.title3)
+//                                                .fontWeight(.black)
+//                                                .foregroundStyle(.blue)
+//                                        } else if user.question == 2 {
+//                                            Text("NO")
+//                                                .font(.title3)
+//                                                .fontWeight(.black)
+//                                                .foregroundStyle(.red)
+//                                        }
+//                                        Text("\(user.point)")
+//                                            .font(.title3)
+//                                            .fontWeight(.black)
+//                                            .foregroundStyle(Color.pennBlue)
                                         Text("合計\(user.totalPoints)P")
                                             .font(.title3)
                                             .fontWeight(.black)
@@ -111,7 +112,7 @@ struct ResultView: View {
                                 }
                             }header: {
                                 HStack {
-                                    Text("NO")
+                                    Text(questionViewModel.question!.choice2)
                                         .font(.title)
                                         .fontWeight(.black)
                                         .foregroundStyle(.red)
@@ -145,4 +146,5 @@ struct ResultView: View {
     ResultView()
         .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
+        .environmentObject(QuestionViewModel())
 }

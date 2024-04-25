@@ -10,7 +10,7 @@ import Foundation
 final class RootViewModel: ObservableObject {
     @Published var mainView:MainView = .editView
     @Published var editView:EditView = .startGameView
-    @Published var gameView:GameView = .questionView
+    @Published var gameView:GameView = .discussionView
 
     @Published var loadingView:Bool = false
 
