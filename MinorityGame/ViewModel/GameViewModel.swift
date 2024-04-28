@@ -10,7 +10,7 @@ import SwiftUI
 
 @MainActor
 final class GameViewModel:ObservableObject {
-    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
+    @Published var game:Game = Game(id: 0,users: [User(id: 1, name: "プレイヤー１", point: 0, totalPoints: 0, question: 0),User(id: 2, name: "プレイヤー2", point: 0, totalPoints: 0, question: 0),User(id: 3, name: "プレイヤー3", point: 0, totalPoints: 0, question: 0),User(id: 4, name: "プレイヤー4", point: 0, totalPoints: 0, question: 0),User(id: 5, name: "プレイヤー5", point: 0, totalPoints: 0, question: 0),User(id: 6, name: "プレイヤー6", point: 0, totalPoints: 0, question: 0),User(id: 7, name: "プレイヤー7", point: 0, totalPoints: 0, question: 0),User(id: 8, name: "プレイヤー8", point: 0, totalPoints: 0, question: 0),User(id: 9, name: "プレイヤー9", point: 0, totalPoints: 0, question: 0),User(id: 10, name: "プレイヤー10", point: 0, totalPoints: 0, question: 0),User(id: 11, name: "プレイヤー11", point: 0, totalPoints: 0, question: 0),User(id: 12, name: "プレイヤー12", point: 0, totalPoints: 0, question: 0),User(id: 13, name: "プレイヤー13", point: 0, totalPoints: 0, question: 0),User(id: 14, name: "プレイヤー14", point: 0, totalPoints: 0, question: 0),User(id: 15, name: "プレイヤー15", point: 0, totalPoints: 0, question: 0),User(id: 16, name: "プレイヤー16", point: 0, totalPoints: 0, question: 0),User(id: 17, name: "プレイヤー17", point: 0, totalPoints: 0, question: 0),User(id: 18, name: "プレイヤー18", point: 0, totalPoints: 0, question: 0),User(id: 19, name: "プレイヤー19", point: 0, totalPoints: 0, question: 0),User(id: 20, name: "プレイヤー20", point: 0, totalPoints: 0, question: 0)], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
     @Published var isShowRule:Bool = false
 

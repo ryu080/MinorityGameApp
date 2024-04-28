@@ -15,7 +15,8 @@ struct StartGameView: View {
 
     var body: some View {
             ZStack {
-                Color.pennBlue
+//                Color.pennBlue
+                LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom)
                     .edgesIgnoringSafeArea(.all)
                 Group {
                     if questionViewModel.isShowProgress == nil{
