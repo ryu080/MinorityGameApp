@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 final class GameViewModel:ObservableObject {
@@ -86,18 +87,22 @@ final class GameViewModel:ObservableObject {
         return noUsers
     }
 
-    func resultVote() -> String {
+    //ドローとポイントのマイナスをなくす
+    func resultVote(choice1:String,choice2:String) -> (String,Color) {
         let yes = yesUser().count
         let no = noUser().count
-        if yes<no && 0<yes{
-            updateUserPoint(yes: 1, no: -1)
-            return "少数派はYES"
-        }else if no<yes && 0<no{
-            updateUserPoint(yes: -1, no: 1)
-            return "少数派はNO"
+        if yes<no {
+            updateUserPoint(yes: 1, no: 0)
+            return (choice1,Color.electricBlue)
         }else {
-            updateUserPoint(yes: 0, no: 0)
-            return "ドロー"
+            updateUserPoint(yes: 0, no: 1)
+            return (choice2,Color.bittersweet)
+        }
+    }
+    func userPoint(point:Int) -> String {
+        switch point {
+        case 0: return ""
+        default: return "+1P"
         }
     }
 

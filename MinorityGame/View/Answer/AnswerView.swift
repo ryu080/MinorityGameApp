@@ -20,7 +20,7 @@ struct AnswerView: View {
             VStack {
                 Text(choice)
                     .font(.system(size: 50))
-                    .foregroundStyle(Color.electricBlue)
+                    .foregroundStyle(color)
                     .fontWeight(.black)
                 Text("\(count)")
                     .font(.system(size: 150))

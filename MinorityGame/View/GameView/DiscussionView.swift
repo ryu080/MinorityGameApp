@@ -97,22 +97,25 @@ struct DiscussionView: View {
                                 }
 
                         }
+                        Spacer()
                         HStack {
                             Spacer()
                             Text(questionViewModel.question!.choice1)
                                 .font(.title)
                                 .bold()
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(Color.electricBlue)
                             Spacer()
                             Text(questionViewModel.question!.choice2)
                                 .font(.title)
                                 .bold()
-                                .foregroundStyle(.red)
+                                .foregroundStyle(Color.bittersweet)
                             Spacer()
                         }
                         Spacer()
                         Button(action: {
-                            alertViewModel.discussionAlert()
+                            rootViewModel.nextGameView(nextView: .voteListView)
+                            timerViewModel.stopCountDown()
+                            timerViewModel.setCountDown()
                         }, label: {
                             Text("投票画面へ")
                                 .font(.title)
@@ -124,27 +127,20 @@ struct DiscussionView: View {
                         .cornerRadius(10)
                         Spacer()
                     }
+                    .transition(.scale)
                     //
                 } else {
                     BlurView(text: "読み込み中...", textSize: 30, startTime: 1)
                         .onAppear(){
                             Timer.scheduledTimer(withTimeInterval: 5, repeats: false) {timer in
                                 questionViewModel.getRandomQuestionRealm()
-                                isShowProgress = true
+                                withAnimation {
+                                    isShowProgress = true
+                                }
                             }
                     }
                 }
             }
-        }
-        .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
-            Button("戻る",role: .cancel){}
-            Button("投票へ"){
-                rootViewModel.gameView = .voteListView
-                timerViewModel.stopCountDown()
-                timerViewModel.setCountDown()
-            }
-        } message: {
-            Text(alertViewModel.alertMessage)
         }
     }
 }

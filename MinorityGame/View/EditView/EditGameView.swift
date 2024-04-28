@@ -118,8 +118,7 @@ struct EditGameView: View {
                         alertViewModel.playerCountAlert()
                     } else {
                         realmViewModel.createGame(game: gameViewModel.game)
-                        rootViewModel.mainView = .gameView
-                        rootViewModel.editView = .startGameView
+                        rootViewModel.nextGameView(nextView: .discussionView)
                     }
                 } label: {
                     Text("次へ")

@@ -56,7 +56,7 @@ struct StartGameView: View {
                             VStack(spacing:15){
                                 Button {
                                     realmViewModel.deleteGame(id: 0)
-                                    rootViewModel.editView = .editGameView
+                                    rootViewModel.nextEditView(nextView: .editGameView)
                                 } label: {
                                     Text("新規ゲームを始める")
                                         .font(.title)
@@ -70,7 +70,7 @@ struct StartGameView: View {
                                     Button {
                                         gameViewModel.game = realmViewModel.readGame(id: 0)!
                                         gameViewModel.continueGame()
-                                        rootViewModel.mainView = .gameView
+                                        rootViewModel.nextGameView(nextView: .discussionView)
                                     } label: {
                                         Text("続きから再開する")
                                             .font(.title)

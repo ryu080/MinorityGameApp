@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MinorityView: View {
+    @EnvironmentObject private var rootViewModel:RootViewModel
     let winner:String
     let backgroundColor:Color
     var body: some View {
@@ -29,7 +30,8 @@ struct MinorityView: View {
                     .frame(width: 350, height: 200)
                 Spacer()
                 Button {
-
+                    rootViewModel.loadingView = false
+                    rootViewModel.nextGameView(nextView: .resultGameView)
                 } label: {
                     Text("次へ")
                         .font(.title2)
@@ -51,4 +53,5 @@ struct MinorityView: View {
 
 #Preview {
     MinorityView(winner: "ネコ派", backgroundColor: Color.bittersweet)
+        .environmentObject(RootViewModel())
 }

@@ -50,7 +50,7 @@ struct VoteView: View {
                     }
                     .font(.title)
                     .fontWeight(.black)
-                    .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):.blue)
+                    .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):Color.electricBlue)
                     Spacer()
                     Button(questionViewModel.question!.choice2) {
                         vote = 2
@@ -58,7 +58,7 @@ struct VoteView: View {
                     }
                     .font(.title)
                     .fontWeight(.black)
-                    .foregroundColor((buttonColor ?? false) ? .red :.gray.opacity(0.7))
+                    .foregroundColor((buttonColor ?? false) ? Color.bittersweet :.gray.opacity(0.7))
                     Spacer()
                 }
                 Spacer()

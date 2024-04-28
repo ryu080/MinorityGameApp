@@ -14,7 +14,6 @@ struct ResultView: View {
 
     @State private var yesUsers:[User] = []
     @State private var noUsers:[User] = []
-    @State private var winer:String = ""
 
     var body: some View {
         ZStack {
@@ -22,13 +21,6 @@ struct ResultView: View {
             Group {
                 if rootViewModel.loadingView {
                     VStack {
-                        Spacer()
-                        Text(winer)
-                            .font(.largeTitle)
-                            .frame(width: UIScreen.main.bounds.width,height: 50)
-                            .fontWeight(.black)
-                            .foregroundStyle(Color.pennBlue)
-                            .background(Color.champagne)
                         Spacer()
                         List {
                             Section {
@@ -39,21 +31,6 @@ struct ResultView: View {
                                             .fontWeight(.black)
                                             .foregroundStyle(Color.pennBlue)
                                         Spacer()
-//                                        if user.question == 1 {
-//                                            Text("YES")
-//                                                .font(.title3)
-//                                                .fontWeight(.black)
-//                                                .foregroundStyle(.blue)
-//                                        } else if user.question == 2 {
-//                                            Text("NO")
-//                                                .font(.title3)
-//                                                .fontWeight(.black)
-//                                                .foregroundStyle(.red)
-//                                        }
-//                                        Text("\(user.point)")
-//                                            .font(.title3)
-//                                            .fontWeight(.black)
-//                                            .foregroundStyle(Color.pennBlue)
                                         Text("合計\(user.totalPoints)P")
                                             .font(.title3)
                                             .fontWeight(.black)
@@ -67,11 +44,17 @@ struct ResultView: View {
                                     Text(questionViewModel.question!.choice1)
                                         .font(.title)
                                         .fontWeight(.black)
-                                        .foregroundStyle(.blue)
+                                        .foregroundStyle(Color.electricBlue)
                                     Text("\(yesUsers.count)人")
                                         .font(.title)
                                         .fontWeight(.black)
                                         .foregroundStyle(Color.champagne)
+                                    Spacer()
+                                    Text(gameViewModel.userPoint(point: yesUsers.first?.point ?? 1))
+                                        .font(.title)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(Color.green)
+
                                     Spacer()
                                 }
                             }
@@ -87,21 +70,6 @@ struct ResultView: View {
                                             .fontWeight(.black)
                                             .foregroundStyle(Color.pennBlue)
                                         Spacer()
-//                                        if user.question == 1 {
-//                                            Text("YES")
-//                                                .font(.title3)
-//                                                .fontWeight(.black)
-//                                                .foregroundStyle(.blue)
-//                                        } else if user.question == 2 {
-//                                            Text("NO")
-//                                                .font(.title3)
-//                                                .fontWeight(.black)
-//                                                .foregroundStyle(.red)
-//                                        }
-//                                        Text("\(user.point)")
-//                                            .font(.title3)
-//                                            .fontWeight(.black)
-//                                            .foregroundStyle(Color.pennBlue)
                                         Text("合計\(user.totalPoints)P")
                                             .font(.title3)
                                             .fontWeight(.black)
@@ -115,11 +83,17 @@ struct ResultView: View {
                                     Text(questionViewModel.question!.choice2)
                                         .font(.title)
                                         .fontWeight(.black)
-                                        .foregroundStyle(.red)
+                                        .foregroundStyle(Color.bittersweet)
                                     Text("\(noUsers.count)人")
                                         .font(.title)
                                         .fontWeight(.black)
                                         .foregroundStyle(Color.champagne)
+                                    Spacer()
+                                    Text(gameViewModel.userPoint(point: noUsers.first?.point ?? 1))
+                                        .font(.title)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(Color.green)
+
                                     Spacer()
                                 }
                             }
@@ -131,7 +105,6 @@ struct ResultView: View {
                 } else {
                     ProgressView()
                         .onAppear() {
-                            self.winer = gameViewModel.resultVote()
                             self.yesUsers = gameViewModel.yesUser()
                             self.noUsers = gameViewModel.noUser()
                             rootViewModel.loadingView = true

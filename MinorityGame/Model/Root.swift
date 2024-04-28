@@ -18,8 +18,8 @@ enum EditView{
 }
 
 enum GameView{
-    case questionView
     case discussionView
     case voteListView
+    case resultAnnouncementView
     case resultGameView
 }

@@ -24,6 +24,7 @@
 		B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB552BBAEEC000266B02 /* TimerViewModel.swift */; };
 		B767EB582BBAF13D00266B02 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB572BBAF13D00266B02 /* Time.swift */; };
 		B7785D8D2BC6386000ECC340 /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7785D8C2BC6386000ECC340 /* WinnerView.swift */; };
+		B77C55192BDB79590045ACE2 /* ResultAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */; };
 		B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7828A6B2BC7AB4E00C4AE08 /* Color.swift */; };
 		B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78297E72BC8BA3000655492 /* RootViewModel.swift */; };
 		B792C69B2BD3C154002BCD96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */; };
@@ -85,6 +86,7 @@
 		B767EB552BBAEEC000266B02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B767EB572BBAF13D00266B02 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		B7785D8C2BC6386000ECC340 /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
+		B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAnnouncementView.swift; sourceTree = "<group>"; };
 		B7828A6B2BC7AB4E00C4AE08 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B78297E72BC8BA3000655492 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -185,6 +187,15 @@
 				B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		B7BFAE712BDDED3B006E2D41 /* Self */ = {
+			isa = PBXGroup;
+			children = (
+				B751BBA62BD6842300AADCD3 /* SelfQuestionList.swift */,
+				B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */,
+			);
+			path = Self;
 			sourceTree = "<group>";
 		};
 		B7FC34F72BB51BA5002A87A6 = {
@@ -301,8 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FC35392BB51DEF002A87A6 /* StartGameView.swift */,
-				B751BBA62BD6842300AADCD3 /* SelfQuestionList.swift */,
-				B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */,
+				B7BFAE712BDDED3B006E2D41 /* Self */,
 				B7FC353F2BB52135002A87A6 /* EditGameView.swift */,
 			);
 			path = EditView;
@@ -315,6 +325,7 @@
 				B7FC35412BB52380002A87A6 /* QuestionView.swift */,
 				B7FC35452BB52792002A87A6 /* DiscussionView.swift */,
 				B7FC35472BB52906002A87A6 /* VoteListView.swift */,
+				B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */,
 				B7FC354B2BB52D89002A87A6 /* ResultGameView.swift */,
 			);
 			path = GameView;
@@ -501,6 +512,7 @@
 				B767EB582BBAF13D00266B02 /* Time.swift in Sources */,
 				B792C6A32BD3CD01002BCD96 /* FirestoreQuestion.swift in Sources */,
 				B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */,
+				B77C55192BDB79590045ACE2 /* ResultAnnouncementView.swift in Sources */,
 				B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */,
 				B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */,
 				B760DAE22BB8F88400664A10 /* Root.swift in Sources */,

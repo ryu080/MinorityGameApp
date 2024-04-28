@@ -46,7 +46,7 @@ struct VoteListView: View {
                 .scrollContentBackground(.hidden)
                 Spacer()
                 Button {
-                    gameViewModel.voteComplete() ? rootViewModel.gameView = .resultGameView: alertViewModel.voteListAlert()
+                    gameViewModel.voteComplete() ? rootViewModel.nextGameView(nextView: .resultAnnouncementView): alertViewModel.voteListAlert()
                 } label: {
                     Text("投票を終わる")
                         .font(.title)

@@ -12,8 +12,8 @@ struct ResultGameView: View {
     @EnvironmentObject private var gameViewModel:GameViewModel
     @EnvironmentObject private var realmViewModel:RealmViewModel
 
-    @State private var isShowResult:Bool?
-
+    @State private var isShowResult:Bool = true
+    
     var body: some View {
         ZStack {
             Color.pennBlue
@@ -21,16 +21,14 @@ struct ResultGameView: View {
             VStack {
                 Spacer()
                 Group {
-                    if isShowResult == true {
+                    if isShowResult {
                         ResultView()
                         Spacer()
                         if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
                             Button("次のゲームへ") {
                                 gameViewModel.continueGame()
                                 realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
-                                rootViewModel.gameView = .discussionView
-                                isShowResult = nil
-                                rootViewModel.loadingView = false
+                                rootViewModel.nextGameView(nextView: .discussionView)
                             }
                             .font(.title)
                             .fontWeight(.black)
@@ -63,14 +61,13 @@ struct ResultGameView: View {
                             .background(Color.champagne)
                             .cornerRadius(10)
                         }
-                    } else if isShowResult == false {
+                    } else {
                         WinnerView(winnerUser: gameViewModel.winnerUser())
                         Button("ホーム"){
                             gameViewModel.resetGame()
                             realmViewModel.deleteGame(id: 0)
-                            rootViewModel.mainView = .editView
-                            rootViewModel.gameView = .discussionView
-                            isShowResult = nil
+                            rootViewModel.nextEditView(nextView: .startGameView)
+                            isShowResult = true
                         }
                         .font(.title)
                         .fontWeight(.black)
@@ -78,25 +75,6 @@ struct ResultGameView: View {
                         .padding(10)
                         .background(Color.champagne)
                         .cornerRadius(10)
-
-                    } else {
-                        ProgressView()
-                            .frame(height: 200)
-                            .scaleEffect(x: 5, y: 5, anchor: .center)
-                            .progressViewStyle(CircularProgressViewStyle(tint: Color.amaranthPurple))
-                        ZStack{
-                            Button("少数派は..."){
-                                isShowResult = true
-                                rootViewModel.loadingView = false
-                                realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
-                            }
-                            .font(.title)
-                            .fontWeight(.black)
-                            .foregroundColor(Color.pennBlue)
-                            .padding(10)
-                            .background(Color.champagne)
-                            .cornerRadius(10)
-                        }
                     }
                 }
                 Spacer()

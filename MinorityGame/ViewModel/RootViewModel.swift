@@ -14,4 +14,21 @@ final class RootViewModel: ObservableObject {
 
     @Published var loadingView:Bool = false
 
+    func nextMainView(nextView:MainView){
+        mainView = nextView
+    }
+
+    func nextEditView(nextView:EditView){
+        if mainView == .gameView {
+            mainView = .editView
+        }
+        editView = nextView
+    }
+
+    func nextGameView(nextView:GameView){
+        if mainView == .editView {
+            mainView = .gameView
+        }
+        gameView = nextView
+    }
 }

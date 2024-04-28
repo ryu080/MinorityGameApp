@@ -15,12 +15,12 @@ struct GameContentView: View {
         NavigationView {
             Group {
                 switch rootViewModel.gameView {
-                case .questionView:
-                    QuestionView()
                 case .discussionView:
                     DiscussionView()
                 case .voteListView:
                     VoteListView()
+                case .resultAnnouncementView:
+                    ResultAnnouncementView()
                 case .resultGameView:
                     ResultGameView()
                 }
