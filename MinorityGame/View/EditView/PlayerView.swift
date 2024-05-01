@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerView: View {
-    let playerImage:Image
+    let playerImageData:Data?
     let name:String
     var body: some View {
         ZStack {
@@ -21,10 +21,20 @@ struct PlayerView: View {
                 )
             VStack {
                 Spacer()
-                playerImage
-                    .resizable()
-                    .frame(width: 50,height: 70)
-                    .scaledToFit()
+                if let playerImageData, let uiImage = UIImage(data: playerImageData) {
+                            Image(uiImage: uiImage)
+                        .resizable()
+                        .frame(width: 60,height: 80)
+                        .cornerRadius(7)
+                        .scaledToFit()
+
+                }else{
+                    Image("person_cat")
+                        .resizable()
+                        .frame(width: 60,height: 80)
+                        .cornerRadius(7)
+                        .scaledToFit()
+                }
                 Spacer()
                 Text(name)
                     .frame(width: 75)
@@ -34,10 +44,10 @@ struct PlayerView: View {
                     .lineLimit(1)
                 Spacer()
             }
-        }.frame(width: 75,height: 125)
+        }.frame(width: 75,height: 100)
     }
 }
 
 #Preview {
-    PlayerView(playerImage: Image(systemName:"person"), name: "プレイヤー1")
+    PlayerView(playerImageData: nil, name: "プレイヤー1")
 }

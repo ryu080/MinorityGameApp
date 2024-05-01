@@ -6,9 +6,11 @@
 //
 
 import RealmSwift
+import Foundation
 
 class RealmUser: Object {
     @Persisted var id: Int
+    @Persisted var imageData:Data?
     @Persisted var name:String
     @Persisted var point:Int
     @Persisted var totalPoints:Int

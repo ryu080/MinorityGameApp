@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
+//[User(id: 1, imageData: nil, name: "プレイヤー１", point: 0, totalPoints: 0, question: 0),User(id: 2, imageData: nil, name: "プレイヤー2", point: 0, totalPoints: 0, question: 0),User(id: 3, imageData: nil, name: "プレイヤー3", point: 0, totalPoints: 0, question: 0),User(id: 4, imageData: nil, name: "プレイヤー4", point: 0, totalPoints: 0, question: 0),User(id: 5, imageData: nil, name: "プレイヤー5", point: 0, totalPoints: 0, question: 0),User(id: 6, imageData: nil, name: "プレイヤー6", point: 0, totalPoints: 0, question: 0),User(id: 7, imageData: nil, name: "プレイヤー7", point: 0, totalPoints: 0, question: 0),User(id: 8, imageData: nil, name: "プレイヤー8", point: 0, totalPoints: 0, question: 0),User(id: 9, imageData: nil, name: "プレイヤー9", point: 0, totalPoints: 0, question: 0),User(id: 10, imageData: nil, name: "プレイヤー10", point: 0, totalPoints: 0, question: 0),User(id: 11, imageData: nil, name: "プレイヤー11", point: 0, totalPoints: 0, question: 0),User(id: 12, imageData: nil, name: "プレイヤー12", point: 0, totalPoints: 0, question: 0),User(id: 13, imageData: nil, name: "プレイヤー13", point: 0, totalPoints: 0, question: 0),User(id: 14, imageData: nil, name: "プレイヤー14", point: 0, totalPoints: 0, question: 0),User(id: 15, imageData: nil, name: "プレイヤー15", point: 0, totalPoints: 0, question: 0),User(id: 16, imageData: nil, name: "プレイヤー16", point: 0, totalPoints: 0, question: 0),User(id: 17, imageData: nil, name: "プレイヤー17", point: 0, totalPoints: 0, question: 0),User(id: 18, imageData: nil, name: "プレイヤー18", point: 0, totalPoints: 0, question: 0),User(id: 19, imageData: nil, name: "プレイヤー19", point: 0, totalPoints: 0, question: 0)]
+
 @MainActor
 final class GameViewModel:ObservableObject {
-    @Published var game:Game = Game(id: 0,users: [User(id: 1, name: "プレイヤー１", point: 0, totalPoints: 0, question: 0),User(id: 2, name: "プレイヤー2", point: 0, totalPoints: 0, question: 0),User(id: 3, name: "プレイヤー3", point: 0, totalPoints: 0, question: 0),User(id: 4, name: "プレイヤー4", point: 0, totalPoints: 0, question: 0),User(id: 5, name: "プレイヤー5", point: 0, totalPoints: 0, question: 0),User(id: 6, name: "プレイヤー6", point: 0, totalPoints: 0, question: 0),User(id: 7, name: "プレイヤー7", point: 0, totalPoints: 0, question: 0),User(id: 8, name: "プレイヤー8", point: 0, totalPoints: 0, question: 0),User(id: 9, name: "プレイヤー9", point: 0, totalPoints: 0, question: 0),User(id: 10, name: "プレイヤー10", point: 0, totalPoints: 0, question: 0),User(id: 11, name: "プレイヤー11", point: 0, totalPoints: 0, question: 0),User(id: 12, name: "プレイヤー12", point: 0, totalPoints: 0, question: 0),User(id: 13, name: "プレイヤー13", point: 0, totalPoints: 0, question: 0),User(id: 14, name: "プレイヤー14", point: 0, totalPoints: 0, question: 0),User(id: 15, name: "プレイヤー15", point: 0, totalPoints: 0, question: 0),User(id: 16, name: "プレイヤー16", point: 0, totalPoints: 0, question: 0),User(id: 17, name: "プレイヤー17", point: 0, totalPoints: 0, question: 0),User(id: 18, name: "プレイヤー18", point: 0, totalPoints: 0, question: 0),User(id: 19, name: "プレイヤー19", point: 0, totalPoints: 0, question: 0),User(id: 20, name: "プレイヤー20", point: 0, totalPoints: 0, question: 0)], nowGameCount: 1, maxGameCount: 2)
+    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
     @Published var isShowRule:Bool = false
 
@@ -34,10 +36,18 @@ final class GameViewModel:ObservableObject {
         }
     }
 
-    func createUser(name:String) {
+    func createUser(name:String,imageData:Data?) {
         if game.users.count < 20 {
-            let user = User(id: createId(), name: name,point: 0, totalPoints: 0,question: 0)
+            let user = User(id: createId(), imageData: imageData, name: name,point: 0, totalPoints: 0,question: 0)
             game.users.append(user)
+        }
+    }
+
+    func limitUserCount(root:RootViewModel, alert:AlertViewModel){
+        if game.users.count < 3 || game.users.count > 20 {
+            alert.playerCountAlert()
+        }else{
+            root.nextGameView(nextView: .discussionView)
         }
     }
 

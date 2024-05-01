@@ -14,9 +14,9 @@ final class RealmViewModel: ObservableObject {
     init() {
         //realmのマイグレーション
         let config = Realm.Configuration(
-            schemaVersion: 3,
+            schemaVersion: 4,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 3) {
+                if (oldSchemaVersion < 4) {
                     }
             })
 
@@ -35,6 +35,7 @@ final class RealmViewModel: ObservableObject {
                 for user in game.users {
                     let realmUser = RealmUser()
                     realmUser.id = user.id
+                    realmUser.imageData = user.imageData
                     realmUser.name = user.name
                     realmUser.point = user.point
                     realmUser.totalPoints = user.totalPoints
@@ -52,7 +53,7 @@ final class RealmViewModel: ObservableObject {
         if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
             var users: [User] = []
             for userObject in gameObject.users {
-                let user = User(id: userObject.id, name: userObject.name, point: userObject.point, totalPoints: userObject.totalPoints, question: userObject.question)
+                let user = User(id: userObject.id, imageData: userObject.imageData, name: userObject.name, point: userObject.point, totalPoints: userObject.totalPoints, question: userObject.question)
                 users.append(user)
             }
             return Game(id: gameObject.id, users: users, nowGameCount: gameObject.nowGameCount, maxGameCount: gameObject.maxGameCount)
@@ -71,6 +72,7 @@ final class RealmViewModel: ObservableObject {
                     for user in updatedGame.users {
                         let userObject = RealmUser()
                         userObject.id = user.id
+                        userObject.imageData = user.imageData
                         userObject.name = user.name
                         userObject.point = user.point
                         userObject.totalPoints = user.totalPoints

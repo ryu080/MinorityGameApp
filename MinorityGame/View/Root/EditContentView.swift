@@ -14,8 +14,8 @@ struct EditContentView: View {
         switch rootViewModel.editView {
         case .startGameView:
             StartGameView()
-        case .editGameView:
-            EditGameView()
+        case .playerListView:
+            PlayerListView()
         }
     }
 }

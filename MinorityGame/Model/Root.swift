@@ -14,7 +14,7 @@ enum MainView{
 
 enum EditView{
     case startGameView
-    case editGameView
+    case playerListView
 }
 
 enum GameView{

@@ -40,6 +40,7 @@ struct WinnerView: View {
 }
 
 #Preview {
-    WinnerView(winnerUser: [User(id: 0, name: "小粋", point: 1, totalPoints: 6, question: 2)])
+    WinnerView(winnerUser: [User(id: 0, imageData: nil
+                                 , name: "小粋", point: 1, totalPoints: 6, question: 2)])
         .environmentObject(GameViewModel())
 }

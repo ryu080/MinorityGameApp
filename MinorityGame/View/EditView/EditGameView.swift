@@ -72,7 +72,7 @@ struct EditGameView: View {
                         Spacer()
                         Button {
                             if 0 < name.count && name.count <= 8 {
-                                gameViewModel.createUser(name: name)
+//                                gameViewModel.createUser(name: self.name, imageData: self.imageData)
                                 //inputText = "" が反応しないため追加
                                 if !self.name.isEmpty {
                                     self.name = self.name + " "

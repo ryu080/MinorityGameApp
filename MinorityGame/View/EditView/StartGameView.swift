@@ -15,8 +15,7 @@ struct StartGameView: View {
 
     var body: some View {
             ZStack {
-//                Color.pennBlue
-                LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom)
+                LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
                     .edgesIgnoringSafeArea(.all)
                 Group {
                     if questionViewModel.isShowProgress == nil{
@@ -31,11 +30,12 @@ struct StartGameView: View {
                         VStack {
                             Text("最新のデータ修得に失敗しました。")
                                 .font(.title2)
-                                .foregroundStyle(Color.electricBlue)
+                                .foregroundStyle(Color.white)
                             Button {
                                 questionViewModel.isShowProgress = false
                             } label: {
                                 Text("オフラインでゲームを始める")
+                                    .foregroundStyle(.white)
                             }
                             Button {
                                 questionViewModel.isShowProgress = nil
@@ -44,6 +44,7 @@ struct StartGameView: View {
                                 }
                             } label: {
                                 Text("もう一度最新データに更新する")
+                                    .foregroundStyle(.white)
                             }
                         }
                     } else {
@@ -52,21 +53,25 @@ struct StartGameView: View {
                             Text("少数派ゲーム")
                                 .font(.largeTitle)
                                 .fontWeight(.black)
-                                .foregroundStyle(Color.champagne)
+                                .foregroundStyle(Color.white)
                             Spacer()
                             VStack(spacing:15){
                                 Button {
                                     realmViewModel.deleteGame(id: 0)
-                                    rootViewModel.nextEditView(nextView: .editGameView)
+                                    rootViewModel.nextEditView(nextView: .playerListView)
                                 } label: {
                                     Text("新規ゲームを始める")
                                         .font(.title)
                                         .fontWeight(.black)
-                                        .foregroundStyle(Color.pennBlue)
+                                        .foregroundStyle(Color.white)
                                 }
                                 .padding(10)
-                                .background(Color.champagne)
+                                .background(Color.mint.opacity(0.7))
                                 .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.mint, lineWidth: 3)
+                                )
                                 if realmViewModel.readGame(id: 0) != nil {
                                     Button {
                                         gameViewModel.game = realmViewModel.readGame(id: 0)!
@@ -76,25 +81,16 @@ struct StartGameView: View {
                                         Text("続きから再開する")
                                             .font(.title)
                                             .fontWeight(.black)
-                                            .foregroundStyle(Color.champagne)
+                                            .foregroundStyle(Color.white)
                                     }
                                     .padding(10)
+                                    .background(Color.blue.opacity(0.7))
+                                    .cornerRadius(10)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.champagne, lineWidth: 4)
+                                            .stroke(Color.blue, lineWidth: 3)
                                     )
                                 }
-                                Button {
-
-                                } label: {
-                                    Text("問題文を作成する")
-                                        .font(.title2)
-                                        .fontWeight(.black)
-                                        .foregroundStyle(Color.champagne)
-                                }
-                                .padding(10)
-                                .background(Color.green)
-                                .cornerRadius(10)
                             }
                             Spacer()
                         }

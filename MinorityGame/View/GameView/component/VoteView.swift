@@ -94,7 +94,7 @@ struct VoteView: View {
 }
 
 #Preview {
-    VoteView(user: User(id: 1, name: "サンプル太",point: 0, totalPoints: 0, question: 0))
+    VoteView(user: User(id: 1, imageData: nil, name: "サンプル太",point: 0, totalPoints: 0, question: 0))
         .environmentObject(GameViewModel())
         .environmentObject(AlertViewModel())
         .environmentObject(QuestionViewModel())
