@@ -36,11 +36,11 @@ struct MinorityView: View {
                     Text("次へ")
                         .font(.title2)
                         .fontWeight(.black)
-                        .foregroundStyle(Color.champagne)
+                        .foregroundStyle(Color.white)
                 }
                 .frame(width: 100,height: 30)
                 .padding(10)
-                .background(Color.green)
+                .background(Color.mint)
                 .cornerRadius(10)
                 Spacer()
             }
@@ -52,6 +52,6 @@ struct MinorityView: View {
 }
 
 #Preview {
-    MinorityView(winner: "ネコ派", backgroundColor: Color.bittersweet)
+    MinorityView(winner: "ネコ派", backgroundColor: Color.electricBlue)
         .environmentObject(RootViewModel())
 }

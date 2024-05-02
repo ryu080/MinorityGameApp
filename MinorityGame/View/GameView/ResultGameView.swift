@@ -16,8 +16,7 @@ struct ResultGameView: View {
     
     var body: some View {
         ZStack {
-            Color.pennBlue
-                .edgesIgnoringSafeArea(.all)
+            LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)                .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 Group {
@@ -32,20 +31,22 @@ struct ResultGameView: View {
                             }
                             .font(.title)
                             .fontWeight(.black)
-                            .foregroundColor(Color.pennBlue)
+                            .foregroundColor(Color.white)
                             .padding(10)
-                            .background(Color.champagne)
+                            .background(Color.green)
                             .cornerRadius(10)
                             Button("ゲームを終了する") {
                                 isShowResult = false
                             }
                             .font(.title)
                             .fontWeight(.black)
-                            .foregroundStyle(Color.champagne)
+                            .foregroundStyle(Color.green)
                             .padding(10)
+                            .background(.white)
+                            .cornerRadius(10)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.champagne, lineWidth: 4)
+                                    .stroke(Color.green, lineWidth: 4)
                             )
                             Spacer()
                         } else {
@@ -55,14 +56,15 @@ struct ResultGameView: View {
                                 Text("結果発表")
                                     .font(.title)
                                     .fontWeight(.black)
-                                    .foregroundStyle(Color.pennBlue)
+                                    .foregroundStyle(Color.white)
                             }
                             .padding(10)
-                            .background(Color.champagne)
+                            .background(Color.yellow)
                             .cornerRadius(10)
                         }
                     } else {
                         WinnerView(winnerUser: gameViewModel.winnerUser())
+                            .cornerRadius(20)
                         Button("ホーム"){
                             gameViewModel.resetGame()
                             realmViewModel.deleteGame(id: 0)
@@ -71,9 +73,9 @@ struct ResultGameView: View {
                         }
                         .font(.title)
                         .fontWeight(.black)
-                        .foregroundColor(Color.pennBlue)
+                        .foregroundColor(Color.white)
                         .padding(10)
-                        .background(Color.champagne)
+                        .background(Color.green)
                         .cornerRadius(10)
                     }
                 }

@@ -102,10 +102,7 @@ struct DiscussionView: View {
                     }.padding(10)
                     Spacer()
                     ZStack {
-                        Rectangle()
-                            .frame(height:UIScreen.main.bounds.height/1.5)
-                            .foregroundColor(.white)
-                            .cornerRadius(20)
+                        Color.white
                         VStack{
                             Text("【第\(gameViewModel.game.nowGameCount)門】")
                                 .font(.system(size: 35))
@@ -117,15 +114,12 @@ struct DiscussionView: View {
                                 .bold()
                                 .foregroundStyle(Color.white)
                                 .frame(width: UIScreen.main.bounds.width-20, height:150)
-                                .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom)
-                                    .edgesIgnoringSafeArea(.all))
+                                .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom))
                                 .cornerRadius(20)
                                 .overlay() {
                                     RoundedRectangle(cornerRadius: 20)
                                         .stroke(Color.mint, lineWidth: 3)
                                 }
-                            Spacer()
-                            Spacer()
                             HStack {
                                 Text(questionViewModel.question?.choice1 ?? "北海道")
                                     .font(.title)
@@ -150,8 +144,7 @@ struct DiscussionView: View {
                                         RoundedRectangle(cornerRadius: 20)
                                             .stroke(Color.bittersweet, lineWidth: 3)
                                     }
-                            }.frame(width: UIScreen.main.bounds.width-20)
-                            Spacer()
+                            }.frame(width: UIScreen.main.bounds.width-20,height: 180)
                             Button(action: {
                                 rootViewModel.nextGameView(nextView: .voteListView)
                                 timerViewModel.stopCountDown()
@@ -162,12 +155,14 @@ struct DiscussionView: View {
                                     .fontWeight(.black)
                                     .foregroundStyle(Color.white)
                             })
-                            .frame(width: 200,height: 50)
+                            .frame(width: UIScreen.main.bounds.width-20,height: 50)
                             .background(Color.green)
                             .cornerRadius(10)
                             Spacer()
                         }.frame(height:UIScreen.main.bounds.height/1.5)
                     }
+                    .frame(height:UIScreen.main.bounds.height/1.5)
+                    .cornerRadius(20)
                 }
                 .transition(.move(edge: .bottom))
                 .edgesIgnoringSafeArea(.all)

@@ -10,14 +10,16 @@ import SwiftUI
 struct PlayerView: View {
     let playerImageData:Data?
     let name:String
+    let backgroundColor:Color
+    let opacity:Double
     var body: some View {
         ZStack {
             Rectangle()
                 .cornerRadius(10)
-                .foregroundColor(.mint.opacity(0.3))
+                .foregroundColor(backgroundColor.opacity(opacity))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.mint, lineWidth: 3)
+                        .stroke(backgroundColor, lineWidth: 3)
                 )
             VStack {
                 Spacer()
@@ -49,5 +51,5 @@ struct PlayerView: View {
 }
 
 #Preview {
-    PlayerView(playerImageData: nil, name: "プレイヤー1")
+    PlayerView(playerImageData: nil, name: "プレイヤー1", backgroundColor: .mint, opacity: 0.3)
 }

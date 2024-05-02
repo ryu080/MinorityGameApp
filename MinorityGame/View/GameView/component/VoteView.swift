@@ -19,76 +19,100 @@ struct VoteView: View {
     var user:User
     var body: some View {
         ZStack {
-            Color.pennBlue
+            LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                Text("どちらかを選んでください。")
-                    .font(.title)
-                    .fontWeight(.black)
-                    .foregroundStyle(Color.champagne)
+                PlayerView(playerImageData: user.imageData, name: user.name, backgroundColor: .mint, opacity: 0.7)
+                    .scaleEffect(x: 1.5, y: 1.5)
                 Spacer()
                 ZStack {
-                    Text(questionViewModel.question!.text)
-                        .font(.title)
-                        .bold()
-                        .foregroundStyle(Color.pennBlue)
-                        .frame(width: UIScreen.main.bounds.width-20, height:150)
-                        .background(Color.champagne)
-                        .cornerRadius(20)
-                        .overlay() {
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.amaranthPurple, lineWidth: 5)
-                        }
-                }
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(questionViewModel.question!.choice1) {
-                        vote = 1
-                        buttonColor = false
-                    }
-                    .font(.title)
-                    .fontWeight(.black)
-                    .foregroundColor((buttonColor ?? true) ? .gray.opacity(0.7):Color.electricBlue)
-                    Spacer()
-                    Button(questionViewModel.question!.choice2) {
-                        vote = 2
-                        buttonColor = true
-                    }
-                    .font(.title)
-                    .fontWeight(.black)
-                    .foregroundColor((buttonColor ?? false) ? Color.bittersweet :.gray.opacity(0.7))
-                    Spacer()
-                }
-                Spacer()
-                Button(action: {
-                    if vote == 0 {
-                        alertViewModel.voteAlert()
-                    } else {
-                        gameViewModel.updateUserQuestion(id: user.id, question: vote)
-                        dismiss()
-                        buttonColor = nil
-                    }
-                }, label: {
-                    Text("投票する")
-                        .font(.title)
-                        .fontWeight(.black)
-                        .foregroundStyle(Color.pennBlue)
-                })
-                .padding(10)
-                .background(Color.champagne)
-                .cornerRadius(10)
-                Spacer()
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            Text("\(user.name)さんの回答")
-                                .foregroundColor(Color.champagne)
+                    Color.white
+                    VStack {
+                        Text("どちらかを選んでください")
+                            .font(.system(size: 30))
+                            .fontWeight(.black)
+                            .foregroundStyle(Color.black)
+                            .frame(width: UIScreen.main.bounds.width-20)
+                            .padding()
+                        Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
+                            .font(.title)
+                            .bold()
+                            .foregroundStyle(Color.white)
+                            .frame(width: UIScreen.main.bounds.width-20, height:150)
+                            .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom))
+                            .cornerRadius(20)
+                            .overlay() {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.mint, lineWidth: 3)
+                            }
+                        Spacer()
+                        HStack {
+                            Button(questionViewModel.question?.choice1 ?? "北海道") {
+                                vote = 1
+                                buttonColor = false
+                            }
+                            .font(.title)
+                            .bold()
+                            .foregroundStyle(.white)
+                            .frame(width: 160,height: 120)
+                            .background((buttonColor ?? true) ? .gray.opacity(0.7):Color.electricBlue)
+                            .cornerRadius(20)
+                            .overlay() {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.electricBlue, lineWidth: 3)
+                            }
+                            Spacer()
+                            Button(questionViewModel.question?.choice2 ?? "沖縄県") {
+                                vote = 2
+                                buttonColor = true
+                            }
+                            .font(.title)
+                            .bold()
+                            .foregroundStyle(.white)
+                            .frame(width: 160, height: 120)
+                            .background((buttonColor ?? false) ? Color.bittersweet :.gray.opacity(0.7))
+                            .cornerRadius(20)
+                            .overlay() {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.bittersweet, lineWidth: 3)
+                            }
+                        }.frame(width: UIScreen.main.bounds.width-20)
+                        Spacer()
+                        Button(action: {
+                            if vote == 0 {
+                                alertViewModel.voteAlert()
+                            } else {
+                                gameViewModel.updateUserQuestion(id: user.id, question: vote)
+                                dismiss()
+                                buttonColor = nil
+                            }
+                        }, label: {
+                            Text("投票する")
+                                .font(.title)
                                 .fontWeight(.black)
-                                .font(.title2)
-                        }
+                                .foregroundStyle(Color.white)
+                        })
+                        .frame(width: 200,height: 50)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                        Spacer()
+                            .toolbar {
+                                ToolbarItem(placement: .principal) {
+                                    Text("\(user.name)さんの回答")
+                                        .foregroundColor(Color.champagne)
+                                        .fontWeight(.black)
+                                        .font(.title2)
+                                }
+                            }
                     }
+                    .frame(height:UIScreen.main.bounds.height/1.5)
+                }
+                .frame(height:UIScreen.main.bounds.height/1.5)
+                .cornerRadius(20)
             }
+            .transition(.move(edge: .bottom))
+            .edgesIgnoringSafeArea(.all)
         }
     }
 }

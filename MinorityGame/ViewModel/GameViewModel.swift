@@ -12,7 +12,7 @@ import SwiftUI
 
 @MainActor
 final class GameViewModel:ObservableObject {
-    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
+    @Published var game:Game = Game(id: 0,users: [User(id: 1, imageData: nil, name: "プレイヤー１", point: 1, totalPoints: 1, question: 1),User(id: 2, imageData: nil, name: "プレイヤー2", point: 0, totalPoints: 0, question: 2),User(id: 3, imageData: nil, name: "プレイヤー3", point: 0, totalPoints: 0, question: 2)], nowGameCount: 1, maxGameCount: 2)
     @Published var questionText:String = ""
     @Published var isShowRule:Bool = false
 
@@ -37,7 +37,8 @@ final class GameViewModel:ObservableObject {
     }
 
     func createUser(name:String,imageData:Data?) {
-        if game.users.count < 20 {
+        let maxUserCount = 12
+        if game.users.count < maxUserCount {
             let user = User(id: createId(), imageData: imageData, name: name,point: 0, totalPoints: 0,question: 0)
             game.users.append(user)
         }
@@ -109,10 +110,11 @@ final class GameViewModel:ObservableObject {
             return (choice2,Color.bittersweet)
         }
     }
-    func userPoint(point:Int) -> String {
-        switch point {
-        case 0: return ""
-        default: return "+1P"
+    func userPoint(users:[User]) -> Bool {
+        if users.first?.point == 0 {
+            return false
+        }else{
+            return true
         }
     }
 

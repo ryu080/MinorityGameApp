@@ -15,17 +15,22 @@ struct AnswerView: View {
 
     var body: some View {
         ZStack {
-            Color.pennBlue
+            LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             VStack {
+                Spacer()
                 Text(choice)
                     .font(.system(size: 50))
-                    .foregroundStyle(color)
+                    .foregroundStyle(.white)
                     .fontWeight(.black)
+                    .padding()
+                    .background(color)
+                    .cornerRadius(10)
                 Text("\(count)")
                     .font(.system(size: 150))
                     .foregroundStyle(.white)
                     .fontWeight(.black)
+                Spacer()
             }
         }
         .onAppear(){
@@ -35,5 +40,5 @@ struct AnswerView: View {
 }
 
 #Preview {
-    AnswerView(choice: "イヌ派", count: 2, color: .bittersweet)
+    AnswerView(choice: "イヌ派", count: 2, color: .electricBlue)
 }

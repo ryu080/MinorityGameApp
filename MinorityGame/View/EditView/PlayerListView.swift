@@ -72,34 +72,53 @@ struct PlayerListView: View {
                 }
                 Spacer()
                 ZStack{
-                    Rectangle()
-                        .frame(height:UIScreen.main.bounds.height/1.5)
-                        .foregroundColor(.white)
-                        .cornerRadius(20)
+                    Color.white
                     VStack {
                         Spacer()
-                        Button  {
-                            isShowCreatePlayerView.toggle()
-                        } label: {
-                            Text("プレイヤー追加")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .tint(.white)
+                        Group{
+                            if gameViewModel.game.users.count < 12{
+                                Button  {
+                                    isShowCreatePlayerView.toggle()
+                                } label: {
+                                    Text("プレイヤー追加")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .tint(.white)
+                                }
+                                .frame(width: 300,height: 50)
+                                .background(.mint.opacity(0.8))
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.mint, lineWidth: 3)
+                                )
+                            } else {
+                                Text("プレイヤー追加")
+                                    .font(.title2)
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300,height: 50)
+                                    .background(.gray.opacity(0.8))
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.gray, lineWidth: 3)
+                                    )
+                            }
                         }
-                        .frame(width: 300,height: 50)
-                        .background(.mint.opacity(0.8))
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.mint, lineWidth: 3)
-                        )
                         .padding(10)
                         Spacer()
                         ScrollView( .vertical) {
                             Spacer()
                             LazyVGrid(columns:columns) {
                                 ForEach(gameViewModel.game.users){user in
-                                    PlayerView(playerImageData:user.imageData, name: user.name).padding(8)                                }
+                                    Button {
+                                        gameViewModel.deleteUser(id: user.id)
+                                    } label: {
+                                        PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor: .mint,opacity: 0.3)
+                                            .padding()
+                                    }
+                                }
                             }
                             .padding()
                             .background(.gray.opacity(0.2))
@@ -121,6 +140,8 @@ struct PlayerListView: View {
                         }.frame(width: UIScreen.main.bounds.width-20)
                     }
                 }
+                .frame(height:UIScreen.main.bounds.height/1.5)
+                .cornerRadius(20)
             }
             .sheet(isPresented: $isShowCreatePlayerView, content: {
                 CreatePlayerView()

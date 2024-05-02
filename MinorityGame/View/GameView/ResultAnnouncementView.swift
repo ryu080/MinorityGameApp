@@ -17,7 +17,7 @@ struct ResultAnnouncementView: View {
     @State var isShowAnswerView:Int = 0
     var body: some View {
         ZStack{
-            Color.pennBlue
+            LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
                 switch isShowAnswerView {
                 case 1:
