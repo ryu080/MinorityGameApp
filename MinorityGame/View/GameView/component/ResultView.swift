@@ -70,7 +70,7 @@ struct ResultView: View {
                                 .background(.white.opacity(0.8))
                                 .cornerRadius(10)
                             }
-                        }.frame(width: UIScreen.main.bounds.width-20,height: UIScreen.main.bounds.height/3.5)
+                        }.frame(width: UIScreen.main.bounds.width-20,height: UIScreen.main.bounds.height/3)
                         VStack{
                             HStack {
                                 Text(questionViewModel.question?.choice2 ?? "沖縄県")
@@ -95,7 +95,6 @@ struct ResultView: View {
                             .frame(height: 50)
                             .background(Color.bittersweet)
                             .cornerRadius(10)
-
                             ScrollView( .vertical) {
                                 Spacer()
                                 LazyVGrid(columns:columns) {
@@ -116,7 +115,7 @@ struct ResultView: View {
                                 .background(.white.opacity(0.8))
                                 .cornerRadius(10)
                             }
-                        }.frame(width: UIScreen.main.bounds.width-20,height: UIScreen.main.bounds.height/3.5)
+                        }.frame(width: UIScreen.main.bounds.width-20,height: UIScreen.main.bounds.height/3)
                         Spacer()
                     }
                 } else {

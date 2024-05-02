@@ -50,14 +50,19 @@ struct StartGameView: View {
                     } else {
                         VStack {
                             Spacer()
-                            Text("少数派ゲーム")
-                                .font(.largeTitle)
+                            Text("Unique")
+                                .font(.system(size: 80))
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
+                            Text("1")
+                                .font(.system(size: 120))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
                             Spacer()
                             VStack(spacing:15){
                                 Button {
-                                    realmViewModel.deleteGame(id: 0)
+                                    realmViewModel.deleteGame(primaryKey: 0)
+                                    gameViewModel.setPreviousUsers(realm: realmViewModel)
                                     rootViewModel.nextEditView(nextView: .playerListView)
                                 } label: {
                                     Text("新規ゲームを始める")
@@ -66,15 +71,15 @@ struct StartGameView: View {
                                         .foregroundStyle(Color.white)
                                 }
                                 .padding(10)
-                                .background(Color.mint.opacity(0.7))
+                                .background(Color.mint.opacity(0.8))
                                 .cornerRadius(10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.mint, lineWidth: 3)
                                 )
-                                if realmViewModel.readGame(id: 0) != nil {
+                                if realmViewModel.readGame(primaryKey: 0)?.users != nil {
                                     Button {
-                                        gameViewModel.game = realmViewModel.readGame(id: 0)!
+                                        gameViewModel.game = realmViewModel.readGame(primaryKey: 0)!
                                         gameViewModel.continueGame()
                                         rootViewModel.nextGameView(nextView: .discussionView)
                                     } label: {

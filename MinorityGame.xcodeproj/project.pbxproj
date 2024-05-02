@@ -32,6 +32,7 @@
 		B77C55192BDB79590045ACE2 /* ResultAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */; };
 		B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7828A6B2BC7AB4E00C4AE08 /* Color.swift */; };
 		B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78297E72BC8BA3000655492 /* RootViewModel.swift */; };
+		B7871FA42BE386C8005D140E /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7871FA32BE386C8005D140E /* RoundedCorners.swift */; };
 		B792C69B2BD3C154002BCD96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */; };
 		B792C69E2BD3C3CD002BCD96 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B792C69D2BD3C3CD002BCD96 /* FirebaseFirestore */; };
 		B792C6A02BD3C80F002BCD96 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792C69F2BD3C80F002BCD96 /* Question.swift */; };
@@ -100,6 +101,7 @@
 		B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAnnouncementView.swift; sourceTree = "<group>"; };
 		B7828A6B2BC7AB4E00C4AE08 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B78297E72BC8BA3000655492 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		B7871FA32BE386C8005D140E /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B792C69F2BD3C80F002BCD96 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuestion.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				B7828A6B2BC7AB4E00C4AE08 /* Color.swift */,
 				B760DAE12BB8F88400664A10 /* Root.swift */,
 				B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */,
+				B7871FA32BE386C8005D140E /* RoundedCorners.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				B760DAE22BB8F88400664A10 /* Root.swift in Sources */,
 				B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */,
 				B751BBAA2BD68DC500AADCD3 /* BlurView.swift in Sources */,
+				B7871FA42BE386C8005D140E /* RoundedCorners.swift in Sources */,
 				B792C6A02BD3C80F002BCD96 /* Question.swift in Sources */,
 				B7FC35522BB53141002A87A6 /* EditContentView.swift in Sources */,
 				B74CBD892BD5381B0087D7C3 /* FirestoreClient.swift in Sources */,

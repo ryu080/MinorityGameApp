@@ -16,11 +16,12 @@ struct MinorityView: View {
             backgroundColor
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                Text("少数派は...")
+                Spacer()
+                Text("Uniqueは...")
                     .font(.largeTitle)
                     .foregroundStyle(Color.white)
                     .fontWeight(.bold)
-                    .padding(.vertical,100)
+                Spacer()
                 Text(winner)
                     .font(.system(size: 50))
                     .foregroundStyle(Color.white)
@@ -40,8 +41,13 @@ struct MinorityView: View {
                 }
                 .frame(width: 100,height: 30)
                 .padding(10)
-                .background(Color.mint)
+                .background(.white.opacity(0.2))
                 .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.white, lineWidth: 3)
+                )
+
                 Spacer()
             }
         }

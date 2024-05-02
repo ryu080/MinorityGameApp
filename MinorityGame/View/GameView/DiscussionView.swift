@@ -33,16 +33,14 @@ struct DiscussionView: View {
                         }
                     }
             } else {
-                //
                 VStack {
                     Spacer()
-                    VStack(spacing:10) {
+                    VStack(spacing:0) {
                         Spacer()
                         Text("Thinking Time")
                             .font(.title)
                             .fontWeight(.black)
                             .foregroundStyle(Color.white)
-                            .padding(.top,50)
                         Text(timerViewModel.dateFormat(minutes: timerViewModel.timeCount.minutesCount,
                                                        seconds: timerViewModel.timeCount.secondsCount))
                         .font(.system(size: 50))
@@ -98,17 +96,16 @@ struct DiscussionView: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.mint, lineWidth: 4)
                         }
-                        Spacer()
-                    }.padding(10)
+                    }.frame(height: 80,alignment: .top)
                     Spacer()
                     ZStack {
-                        Color.white
+                        RoundedCorners(color: .white, tl: 20, tr: 20, bl: 0, br: 0)
                         VStack{
                             Text("【第\(gameViewModel.game.nowGameCount)門】")
                                 .font(.system(size: 35))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.black)
-                                .padding()
+                                .padding(5)
                             Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
                                 .font(.title)
                                 .bold()
@@ -125,7 +122,7 @@ struct DiscussionView: View {
                                     .font(.title)
                                     .bold()
                                     .foregroundStyle(.white)
-                                    .frame(width: 160,height: 120)
+                                    .frame(width: 160,height: 100)
                                     .background(Color.electricBlue)
                                     .cornerRadius(20)
                                     .overlay() {
@@ -137,14 +134,14 @@ struct DiscussionView: View {
                                     .font(.title)
                                     .bold()
                                     .foregroundStyle(.white)
-                                    .frame(width: 160, height: 120)
+                                    .frame(width: 160, height: 100)
                                     .background(Color.bittersweet)
                                     .cornerRadius(20)
                                     .overlay() {
                                         RoundedRectangle(cornerRadius: 20)
                                             .stroke(Color.bittersweet, lineWidth: 3)
                                     }
-                            }.frame(width: UIScreen.main.bounds.width-20,height: 180)
+                            }.frame(width: UIScreen.main.bounds.width-20,height: 140)
                             Button(action: {
                                 rootViewModel.nextGameView(nextView: .voteListView)
                                 timerViewModel.stopCountDown()
@@ -156,13 +153,17 @@ struct DiscussionView: View {
                                     .foregroundStyle(Color.white)
                             })
                             .frame(width: UIScreen.main.bounds.width-20,height: 50)
-                            .background(Color.green)
+                            .background(.mint.opacity(0.8))
                             .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.mint, lineWidth: 3)
+                            )
+
                             Spacer()
                         }.frame(height:UIScreen.main.bounds.height/1.5)
                     }
                     .frame(height:UIScreen.main.bounds.height/1.5)
-                    .cornerRadius(20)
                 }
                 .transition(.move(edge: .bottom))
                 .edgesIgnoringSafeArea(.all)

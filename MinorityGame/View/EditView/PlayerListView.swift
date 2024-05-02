@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerListView: View {
     @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
     @EnvironmentObject private var rootViewModel:RootViewModel
 
@@ -16,6 +17,8 @@ struct PlayerListView: View {
     @State var isShowGameCountView:Bool = false
 
     private let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0, alignment: .center), count: 4)
+
+    @State var deleteUser:User?
 
     var body: some View {
         ZStack {
@@ -41,7 +44,8 @@ struct PlayerListView: View {
                             }
                             .frame(width: 40,height: 40)
                             .background(.mint.opacity(0.8))
-                            .clipShape(Circle())                        .overlay(
+                            .clipShape(Circle())                        
+                            .overlay(
                                 Circle()
                                     .stroke(Color.mint, lineWidth: 3)
                             )
@@ -72,7 +76,7 @@ struct PlayerListView: View {
                 }
                 Spacer()
                 ZStack{
-                    Color.white
+                    RoundedCorners(color: .white, tl: 20, tr: 20, bl: 0, br: 0)
                     VStack {
                         Spacer()
                         Group{
@@ -113,7 +117,8 @@ struct PlayerListView: View {
                             LazyVGrid(columns:columns) {
                                 ForEach(gameViewModel.game.users){user in
                                     Button {
-                                        gameViewModel.deleteUser(id: user.id)
+                                        deleteUser = user
+                                        alertViewModel.deletePlayerAlert(name: user.name)
                                     } label: {
                                         PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor: .mint,opacity: 0.3)
                                             .padding()
@@ -125,7 +130,7 @@ struct PlayerListView: View {
                             .cornerRadius(10)
                             Spacer()
                             Button {
-                                gameViewModel.limitUserCount(root: rootViewModel, alert: alertViewModel)
+                                gameViewModel.limitUserCount(root: rootViewModel, alert: alertViewModel,realm: realmViewModel)
                             } label: {
                                 Text("ゲームスタート")
                                     .font(.title2)
@@ -141,14 +146,37 @@ struct PlayerListView: View {
                     }
                 }
                 .frame(height:UIScreen.main.bounds.height/1.5)
-                .cornerRadius(20)
+
             }
             .sheet(isPresented: $isShowCreatePlayerView, content: {
                 CreatePlayerView()
             })
-            .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
-            } message: {
-                Text(alertViewModel.alertMessage)
+            .alert(isPresented: $alertViewModel.isShowAlert) {
+                switch alertViewModel.alertType {
+                case .success: 
+                    return Alert(title: Text(alertViewModel.alertTitle),
+                                 message: Text(alertViewModel.alertMessage),
+                                 primaryButton: .cancel(Text("戻る")),
+                                 secondaryButton: .default(Text("確認"),
+                                                               action: {
+                                        }))
+                case .delete:
+                    return Alert(title: Text(alertViewModel.alertTitle),
+                                   message: Text(alertViewModel.alertMessage),
+                                 primaryButton: .cancel(Text("戻る")),
+                                 secondaryButton: .destructive(Text("削除"),
+                                                               action: {
+                        if let user = deleteUser{
+                            gameViewModel.deleteUser(id: user.id)
+                        }
+                    }))
+                case .error:
+                    return Alert(title: Text(alertViewModel.alertTitle),
+                                   message: Text(alertViewModel.alertMessage),
+                                              dismissButton: .default(Text("OK"),
+                                                                      action: {
+                                        }))
+                }
             }
             .edgesIgnoringSafeArea(.all)
 
@@ -159,6 +187,7 @@ struct PlayerListView: View {
 #Preview {
     PlayerListView()
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())
         .environmentObject(RootViewModel())
 }

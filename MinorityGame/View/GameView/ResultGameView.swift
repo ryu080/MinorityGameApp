@@ -21,32 +21,35 @@ struct ResultGameView: View {
                 Spacer()
                 Group {
                     if isShowResult {
-                        ResultView()
+                        Group{
+                            ResultView()
+                        }
                         Spacer()
                         if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
                             Button("次のゲームへ") {
                                 gameViewModel.continueGame()
-                                realmViewModel.updateGame(id: 0, updatedGame: gameViewModel.game)
+                                realmViewModel.updateGame(primaryKey: 0, updatedGame: gameViewModel.game)
                                 rootViewModel.nextGameView(nextView: .discussionView)
                             }
                             .font(.title)
                             .fontWeight(.black)
                             .foregroundColor(Color.white)
                             .padding(10)
-                            .background(Color.green)
+                            .background(Color.mint)
                             .cornerRadius(10)
                             Button("ゲームを終了する") {
                                 isShowResult = false
+                                realmViewModel.deleteGame(primaryKey: 0)
                             }
                             .font(.title)
                             .fontWeight(.black)
-                            .foregroundStyle(Color.green)
+                            .foregroundStyle(Color.mint)
                             .padding(10)
                             .background(.white)
                             .cornerRadius(10)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.green, lineWidth: 4)
+                                    .stroke(Color.mint, lineWidth: 4)
                             )
                             Spacer()
                         } else {
@@ -61,22 +64,29 @@ struct ResultGameView: View {
                             .padding(10)
                             .background(Color.yellow)
                             .cornerRadius(10)
+                            .onAppear(){
+                                realmViewModel.deleteGame(primaryKey: 0)
+                            }
                         }
                     } else {
                         WinnerView(winnerUser: gameViewModel.winnerUser())
                             .cornerRadius(20)
                         Button("ホーム"){
                             gameViewModel.resetGame()
-                            realmViewModel.deleteGame(id: 0)
                             rootViewModel.nextEditView(nextView: .startGameView)
                             isShowResult = true
                         }
                         .font(.title)
                         .fontWeight(.black)
-                        .foregroundColor(Color.white)
-                        .padding(10)
-                        .background(Color.green)
+                        .foregroundColor(.white)
+                        .frame(width: 300,height: 50)
+                        .background(.yellow.opacity(0.8))
                         .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.yellow, lineWidth: 3)
+                        )
+                        Spacer()
                     }
                 }
                 Spacer()

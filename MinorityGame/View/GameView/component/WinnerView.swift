@@ -40,7 +40,7 @@ struct WinnerView: View {
                     }
                     .padding()
                 }
-                .frame(height: 500)
+                .frame(height: 450)
                 .background(.black.opacity(0.2))
                 .cornerRadius(10)
             }

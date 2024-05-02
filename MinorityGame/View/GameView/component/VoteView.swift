@@ -55,7 +55,7 @@ struct VoteView: View {
                             .font(.title)
                             .bold()
                             .foregroundStyle(.white)
-                            .frame(width: 160,height: 120)
+                            .frame(width: 160,height: 100)
                             .background((buttonColor ?? true) ? .gray.opacity(0.7):Color.electricBlue)
                             .cornerRadius(20)
                             .overlay() {
@@ -70,7 +70,7 @@ struct VoteView: View {
                             .font(.title)
                             .bold()
                             .foregroundStyle(.white)
-                            .frame(width: 160, height: 120)
+                            .frame(width: 160, height: 100)
                             .background((buttonColor ?? false) ? Color.bittersweet :.gray.opacity(0.7))
                             .cornerRadius(20)
                             .overlay() {

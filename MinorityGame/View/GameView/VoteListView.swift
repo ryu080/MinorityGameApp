@@ -10,10 +10,11 @@ import SwiftUI
 struct VoteListView: View {
     @EnvironmentObject private var rootViewModel:RootViewModel
     @EnvironmentObject private var gameViewModel:GameViewModel
+    @EnvironmentObject private var realmViewModel:RealmViewModel
     @EnvironmentObject private var questionViewModel:QuestionViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
 
-    @State private var isShowVoteView:Bool = false
+    @State private var isShowVoteView:Bool = true
     @State var voteUser:User?
     private let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0, alignment: .center), count: 4)
 
@@ -61,7 +62,7 @@ struct VoteListView: View {
                 }.frame(width: UIScreen.main.bounds.width-20,height: 100)
 
                 ZStack {
-                    Color.white
+                    RoundedCorners(color: .white, tl: 20, tr: 20, bl: 0, br: 0)
                     VStack {
                         Text("投票するプレイヤーを選んでください")
                             .font(.title2)
@@ -94,20 +95,21 @@ struct VoteListView: View {
                                     .fontWeight(.black)
                                     .foregroundStyle(Color.white)
                             }
-                            .padding(10)
-                            .background(Color.green)
+                            .frame(width: 300,height: 50)
+                            .background(.mint.opacity(0.8))
                             .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.mint, lineWidth: 3)
+                            )
                             .padding(30)
                         }
                         .frame(width: UIScreen.main.bounds.width-20)
-
-
                         Spacer()
                     }
-                    .frame(height:UIScreen.main.bounds.height/2)
+                    .frame(height:UIScreen.main.bounds.height/1.9)
                 }
-                .frame(height:UIScreen.main.bounds.height/2)
-                .cornerRadius(20)
+                .frame(height:UIScreen.main.bounds.height/1.9)
             }
             .edgesIgnoringSafeArea(.all)
         }
@@ -136,6 +138,7 @@ struct VoteListView: View {
     VoteListView()
         .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
+        .environmentObject(RealmViewModel())
         .environmentObject(AlertViewModel())
         .environmentObject(QuestionViewModel())
 }

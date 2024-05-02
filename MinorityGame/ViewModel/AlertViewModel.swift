@@ -21,7 +21,7 @@ final class AlertViewModel: ObservableObject {
 
     func playerCountAlert() {
         alertTitle = "注意"
-        alertMessage = "3人以上プレイヤーを追加してください。"
+        alertMessage = "プレイヤーを3人以上\n追加してください。"
         alertType = .error
         isShowAlert.toggle()
     }
@@ -35,6 +35,12 @@ final class AlertViewModel: ObservableObject {
                 alertMessage = "プレイヤー名は\n8文字以内で入力してください。"
             }
         alertType = .error
+        isShowAlert.toggle()
+    }
+    func deletePlayerAlert(name:String){
+        alertTitle = "削除"
+        alertMessage = "\(name)さんを\n削除してもよろしいですか？"
+        alertType = .delete
         isShowAlert.toggle()
     }
 

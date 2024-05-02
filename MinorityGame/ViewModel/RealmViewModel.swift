@@ -24,46 +24,65 @@ final class RealmViewModel: ObservableObject {
         realm = try! Realm()
     }
 
-    func createGame(game:Game){
+    func setGame(game:Game, primaryKey:Int){
         do{
-            try realm.write {
-                let realmGame = RealmGame()
-                realmGame.id = game.id
-                realmGame.nowGameCount = game.nowGameCount
-                realmGame.maxGameCount = game.maxGameCount
+            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey){
+                try realm.write {
+                    gameObject.nowGameCount = game.nowGameCount
+                    gameObject.maxGameCount = game.maxGameCount
+                    gameObject.users.removeAll()
 
-                for user in game.users {
-                    let realmUser = RealmUser()
-                    realmUser.id = user.id
-                    realmUser.imageData = user.imageData
-                    realmUser.name = user.name
-                    realmUser.point = user.point
-                    realmUser.totalPoints = user.totalPoints
-                    realmUser.question = user.question
-                    realmGame.users.append(realmUser)
+                    for user in game.users {
+                        let userObject = RealmUser()
+                        userObject.id = user.id
+                        userObject.imageData = user.imageData
+                        userObject.name = user.name
+                        userObject.point = user.point
+                        userObject.totalPoints = user.totalPoints
+                        userObject.question = user.question
+                        gameObject.users.append(userObject)
+                    }
                 }
-                realm.add(realmGame)
+            } else{
+                try realm.write {
+                    let realmGame = RealmGame()
+                    realmGame.id = primaryKey
+                    realmGame.nowGameCount = game.nowGameCount
+                    realmGame.maxGameCount = game.maxGameCount
+
+                    for user in game.users {
+                        let realmUser = RealmUser()
+                        realmUser.id = user.id
+                        realmUser.imageData = user.imageData
+                        realmUser.name = user.name
+                        realmUser.point = user.point
+                        realmUser.totalPoints = user.totalPoints
+                        realmUser.question = user.question
+                        realmGame.users.append(realmUser)
+                    }
+                    realm.add(realmGame)
+                }
             }
         } catch {
             print("Error saving questions to Realm: \(error)")
         }
     }
 
-    func readGame(id:Int) -> Game? {
-        if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
+    func readGame(primaryKey:Int) -> Game? {
+        if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey) {
             var users: [User] = []
             for userObject in gameObject.users {
                 let user = User(id: userObject.id, imageData: userObject.imageData, name: userObject.name, point: userObject.point, totalPoints: userObject.totalPoints, question: userObject.question)
                 users.append(user)
             }
-            return Game(id: gameObject.id, users: users, nowGameCount: gameObject.nowGameCount, maxGameCount: gameObject.maxGameCount)
+            return Game(id: 0, users: users, nowGameCount: gameObject.nowGameCount, maxGameCount: gameObject.maxGameCount)
         }
         return nil
     }
 
-    func updateGame(id:Int, updatedGame: Game) {
+    func updateGame(primaryKey:Int, updatedGame: Game) {
         do{
-            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
+            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey) {
                 try realm.write {
                     gameObject.nowGameCount = updatedGame.nowGameCount
                     gameObject.maxGameCount = updatedGame.maxGameCount
@@ -86,9 +105,9 @@ final class RealmViewModel: ObservableObject {
         }
     }
 
-    func deleteGame(id:Int) {
+    func deleteGame(primaryKey: Int) {
         do {
-            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: id) {
+            if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey) {
                 try realm.write {
                     realm.delete(gameObject)
                 }
