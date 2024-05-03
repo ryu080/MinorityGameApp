@@ -143,9 +143,7 @@ struct DiscussionView: View {
                                     }
                             }.frame(width: UIScreen.main.bounds.width-20,height: 140)
                             Button(action: {
-                                rootViewModel.nextGameView(nextView: .voteListView)
-                                timerViewModel.stopCountDown()
-                                timerViewModel.setCountDown()
+                                alertViewModel.discussionAlert()
                             }, label: {
                                 Text("投票画面へ")
                                     .font(.title)
@@ -167,6 +165,16 @@ struct DiscussionView: View {
                 }
                 .transition(.move(edge: .bottom))
                 .edgesIgnoringSafeArea(.all)
+                .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
+                    Button("戻る",role: .cancel){}
+                    Button("投票へ"){
+                        rootViewModel.nextGameView(nextView: .voteListView)
+                        timerViewModel.stopCountDown()
+                        timerViewModel.setCountDown()
+                    }
+                } message: {
+                    Text(alertViewModel.alertMessage)
+                }
             }
         }
     }

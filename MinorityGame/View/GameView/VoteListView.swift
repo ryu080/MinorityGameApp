@@ -87,22 +87,37 @@ struct VoteListView: View {
                             .padding()
                             .background(.gray.opacity(0.2))
                             .cornerRadius(10)
-                            Button {
-                                gameViewModel.voteComplete() ? rootViewModel.nextGameView(nextView: .resultAnnouncementView): alertViewModel.voteListAlert()
-                            } label: {
-                                Text("投票を終わる")
+                            if gameViewModel.voteComplete(){
+                                Button {
+                                    rootViewModel.nextGameView(nextView: .resultAnnouncementView)
+                                } label: {
+                                    Text("結果へ進む")
+                                        .font(.title)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(Color.white)
+                                }
+                                .frame(width: 300,height: 50)
+                                .background(.mint.opacity(0.8))
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.mint, lineWidth: 3)
+                                )
+                                .padding(30)
+                            }else {
+                                Text("結果へ進む")
                                     .font(.title)
                                     .fontWeight(.black)
                                     .foregroundStyle(Color.white)
+                                    .frame(width: 300,height: 50)
+                                    .background(.gray.opacity(0.8))
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.gray, lineWidth: 3)
+                                    )
+                                    .padding(30)
                             }
-                            .frame(width: 300,height: 50)
-                            .background(.mint.opacity(0.8))
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.mint, lineWidth: 3)
-                            )
-                            .padding(30)
                         }
                         .frame(width: UIScreen.main.bounds.width-20)
                         Spacer()

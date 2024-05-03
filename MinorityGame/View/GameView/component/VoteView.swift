@@ -80,13 +80,7 @@ struct VoteView: View {
                         }.frame(width: UIScreen.main.bounds.width-20)
                         Spacer()
                         Button(action: {
-                            if vote == 0 {
-                                alertViewModel.voteAlert()
-                            } else {
-                                gameViewModel.updateUserQuestion(id: user.id, question: vote)
-                                dismiss()
-                                buttonColor = nil
-                            }
+                            alertViewModel.voteAlert(vote: vote, choice1: questionViewModel.question!.choice1, choice2: questionViewModel.question!.choice2)
                         }, label: {
                             Text("投票する")
                                 .font(.title)
@@ -94,8 +88,13 @@ struct VoteView: View {
                                 .foregroundStyle(Color.white)
                         })
                         .frame(width: 200,height: 50)
-                        .background(Color.green)
+                        .background(Color.mint.opacity(0.8))
                         .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.mint, lineWidth: 3)
+                        )
+
                         Spacer()
                             .toolbar {
                                 ToolbarItem(placement: .principal) {
@@ -107,6 +106,34 @@ struct VoteView: View {
                             }
                     }
                     .frame(height:UIScreen.main.bounds.height/1.5)
+                    .alert(isPresented: $alertViewModel.isShowAlert) {
+                        switch alertViewModel.alertType {
+                        case .success:
+                            return Alert(title: Text(alertViewModel.alertTitle),
+                                         message: Text(alertViewModel.alertMessage),
+                                         primaryButton: .cancel(Text("いいえ")),
+                                         secondaryButton: .default(Text("はい"),
+                                                                   action: {
+                                gameViewModel.updateUserQuestion(id: user.id, question: vote)
+                                dismiss()
+                                buttonColor = nil
+                                                }))
+                        case .delete:
+                            return Alert(title: Text(alertViewModel.alertTitle),
+                                           message: Text(alertViewModel.alertMessage),
+                                         primaryButton: .cancel(Text("戻る")),
+                                         secondaryButton: .destructive(Text("削除"),
+                                                                       action: {
+                            }))
+                        case .error:
+                            return Alert(title: Text(alertViewModel.alertTitle),
+                                           message: Text(alertViewModel.alertMessage),
+                                                      dismissButton: .default(Text("OK"),
+                                                                              action: {
+                                                }))
+                        }
+                    }
+
                 }
                 .frame(height:UIScreen.main.bounds.height/1.5)
                 .cornerRadius(20)

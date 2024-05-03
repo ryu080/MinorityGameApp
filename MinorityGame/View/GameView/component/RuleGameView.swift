@@ -16,7 +16,7 @@ struct RuleGameView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
-                Text("Unique 1")
+                Text("Unique ONE")
                     .font(.system(size: 50))
                     .foregroundStyle(Color.white)
                     .fontWeight(.black)
@@ -27,8 +27,8 @@ struct RuleGameView: View {
                 ScrollView {
                     VStack {
                         VStack {
-                            Text("Unique1は1番ユニークな人を決める")
-                                .font(.title3)
+                            Text("Unique ONEは1番ユニークな人を決める")
+                                .font(.system(size: 18))
                                 .fontWeight(.bold)
                                 .foregroundStyle(Color.white)
                             Text("価値観ゲームです")
