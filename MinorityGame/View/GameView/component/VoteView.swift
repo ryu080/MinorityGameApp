@@ -16,7 +16,7 @@ struct VoteView: View {
     @State private var vote:Int = 0
     @State private var buttonColor:Bool?
 
-    var user:User
+    @Binding var user:User
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -54,7 +54,7 @@ struct VoteView: View {
                             }
                             .font(.title)
                             .bold()
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.white)
                             .frame(width: 160,height: 100)
                             .background((buttonColor ?? true) ? .gray.opacity(0.7):Color.electricBlue)
                             .cornerRadius(20)
@@ -69,7 +69,7 @@ struct VoteView: View {
                             }
                             .font(.title)
                             .bold()
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.white)
                             .frame(width: 160, height: 100)
                             .background((buttonColor ?? false) ? Color.bittersweet :.gray.opacity(0.7))
                             .cornerRadius(20)
@@ -135,8 +135,9 @@ struct VoteView: View {
                     }
 
                 }
-                .frame(height:UIScreen.main.bounds.height/1.5)
-                .cornerRadius(20)
+                .frame(width: UIScreen.main.bounds.width,height:UIScreen.main.bounds.height/1.5)
+                .cornerRadius(50)
+                .shadow(radius: 5)
             }
             .transition(.move(edge: .bottom))
             .edgesIgnoringSafeArea(.all)
@@ -144,9 +145,9 @@ struct VoteView: View {
     }
 }
 
-#Preview {
-    VoteView(user: User(id: 1, imageData: nil, name: "サンプル太",point: 0, totalPoints: 0, question: 0))
-        .environmentObject(GameViewModel())
-        .environmentObject(AlertViewModel())
-        .environmentObject(QuestionViewModel())
-}
+//#Preview {
+//    VoteView(user: )
+//        .environmentObject(GameViewModel())
+//        .environmentObject(AlertViewModel())
+//        .environmentObject(QuestionViewModel())
+//}

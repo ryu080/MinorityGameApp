@@ -2,91 +2,72 @@
 //  GameCountView.swift
 //  MinorityGame
 //
-//  Created by 辻野竜志 on 2024/04/30.
+//  Created by 辻野竜志 on 2024/05/05.
 //
 
 import SwiftUI
 
 struct GameCountView: View {
-    @EnvironmentObject private var gameViewModel:GameViewModel
-    @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject var gameViewModel:GameViewModel
+
     var body: some View {
-        ZStack{
-            Color.gray.opacity(0.9)
-                .edgesIgnoringSafeArea(.all)
-            ZStack {
-                LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                VStack {
-                    Spacer()
-                    Text("問題数")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-                    Spacer()
-                    Text("\(gameViewModel.game.maxGameCount)")
-                        .font(.system(size: 70))
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button {
-                            gameViewModel.gameCountDown()
-                        } label: {
-                            Image(systemName: "minus")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                        }
-                        .frame(width: 70,height: 70)
-                        .background(.mint.opacity(0.8))
-                        .clipShape(Circle())                        .overlay(
-                            Circle()
-                                .stroke(Color.mint, lineWidth: 3)
-                        )
-                        Spacer()
-                        Button {
-                            gameViewModel.gameCountUp()
-                        } label: {
-                            Image(systemName: "plus")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                        }
-                        .frame(width: 70,height: 70)
-                        .background(.mint.opacity(0.8))
-                        .clipShape(Circle())                        .overlay(
-                            Circle()
-                                .stroke(Color.mint, lineWidth: 3)
-                        )
-                        Spacer()
-                    }
+        ZStack {
+            Color.white
+            VStack {
+                Spacer()
+                HStack {
                     Spacer()
                     Button {
-                        rootViewModel.nextGameView(nextView: .discussionView)
+                        gameViewModel.gameCountDown()
                     } label: {
-                        Text("スタート")
+                        Image(systemName: "minus")
                             .font(.title2)
-                            .bold()
-                            .foregroundStyle(.white)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
                     }
-                    .frame(width: 150,height: 50)
-                    .background(.blue.opacity(0.8))
-                    .cornerRadius(10)
+                    .frame(width: 40,height: 40)
+                    .background(.mint.opacity(0.8))
+                    .clipShape(Circle())
                     .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.blue, lineWidth: 3)
+                        Circle()
+                            .stroke(Color.mint, lineWidth: 3)
+                    )
+                    Spacer()
+                    Text("\(gameViewModel.game.maxGameCount)")
+                        .font(.system(size: 60))
+                        .fontWeight(.bold)
+                        .foregroundStyle(.black)
+                    Spacer()
+                    Button {
+                        gameViewModel.gameCountUp()
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                    }
+                    .frame(width: 40,height: 40)
+                    .background(.mint.opacity(0.8))
+                    .clipShape(Circle())                        .overlay(
+                        Circle()
+                            .stroke(Color.mint, lineWidth: 3)
                     )
                     Spacer()
                 }
-            }.frame(width: UIScreen.main.bounds.width/1.2,height: UIScreen.main.bounds.height/1.5)
-                .cornerRadius(20)
+                Spacer()
+            }
         }
+        .frame(width: 250,height: 150)
+        .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color.mint, lineWidth: 1)
+        )
+        .shadow(radius: 5)
     }
 }
 
 #Preview {
     GameCountView()
         .environmentObject(GameViewModel())
-        .environmentObject(RootViewModel())
 }

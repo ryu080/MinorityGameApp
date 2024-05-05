@@ -23,7 +23,7 @@ struct StartGameView: View {
                             .onAppear(){
                                 Task{
                                     await
-                                    questionViewModel.setQuestionsRealm(realm: realmViewModel)
+                                    questionViewModel.setAllQuestionsRealm(realm: realmViewModel)
                                 }
                             }
                     } else if questionViewModel.isShowProgress == true {
@@ -40,7 +40,7 @@ struct StartGameView: View {
                             Button {
                                 questionViewModel.isShowProgress = nil
                                 Task{
-                                    await questionViewModel.setQuestionsRealm(realm: realmViewModel)
+                                    await questionViewModel.setAllQuestionsRealm(realm: realmViewModel)
                                 }
                             } label: {
                                 Text("もう一度最新データに更新する")
@@ -80,6 +80,7 @@ struct StartGameView: View {
                                 if realmViewModel.readGame(primaryKey: 0)?.users != nil {
                                     Button {
                                         gameViewModel.game = realmViewModel.readGame(primaryKey: 0)!
+                                        print(gameViewModel.game)
                                         gameViewModel.continueGame()
                                         rootViewModel.nextGameView(nextView: .discussionView)
                                     } label: {

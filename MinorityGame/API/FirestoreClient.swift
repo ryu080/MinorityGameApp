@@ -11,6 +11,17 @@ import FirebaseFirestore
 class FirestoreClient{
     private let db = Firestore.firestore()
 
+    func addQuestion(questions: [FirestoreQuestion]) {
+            do {
+                for question in questions {
+                    let _ = try db.collection("questions").addDocument(from: question)
+                }
+            } catch {
+                print("Error adding document: \(error)")
+            }
+        }
+
+
     func getAllQuestions() async throws -> [FirestoreQuestion] {
         let querySnapshot = try await db.collection("questions").getDocuments()
         return try querySnapshot.documents.compactMap {

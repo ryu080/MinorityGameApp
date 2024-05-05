@@ -79,7 +79,8 @@ struct RuleGameView: View {
                 }
                 .frame(width: UIScreen.main.bounds.width-20, height: UIScreen.main.bounds.height/2)
                 .background(Color.white.opacity(1))
-                .cornerRadius(20)
+                .cornerRadius(50)
+                .shadow(radius: 5)
                 Spacer()
                 Button {
                     dismiss()

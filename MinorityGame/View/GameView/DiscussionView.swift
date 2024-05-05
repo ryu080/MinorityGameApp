@@ -13,6 +13,7 @@ struct DiscussionView: View {
     //    @EnvironmentObject private var realmViewModel:RealmViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
     @EnvironmentObject private var questionViewModel:QuestionViewModel
+    @EnvironmentObject private var genreViewModel:GenreViewModel
     @StateObject private var timerViewModel = TimerViewModel()
 
     @State var isShowProgress:Bool = true
@@ -25,7 +26,12 @@ struct DiscussionView: View {
                 BlurView(text: "読み込み中...", textSize: 30, startTime: 1)
                     .onAppear(){
                         Timer.scheduledTimer(withTimeInterval: 5, repeats: false) {timer in
-                            questionViewModel.getRandomQuestionRealm()
+//                            if questionViewModel.isFirstLoadingQuestions{
+//                                questionViewModel.setUseQuestionsRealm(maxGameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
+//                                questionViewModel.isFirstLoadingQuestions = false
+//                            }
+//                            questionViewModel.getRandomQuestionRealm(nowGameCount: gameViewModel.game.nowGameCount)
+                            questionViewModel.question = gameViewModel.game.questions[gameViewModel.game.nowGameCount]
                             withAnimation {
                                 isShowProgress = false
                                 timerViewModel.startCountDown()
@@ -99,7 +105,8 @@ struct DiscussionView: View {
                     }.frame(height: 80,alignment: .top)
                     Spacer()
                     ZStack {
-                        RoundedCorners(color: .white, tl: 20, tr: 20, bl: 0, br: 0)
+                        RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
+                            .shadow(radius: 5)
                         VStack{
                             Text("【第\(gameViewModel.game.nowGameCount)門】")
                                 .font(.system(size: 35))
@@ -121,7 +128,7 @@ struct DiscussionView: View {
                                 Text(questionViewModel.question?.choice1 ?? "北海道")
                                     .font(.title)
                                     .bold()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(Color.white)
                                     .frame(width: 160,height: 100)
                                     .background(Color.electricBlue)
                                     .cornerRadius(20)
@@ -133,7 +140,7 @@ struct DiscussionView: View {
                                 Text(questionViewModel.question?.choice2 ?? "沖縄県")
                                     .font(.title)
                                     .bold()
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(Color.white)
                                     .frame(width: 160, height: 100)
                                     .background(Color.bittersweet)
                                     .cornerRadius(20)
@@ -185,6 +192,7 @@ struct DiscussionView: View {
         .environmentObject(RootViewModel())
         .environmentObject(GameViewModel())
     //        .environmentObject(RealmViewModel())
+        .environmentObject(GenreViewModel())
         .environmentObject(AlertViewModel())
         .environmentObject(QuestionViewModel())
 }

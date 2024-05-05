@@ -14,8 +14,8 @@ struct VoteListView: View {
     @EnvironmentObject private var questionViewModel:QuestionViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
 
-    @State private var isShowVoteView:Bool = true
-    @State var voteUser:User?
+    @State private var isShowVoteView:Bool = false
+    @State var voteUser:User = User(id: 0, imageData: nil, name: "サンプル", point: 0, totalPoints: 0, question: 0)
     private let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0, alignment: .center), count: 4)
 
     var body: some View {
@@ -37,32 +37,33 @@ struct VoteListView: View {
                     }
                 HStack {
                     Text(questionViewModel.question?.choice1 ?? "北海道")
-                    .font(.title2)
-                    .bold()
-                    .foregroundStyle(.white)
-                    .frame(width: 160,height: 50)
-                    .background(Color.electricBlue)
-                    .cornerRadius(10)
-                    .overlay() {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.electricBlue, lineWidth: 3)
-                    }
+                        .font(.title2)
+                        .bold()
+                        .foregroundStyle(.white)
+                        .frame(width: 160,height: 50)
+                        .background(Color.electricBlue)
+                        .cornerRadius(10)
+                        .overlay() {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.electricBlue, lineWidth: 3)
+                        }
                     Spacer()
                     Text(questionViewModel.question?.choice2 ?? "沖縄県")
                         .font(.title2)
-                    .bold()
-                    .foregroundStyle(.white)
-                    .frame(width: 160, height: 50)
-                    .background(Color.bittersweet)
-                    .cornerRadius(10)
-                    .overlay() {
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color.bittersweet, lineWidth: 3)
-                    }
+                        .bold()
+                        .foregroundStyle(.white)
+                        .frame(width: 160, height: 50)
+                        .background(Color.bittersweet)
+                        .cornerRadius(10)
+                        .overlay() {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.bittersweet, lineWidth: 3)
+                        }
                 }.frame(width: UIScreen.main.bounds.width-20,height: 100)
 
                 ZStack {
-                    RoundedCorners(color: .white, tl: 20, tr: 20, bl: 0, br: 0)
+                    RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
+                        .shadow(radius: 5)
                     VStack {
                         Text("投票するプレイヤーを選んでください")
                             .font(.title2)
@@ -136,16 +137,9 @@ struct VoteListView: View {
                     .font(.title2)
             }
         }
-        .alert(alertViewModel.alertTitle, isPresented: $alertViewModel.isShowAlert) {
-        } message: {
-            Text(alertViewModel.alertMessage)
+        .sheet(isPresented: $isShowVoteView){
+            VoteView(user: $voteUser)
         }
-        .sheet(isPresented: Binding(
-            get: { isShowVoteView && voteUser != nil },
-            set: { _ in isShowVoteView = false }         
-        )) {
-                VoteView(user: voteUser!)
-            }
     }
 }
 

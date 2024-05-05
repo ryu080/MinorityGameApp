@@ -9,14 +9,14 @@ import SwiftUI
 import RealmSwift
 
 final class RealmViewModel: ObservableObject {
-    private var realm:Realm
+    var realm:Realm
 
     init() {
         //realmのマイグレーション
         let config = Realm.Configuration(
-            schemaVersion: 4,
+            schemaVersion: 5,
             migrationBlock: { migration, oldSchemaVersion in
-                if (oldSchemaVersion < 4) {
+                if (oldSchemaVersion < 5) {
                     }
             })
 
@@ -28,6 +28,8 @@ final class RealmViewModel: ObservableObject {
         do{
             if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey){
                 try realm.write {
+                    gameObject.questions.removeAll()
+                    gameObject.questions.append(objectsIn:game.questions)
                     gameObject.nowGameCount = game.nowGameCount
                     gameObject.maxGameCount = game.maxGameCount
                     gameObject.users.removeAll()
@@ -47,6 +49,7 @@ final class RealmViewModel: ObservableObject {
                 try realm.write {
                     let realmGame = RealmGame()
                     realmGame.id = primaryKey
+                    realmGame.questions.append(objectsIn:game.questions)
                     realmGame.nowGameCount = game.nowGameCount
                     realmGame.maxGameCount = game.maxGameCount
 
@@ -71,11 +74,13 @@ final class RealmViewModel: ObservableObject {
     func readGame(primaryKey:Int) -> Game? {
         if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey) {
             var users: [User] = []
+            var questions: [RealmQuestion] = []
             for userObject in gameObject.users {
                 let user = User(id: userObject.id, imageData: userObject.imageData, name: userObject.name, point: userObject.point, totalPoints: userObject.totalPoints, question: userObject.question)
                 users.append(user)
             }
-            return Game(id: 0, users: users, nowGameCount: gameObject.nowGameCount, maxGameCount: gameObject.maxGameCount)
+            questions.append(contentsOf: Array(gameObject.questions))
+            return Game(id: 0, users: users, questions: questions, nowGameCount: gameObject.nowGameCount, maxGameCount: gameObject.maxGameCount)
         }
         return nil
     }
@@ -84,6 +89,7 @@ final class RealmViewModel: ObservableObject {
         do{
             if let gameObject = realm.object(ofType:RealmGame.self, forPrimaryKey: primaryKey) {
                 try realm.write {
+                    gameObject.questions.append(objectsIn:updatedGame.questions)
                     gameObject.nowGameCount = updatedGame.nowGameCount
                     gameObject.maxGameCount = updatedGame.maxGameCount
                     gameObject.users.removeAll()

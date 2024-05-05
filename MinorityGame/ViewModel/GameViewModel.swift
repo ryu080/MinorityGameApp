@@ -10,8 +10,7 @@ import SwiftUI
 
 @MainActor
 final class GameViewModel:ObservableObject {
-    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
-    @Published var questionText:String = ""
+    @Published var game:Game = Game(id: 0,users: [], questions: [], nowGameCount: 1, maxGameCount: 2)
     @Published var isShowRule:Bool = false
 
     func setPreviousUsers(realm:RealmViewModel){
@@ -48,13 +47,15 @@ final class GameViewModel:ObservableObject {
         }
     }
 
-    func limitUserCount(root:RootViewModel, alert:AlertViewModel, realm:RealmViewModel){
-        if game.users.count < 3 || game.users.count > 12 {
-            alert.playerCountAlert()
+    func limitUserCount(genre:String?)->(Bool,Bool){
+        if game.users.count > 3 || game.users.count < 12 {
+            if let genre {
+                return (true,true)
+            }else{
+                return (true,false)
+            }
         }else{
-            realm.setGame(game: game,primaryKey: 0)
-            realm.setGame(game: game,primaryKey: 1)
-            root.nextGameView(nextView: .discussionView)
+            return (false,true)
         }
     }
 
@@ -140,14 +141,12 @@ final class GameViewModel:ObservableObject {
             for i in game.users.indices {
                 game.users[i].question = 0
             }
-            questionText = ""
             game.nowGameCount += 1
         }
     }
 
     func resetGame() {
         game.users = []
-        questionText = ""
         game.nowGameCount = 1
     }
 }

@@ -25,6 +25,12 @@ final class AlertViewModel: ObservableObject {
         alertType = .error
         isShowAlert.toggle()
     }
+    func genreAlert(){
+        alertTitle = "注意"
+        alertMessage = "ジャンルを選択してください。"
+        alertType = .error
+        isShowAlert.toggle()
+    }
 
     func playerNameAlert(name:String) {
             if name == "" {
@@ -72,15 +78,15 @@ final class AlertViewModel: ObservableObject {
     func voteAlert(vote:Int,choice1:String,choice2:String) {
         if vote == 0{
             alertTitle = "注意"
-            alertMessage = "\(choice1)か\(choice2)\nどちらかに投票してください。"
+            alertMessage = "「\(choice1)」か「\(choice2)」\nどちらかに投票してください。"
             alertType = .error
             isShowAlert.toggle()
         }else{
             alertTitle = "確認"
             if vote == 1{
-                alertMessage = "\(choice1)でよろしいですか？"
+                alertMessage = "「\(choice1)」でよろしいですか？"
             }else{
-                alertMessage = "\(choice2)でよろしいですか？"
+                alertMessage = "「\(choice2)」でよろしいですか？"
             }
             alertType = .success
             isShowAlert.toggle()

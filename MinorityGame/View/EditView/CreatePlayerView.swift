@@ -21,6 +21,7 @@ struct CreatePlayerView: View {
     @State var nameLimitBool = false
     @State var personImageCount = 0
     @State var personImage:String?
+    
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)

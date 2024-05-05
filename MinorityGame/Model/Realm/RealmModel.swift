@@ -20,6 +20,7 @@ class RealmUser: Object {
 class RealmGame: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:Int
     @Persisted var users = List<RealmUser>()
+    @Persisted var questions = List<RealmQuestion>()
     @Persisted var nowGameCount:Int
     @Persisted var maxGameCount:Int
 }

@@ -10,9 +10,12 @@ import SwiftUI
 struct PlayerListView: View {
     @EnvironmentObject private var gameViewModel:GameViewModel
     @EnvironmentObject private var realmViewModel:RealmViewModel
+    @EnvironmentObject private var questionViewModel:QuestionViewModel
     @EnvironmentObject private var alertViewModel:AlertViewModel
     @EnvironmentObject private var rootViewModel:RootViewModel
+    @EnvironmentObject private var genreViewModel:GenreViewModel
 
+    @State var selection = 0
     @State var isShowCreatePlayerView:Bool = false
     @State var isShowGameCountView:Bool = false
 
@@ -25,58 +28,84 @@ struct PlayerListView: View {
             LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                VStack {
-                    VStack {
-                        Spacer()
+                Spacer()
+                TabView(selection: $selection) {
+                    VStack{
                         Text("問題数")
                             .font(.title)
                             .fontWeight(.bold)
-                            .foregroundStyle(.white)
-                        HStack {
-                            Spacer()
-                            Button {
-                                gameViewModel.gameCountDown()
-                            } label: {
-                                Image(systemName: "minus")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                            }
-                            .frame(width: 40,height: 40)
-                            .background(.mint.opacity(0.8))
-                            .clipShape(Circle())                        
+                            .foregroundStyle(.black)
+                            .frame(width: 250,height: 50)
+                            .background(.white)
+                            .cornerRadius(15)
                             .overlay(
-                                Circle()
-                                    .stroke(Color.mint, lineWidth: 3)
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.mint, lineWidth: 1)
                             )
+                            .shadow(radius: 5)
+                            .padding(.bottom,5)
+                        HStack{
                             Spacer()
-                            Text("\(gameViewModel.game.maxGameCount)")
-                                .font(.system(size: 75))
-                                .fontWeight(.bold)
-                                .foregroundStyle(.white)
+                            Image(systemName: "arrowtriangle.backward")
+                                .font(.system(size: 50))
+                                .foregroundStyle(.white.opacity(0.5))
+                            Spacer()
+                            GameCountView()
                             Spacer()
                             Button {
-                                gameViewModel.gameCountUp()
+                                withAnimation {
+                                    selection = 1
+                                }
                             } label: {
-                                Image(systemName: "plus")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                Image(systemName: "arrowtriangle.forward.fill")
+                                    .font(.system(size: 50))
+                                    .foregroundStyle(.white.opacity(0.5))
                             }
-                            .frame(width: 40,height: 40)
-                            .background(.mint.opacity(0.8))
-                            .clipShape(Circle())                        .overlay(
-                                Circle()
-                                    .stroke(Color.mint, lineWidth: 3)
-                            )
                             Spacer()
                         }
-                        Spacer()
-                    }
+                    }.tag(0)
+                    VStack{
+                        Text("ジャンル")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundStyle(.black)
+                            .frame(width: 250,height: 50)
+                            .background(.white)
+                            .cornerRadius(15)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.mint, lineWidth: 1)
+                            )
+                            .shadow(radius: 5)
+                            .padding(.bottom,5)
+                        HStack{
+                            Spacer()
+                            Button {
+                                withAnimation {
+                                    selection = 0
+                                }
+                            } label: {
+                                Image(systemName: "arrowtriangle.backward.fill")
+                                    .font(.system(size: 50))
+                                    .foregroundStyle(.white.opacity(0.5))
+                            }
+                            Spacer()
+                            GameGenreView()
+                            Spacer()
+                            Image(systemName: "arrowtriangle.forward")
+                                .font(.system(size: 50))
+                                .foregroundStyle(.white.opacity(0.5))
+                            Spacer()
+                        }
+                    }.tag(1)
                 }
+                .tabViewStyle(.page)
+                .frame(height: 350)
                 Spacer()
                 ZStack{
-                    RoundedCorners(color: .white, tl: 20, tr: 20, bl: 0, br: 0)
+                    RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
+                        .compositingGroup()
+                        .shadow(radius: 5)
                     VStack {
                         Spacer()
                         Group{
@@ -130,7 +159,18 @@ struct PlayerListView: View {
                             .cornerRadius(10)
                             Spacer()
                             Button {
-                                gameViewModel.limitUserCount(root: rootViewModel, alert: alertViewModel,realm: realmViewModel)
+                                if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (true,true) {
+                                    gameViewModel.game.questions = questionViewModel.setUseQuestionsRealm(maxGameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
+                                    realmViewModel.setGame(game: gameViewModel.game,primaryKey: 0)
+                                    realmViewModel.setGame(game: gameViewModel.game,primaryKey: 1)
+                                    rootViewModel.nextGameView(nextView: .discussionView)
+                                    print(realmViewModel.realm.object(ofType:RealmGame.self, forPrimaryKey: 0) as Any)
+
+                                }else if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (false,true){
+                                    alertViewModel.playerCountAlert()
+                                }else{
+                                    alertViewModel.genreAlert()
+                                }
                             } label: {
                                 Text("ゲームスタート")
                                     .font(.title2)
@@ -153,16 +193,16 @@ struct PlayerListView: View {
             })
             .alert(isPresented: $alertViewModel.isShowAlert) {
                 switch alertViewModel.alertType {
-                case .success: 
+                case .success:
                     return Alert(title: Text(alertViewModel.alertTitle),
                                  message: Text(alertViewModel.alertMessage),
                                  primaryButton: .cancel(Text("戻る")),
                                  secondaryButton: .default(Text("確認"),
-                                                               action: {
-                                        }))
+                                                           action: {
+                    }))
                 case .delete:
                     return Alert(title: Text(alertViewModel.alertTitle),
-                                   message: Text(alertViewModel.alertMessage),
+                                 message: Text(alertViewModel.alertMessage),
                                  primaryButton: .cancel(Text("戻る")),
                                  secondaryButton: .destructive(Text("削除"),
                                                                action: {
@@ -172,10 +212,10 @@ struct PlayerListView: View {
                     }))
                 case .error:
                     return Alert(title: Text(alertViewModel.alertTitle),
-                                   message: Text(alertViewModel.alertMessage),
-                                              dismissButton: .default(Text("OK"),
-                                                                      action: {
-                                        }))
+                                 message: Text(alertViewModel.alertMessage),
+                                 dismissButton: .default(Text("OK"),
+                                                         action: {
+                    }))
                 }
             }
             .edgesIgnoringSafeArea(.all)
@@ -188,6 +228,8 @@ struct PlayerListView: View {
     PlayerListView()
         .environmentObject(GameViewModel())
         .environmentObject(RealmViewModel())
+        .environmentObject(QuestionViewModel())
         .environmentObject(AlertViewModel())
         .environmentObject(RootViewModel())
+        .environmentObject(GenreViewModel())
 }
