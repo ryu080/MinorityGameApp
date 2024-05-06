@@ -33,7 +33,7 @@ struct PlayerView: View {
                         .scaledToFit()
 
                 }else{
-                    Image("person_cat")
+                    Image("person0")
                         .resizable()
                         .frame(width: 60,height: 80)
                         .cornerRadius(7)

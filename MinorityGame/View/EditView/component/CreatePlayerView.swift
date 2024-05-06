@@ -20,8 +20,8 @@ struct CreatePlayerView: View {
     @State var name:String = ""
     @State var nameLimitBool = false
     @State var personImageCount = 0
-    @State var personImage:String?
-    
+    @State var personImage:String = ""
+
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -62,18 +62,13 @@ struct CreatePlayerView: View {
                         )
                         Spacer()
                         Button {
-                            switch personImageCount {
-                            case 0: personImage = PersonImages.dog.rawValue
+                            personImage = "person\(personImageCount)"
+                            if personImageCount < 6{
                                 personImageCount += 1
-                            case 1:personImage = PersonImages.cat.rawValue
-                                personImageCount += 1
-                            case 2:personImage = PersonImages.man.rawValue
-                                personImageCount += 1
-                            case 3:personImage = PersonImages.woman.rawValue
-                                personImageCount += 1
-                            default: personImageCount = 0
+                            }else{
+                                personImageCount = 0
                             }
-                            imageData = UIImage(imageLiteralResourceName:personImage!).pngData()
+                            imageData = UIImage(imageLiteralResourceName:personImage).pngData()
                         } label: {
                             Image(systemName: "person.fill")
                                 .font(.title)
