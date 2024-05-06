@@ -11,8 +11,8 @@ struct ResultAnnouncementView: View {
     @EnvironmentObject private var gameViewModel: GameViewModel
     @EnvironmentObject private var questionViewModel: QuestionViewModel
 
-    @State var question:RealmQuestion?
-    @State var vote:(String,Color)?
+    @State private var question:RealmQuestion?
+    @State private var vote:(String,Color)?
 
     @State var isShowAnswerView:Int = 0
     var body: some View {

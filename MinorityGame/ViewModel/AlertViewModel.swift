@@ -49,6 +49,12 @@ final class AlertViewModel: ObservableObject {
         alertType = .delete
         isShowAlert.toggle()
     }
+    func gameStartAlert(gameCount:Int,genre:String){
+        alertTitle = "確認"
+        alertMessage = "ゲーム数：\(gameCount)\nジャンル：\(genre)\nゲームをスタートしてもよろしいですか？"
+        alertType = .success
+        isShowAlert.toggle()
+    }
 
     func questionTextAlert(text:String) {
         if text == "" {

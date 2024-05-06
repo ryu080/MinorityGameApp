@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct PlayerView: View {
+    
     let playerImageData:Data?
     let name:String
     let backgroundColor:Color
     let opacity:Double
+
     var body: some View {
         ZStack {
             Rectangle()

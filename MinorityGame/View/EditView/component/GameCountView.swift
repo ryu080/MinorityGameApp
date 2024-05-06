@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameCountView: View {
-    @EnvironmentObject var gameViewModel:GameViewModel
+    @EnvironmentObject private var gameViewModel:GameViewModel
 
     var body: some View {
         ZStack {

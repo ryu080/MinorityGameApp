@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GenreButton: View {
-    @EnvironmentObject var genreViewModel:GenreViewModel
+    @EnvironmentObject private var genreViewModel:GenreViewModel
 
     @State var buttonText:String
     @State var buttonColor:Color

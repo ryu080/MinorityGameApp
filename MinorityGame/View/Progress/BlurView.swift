@@ -28,14 +28,14 @@ struct BlurView: View {
                 .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
             Spacer()
             HStack(spacing: 1) {
-                ForEach(0..<characters.count) { num in
-                    Text(String(self.characters[num]))
+                ForEach(characters.indices, id: \.self) {index in
+                    Text(String(self.characters[index]))
                         .font(.system(size: textSize))
                         .fontWeight(.black)
                         .foregroundStyle(Color.white)
                         .blur(radius: blurValue)
                         .opacity(opacity)
-                        .animation(.easeInOut.delay(Double(num) * 0.15), value: blurValue)
+                        .animation(.easeInOut.delay(Double(index) * 0.15), value: blurValue)
                 }
             }
             Spacer()

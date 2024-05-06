@@ -78,9 +78,9 @@ struct ResultGameView: View {
                         }
                         .font(.title)
                         .fontWeight(.black)
-                        .foregroundColor(.white)
+                        .foregroundColor(.yellow)
                         .frame(width: 300,height: 50)
-                        .background(.yellow.opacity(0.8))
+                        .background(.yellow.opacity(0.2))
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)

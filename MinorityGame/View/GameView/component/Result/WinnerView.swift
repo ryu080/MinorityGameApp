@@ -26,7 +26,7 @@ struct WinnerView: View {
                     LazyVGrid(columns:columns) {
                         ForEach(winnerUser){user in
                             VStack{
-                                PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor: Color.electricBlue,opacity: 1)
+                                PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor: Color.mint,opacity: 0.5)
                                 Text("\(user.totalPoints)")
                                     .fontWeight(.black)
                                     .foregroundStyle(.white)
@@ -43,6 +43,7 @@ struct WinnerView: View {
                 .frame(height: 450)
                 .background(.black.opacity(0.2))
                 .cornerRadius(10)
+                Spacer()
             }
         }
     }

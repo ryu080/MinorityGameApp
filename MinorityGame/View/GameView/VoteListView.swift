@@ -15,7 +15,7 @@ struct VoteListView: View {
     @EnvironmentObject private var alertViewModel:AlertViewModel
 
     @State private var isShowVoteView:Bool = false
-    @State var voteUser:User = User(id: 0, imageData: nil, name: "サンプル", point: 0, totalPoints: 0, question: 0)
+    @State var voteUser:User = User(id: 0, imageData: nil, name: "", point: 0, totalPoints: 0, question: 0)
     private let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0, alignment: .center), count: 4)
 
     var body: some View {
@@ -128,14 +128,6 @@ struct VoteListView: View {
                 .frame(height:UIScreen.main.bounds.height/1.9)
             }
             .edgesIgnoringSafeArea(.all)
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("投票")
-                    .foregroundColor(Color.white)
-                    .fontWeight(.black)
-                    .font(.title2)
-            }
         }
         .sheet(isPresented: $isShowVoteView){
             VoteView(user: $voteUser)

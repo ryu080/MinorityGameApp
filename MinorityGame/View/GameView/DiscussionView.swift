@@ -16,7 +16,7 @@ struct DiscussionView: View {
     @EnvironmentObject private var genreViewModel:GenreViewModel
     @StateObject private var timerViewModel = TimerViewModel()
 
-    @State var isShowProgress:Bool = true
+    @State private var isShowProgress:Bool = true
 
     var body: some View {
         ZStack{
@@ -26,12 +26,7 @@ struct DiscussionView: View {
                 BlurView(text: "読み込み中...", textSize: 30, startTime: 1)
                     .onAppear(){
                         Timer.scheduledTimer(withTimeInterval: 5, repeats: false) {timer in
-//                            if questionViewModel.isFirstLoadingQuestions{
-//                                questionViewModel.setUseQuestionsRealm(maxGameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
-//                                questionViewModel.isFirstLoadingQuestions = false
-//                            }
-//                            questionViewModel.getRandomQuestionRealm(nowGameCount: gameViewModel.game.nowGameCount)
-                            questionViewModel.question = gameViewModel.game.questions[gameViewModel.game.nowGameCount]
+                            questionViewModel.question = gameViewModel.game.questions[gameViewModel.game.nowGameCount-1]
                             withAnimation {
                                 isShowProgress = false
                                 timerViewModel.startCountDown()

@@ -32,10 +32,7 @@ struct AnswerView: View {
                     .fontWeight(.black)
                 Spacer()
             }
-        }
-        .onAppear(){
-
-        }
+        }.frame(width: UIScreen.main.bounds.width)
     }
 }
 

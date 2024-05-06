@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GameGenreView: View {
-    @EnvironmentObject var genreViewModel:GenreViewModel
+    @EnvironmentObject private var genreViewModel:GenreViewModel
+
         var body: some View {
         ZStack {
             Color.white

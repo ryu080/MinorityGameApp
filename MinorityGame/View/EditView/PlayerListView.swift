@@ -15,9 +15,8 @@ struct PlayerListView: View {
     @EnvironmentObject private var rootViewModel:RootViewModel
     @EnvironmentObject private var genreViewModel:GenreViewModel
 
-    @State var selection = 0
-    @State var isShowCreatePlayerView:Bool = false
-    @State var isShowGameCountView:Bool = false
+    @State private var selection = 0
+    @State private var isShowCreatePlayerView:Bool = false
 
     private let columns: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0, alignment: .center), count: 4)
 
@@ -160,12 +159,7 @@ struct PlayerListView: View {
                             Spacer()
                             Button {
                                 if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (true,true) {
-                                    gameViewModel.game.questions = questionViewModel.setUseQuestionsRealm(maxGameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
-                                    realmViewModel.setGame(game: gameViewModel.game,primaryKey: 0)
-                                    realmViewModel.setGame(game: gameViewModel.game,primaryKey: 1)
-                                    rootViewModel.nextGameView(nextView: .discussionView)
-                                    print(realmViewModel.realm.object(ofType:RealmGame.self, forPrimaryKey: 0) as Any)
-
+                                    alertViewModel.gameStartAlert(gameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
                                 }else if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (false,true){
                                     alertViewModel.playerCountAlert()
                                 }else{
@@ -197,8 +191,12 @@ struct PlayerListView: View {
                     return Alert(title: Text(alertViewModel.alertTitle),
                                  message: Text(alertViewModel.alertMessage),
                                  primaryButton: .cancel(Text("戻る")),
-                                 secondaryButton: .default(Text("確認"),
+                                 secondaryButton: .default(Text("スタート"),
                                                            action: {
+                        gameViewModel.game.questions = questionViewModel.setUseQuestionsRealm(maxGameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
+                        realmViewModel.setGame(game: gameViewModel.game,primaryKey: 0)
+                        realmViewModel.setGame(game: gameViewModel.game,primaryKey: 1)
+                        rootViewModel.nextGameView(nextView: .discussionView)
                     }))
                 case .delete:
                     return Alert(title: Text(alertViewModel.alertTitle),

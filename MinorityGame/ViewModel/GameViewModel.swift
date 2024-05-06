@@ -49,7 +49,7 @@ final class GameViewModel:ObservableObject {
 
     func limitUserCount(genre:String?)->(Bool,Bool){
         if game.users.count > 3 || game.users.count < 12 {
-            if let genre {
+            if genre != nil {
                 return (true,true)
             }else{
                 return (true,false)

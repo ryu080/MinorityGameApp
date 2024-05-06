@@ -10,7 +10,6 @@ import RealmSwift
 
 class QuestionViewModel:ObservableObject {
     private let firestoreDataBase = FirestoreClient()
-//    private let realmRepository = RealmRepository()
 
     @Published var allQuestions:[RealmQuestion] = []
     @Published var useQuestions:[RealmQuestion] = []
@@ -54,14 +53,6 @@ class QuestionViewModel:ObservableObject {
         return genreQuestion
     }
 
-    func getRandomQuestionRealm(nowGameCount: Int)  {
-        question = useQuestions[(nowGameCount - 1)]
-        print(String(describing: question))
-    }
-
-//    func getRandomQuestionRealm(realm:RealmViewModel) async {
-//        self.question = await realm.getRandomQuestion()
-//    }
     func selfQuestions(realm:RealmViewModel)->[RealmQuestion]{
         return realm.getAllSelfQuestions()
     }
