@@ -10,6 +10,7 @@ import Foundation
 struct Game: Identifiable{
     var id:Int
     var users:[User]
+    var questions:[RealmQuestion]
     var nowGameCount:Int
     var maxGameCount:Int
 }

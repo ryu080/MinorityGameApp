@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct User: Identifiable {
     let id:Int
+    let imageData:Data?
     let name:String
     var point:Int
     var totalPoints:Int

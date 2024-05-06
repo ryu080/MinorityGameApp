@@ -21,7 +21,13 @@ final class AlertViewModel: ObservableObject {
 
     func playerCountAlert() {
         alertTitle = "注意"
-        alertMessage = "3人以上プレイヤーを追加してください。"
+        alertMessage = "プレイヤーを3人以上\n追加してください。"
+        alertType = .error
+        isShowAlert.toggle()
+    }
+    func genreAlert(){
+        alertTitle = "注意"
+        alertMessage = "ジャンルを選択してください。"
         alertType = .error
         isShowAlert.toggle()
     }
@@ -35,6 +41,18 @@ final class AlertViewModel: ObservableObject {
                 alertMessage = "プレイヤー名は\n8文字以内で入力してください。"
             }
         alertType = .error
+        isShowAlert.toggle()
+    }
+    func deletePlayerAlert(name:String){
+        alertTitle = "削除"
+        alertMessage = "\(name)さんを\n削除してもよろしいですか？"
+        alertType = .delete
+        isShowAlert.toggle()
+    }
+    func gameStartAlert(gameCount:Int,genre:String){
+        alertTitle = "確認"
+        alertMessage = "ゲーム数：\(gameCount)\nジャンル：\(genre)\nゲームをスタートしてもよろしいですか？"
+        alertType = .success
         isShowAlert.toggle()
     }
 
@@ -63,11 +81,22 @@ final class AlertViewModel: ObservableObject {
         isShowAlert.toggle()
     }
 
-    func voteAlert() {
-        alertTitle = "注意"
-        alertMessage = "YESかNO\nどちらかに投票してください。"
-        alertType = .error
-        isShowAlert.toggle()
+    func voteAlert(vote:Int,choice1:String,choice2:String) {
+        if vote == 0{
+            alertTitle = "注意"
+            alertMessage = "「\(choice1)」か「\(choice2)」\nどちらかに投票してください。"
+            alertType = .error
+            isShowAlert.toggle()
+        }else{
+            alertTitle = "確認"
+            if vote == 1{
+                alertMessage = "「\(choice1)」でよろしいですか？"
+            }else{
+                alertMessage = "「\(choice2)」でよろしいですか？"
+            }
+            alertType = .success
+            isShowAlert.toggle()
+        }
     }
 
     func voteListAlert() {

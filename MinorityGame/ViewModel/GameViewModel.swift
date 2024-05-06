@@ -6,12 +6,18 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 final class GameViewModel:ObservableObject {
-    @Published var game:Game = Game(id: 0,users: [], nowGameCount: 1, maxGameCount: 2)
-    @Published var questionText:String = ""
+    @Published var game:Game = Game(id: 0,users: [], questions: [], nowGameCount: 1, maxGameCount: 2)
     @Published var isShowRule:Bool = false
+
+    func setPreviousUsers(realm:RealmViewModel){
+        if let previousUsers = realm.readGame(primaryKey: 1){
+            game = previousUsers
+        }
+    }
 
     func gameCountUp() {
         if 10 > game.maxGameCount {
@@ -33,10 +39,23 @@ final class GameViewModel:ObservableObject {
         }
     }
 
-    func createUser(name:String) {
-        if game.users.count < 20 {
-            let user = User(id: createId(), name: name,point: 0, totalPoints: 0,question: 0)
+    func createUser(name:String,imageData:Data?) {
+        let maxUserCount = 12
+        if game.users.count < maxUserCount {
+            let user = User(id: createId(), imageData: imageData, name: name,point: 0, totalPoints: 0,question: 0)
             game.users.append(user)
+        }
+    }
+
+    func limitUserCount(genre:String?)->(Bool,Bool){
+        if game.users.count > 3 || game.users.count < 12 {
+            if genre != nil {
+                return (true,true)
+            }else{
+                return (true,false)
+            }
+        }else{
+            return (false,true)
         }
     }
 
@@ -86,18 +105,26 @@ final class GameViewModel:ObservableObject {
         return noUsers
     }
 
-    func resultVote() -> String {
+    //ドローとポイントのマイナスをなくす
+    func resultVote(choice1:String,choice2:String) -> (String,Color) {
         let yes = yesUser().count
         let no = noUser().count
-        if yes<no && 0<yes{
-            updateUserPoint(yes: 1, no: -1)
-            return "少数派はYES"
-        }else if no<yes && 0<no{
-            updateUserPoint(yes: -1, no: 1)
-            return "少数派はNO"
+        if yes<no {
+            updateUserPoint(yes: 1, no: 0)
+            return (choice1,Color.electricBlue)
+        }else if no<yes {
+            updateUserPoint(yes: 0, no: 1)
+            return (choice2,Color.bittersweet)
         }else {
             updateUserPoint(yes: 0, no: 0)
-            return "ドロー"
+            return ("ドロー",Color.green)
+        }
+    }
+    func userPoint(users:[User]) -> Bool {
+        if users.first?.point == 0 {
+            return false
+        }else{
+            return true
         }
     }
 
@@ -114,14 +141,12 @@ final class GameViewModel:ObservableObject {
             for i in game.users.indices {
                 game.users[i].question = 0
             }
-            questionText = ""
             game.nowGameCount += 1
         }
     }
 
     func resetGame() {
         game.users = []
-        questionText = ""
         game.nowGameCount = 1
     }
 }

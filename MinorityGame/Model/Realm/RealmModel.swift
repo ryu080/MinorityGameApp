@@ -6,18 +6,37 @@
 //
 
 import RealmSwift
+import Foundation
 
-class UserObject: Object {
+class RealmUser: Object {
     @Persisted var id: Int
+    @Persisted var imageData:Data?
     @Persisted var name:String
     @Persisted var point:Int
     @Persisted var totalPoints:Int
     @Persisted var question:Int
 }
 
-class GameObject: Object, ObjectKeyIdentifiable {
+class RealmGame: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var id:Int
-    @Persisted var users = List<UserObject>()
+    @Persisted var users = List<RealmUser>()
+    @Persisted var questions = List<RealmQuestion>()
     @Persisted var nowGameCount:Int
     @Persisted var maxGameCount:Int
+}
+
+class RealmQuestion: Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var id:String
+    @Persisted var genre:String
+    @Persisted var text: String
+    @Persisted var choice1: String
+    @Persisted var choice2: String
+}
+
+class RealmSelfQuestion:Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var id:ObjectId
+    @Persisted var genre:String
+    @Persisted var text: String
+    @Persisted var choice1: String
+    @Persisted var choice2: String
 }

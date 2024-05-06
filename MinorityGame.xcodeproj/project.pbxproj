@@ -7,17 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B738F0912BDE2EF500CF687C /* PlayerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738F0902BDE2EF500CF687C /* PlayerListView.swift */; };
+		B738F0932BDE366C00CF687C /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738F0922BDE366C00CF687C /* PlayerView.swift */; };
+		B738F0952BDE569B00CF687C /* CreatePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738F0942BDE569B00CF687C /* CreatePlayerView.swift */; };
+		B738F0972BDE83E800CF687C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738F0962BDE83E800CF687C /* ImagePickerView.swift */; };
+		B742F68F2BE07330000728D8 /* GameCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B742F68E2BE0732F000728D8 /* GameCounterView.swift */; };
 		B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E3C12BBD8F2600755473 /* RealmModel.swift */; };
+		B74CBD872BD52E1F0087D7C3 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B74CBD862BD52E1F0087D7C3 /* FirebaseFirestoreSwift */; };
+		B74CBD892BD5381B0087D7C3 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */; };
+		B74CBD8B2BD5581E0087D7C3 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */; };
 		B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74E118F2BC68B0D00223975 /* AlertViewModel.swift */; };
+		B751BBA52BD6786A00AADCD3 /* CreateQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */; };
+		B751BBA72BD6842300AADCD3 /* SelfQuestionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751BBA62BD6842300AADCD3 /* SelfQuestionList.swift */; };
+		B751BBAA2BD68DC500AADCD3 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751BBA92BD68DC500AADCD3 /* BlurView.swift */; };
+		B751BBAD2BD692EC00AADCD3 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751BBAC2BD692EC00AADCD3 /* AnswerView.swift */; };
+		B751BBAF2BD6977300AADCD3 /* MinorityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B751BBAE2BD6977300AADCD3 /* MinorityView.swift */; };
 		B760DAE22BB8F88400664A10 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = B760DAE12BB8F88400664A10 /* Root.swift */; };
 		B76258EC2BBE936400463203 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = B76258EB2BBE936400463203 /* Realm */; };
 		B76258EE2BBE936400463203 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B76258ED2BBE936400463203 /* RealmSwift */; };
 		B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76258EF2BBF9EC300463203 /* RealmViewModel.swift */; };
+		B76344462BE7742700260F8E /* GameCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76344452BE7742700260F8E /* GameCountView.swift */; };
+		B76344482BE7754100260F8E /* GameGenreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76344472BE7754100260F8E /* GameGenreView.swift */; };
+		B763444A2BE78AE300260F8E /* GenreButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76344492BE78AE300260F8E /* GenreButton.swift */; };
+		B763444C2BE7901400260F8E /* GenreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B763444B2BE7901400260F8E /* GenreViewModel.swift */; };
 		B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB552BBAEEC000266B02 /* TimerViewModel.swift */; };
 		B767EB582BBAF13D00266B02 /* Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = B767EB572BBAF13D00266B02 /* Time.swift */; };
 		B7785D8D2BC6386000ECC340 /* WinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7785D8C2BC6386000ECC340 /* WinnerView.swift */; };
+		B77C55192BDB79590045ACE2 /* ResultAnnouncementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */; };
 		B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7828A6B2BC7AB4E00C4AE08 /* Color.swift */; };
 		B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78297E72BC8BA3000655492 /* RootViewModel.swift */; };
+		B7871FA42BE386C8005D140E /* RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7871FA32BE386C8005D140E /* RoundedCorners.swift */; };
+		B792C69B2BD3C154002BCD96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */; };
+		B792C69E2BD3C3CD002BCD96 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B792C69D2BD3C3CD002BCD96 /* FirebaseFirestore */; };
+		B792C6A32BD3CD01002BCD96 /* FirestoreQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */; };
+		B7BB6D502BE117E4002C3BEE /* PersonImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */; };
 		B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */; };
 		B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35052BB51BA5002A87A6 /* MainContentView.swift */; };
 		B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FC35072BB51BA9002A87A6 /* Assets.xcassets */; };
@@ -29,8 +52,6 @@
 		B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35332BB51CFA002A87A6 /* Game.swift */; };
 		B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */; };
 		B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35392BB51DEF002A87A6 /* StartGameView.swift */; };
-		B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC353F2BB52135002A87A6 /* EditGameView.swift */; };
-		B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35412BB52380002A87A6 /* QuestionView.swift */; };
 		B7FC35442BB523BC002A87A6 /* RuleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35432BB523BC002A87A6 /* RuleGameView.swift */; };
 		B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35452BB52792002A87A6 /* DiscussionView.swift */; };
 		B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35472BB52906002A87A6 /* VoteListView.swift */; };
@@ -59,15 +80,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B738F0902BDE2EF500CF687C /* PlayerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListView.swift; sourceTree = "<group>"; };
+		B738F0922BDE366C00CF687C /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		B738F0942BDE569B00CF687C /* CreatePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePlayerView.swift; sourceTree = "<group>"; };
+		B738F0962BDE83E800CF687C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		B742F68E2BE0732F000728D8 /* GameCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCounterView.swift; sourceTree = "<group>"; };
 		B743E3C12BBD8F2600755473 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
+		B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		B74E118F2BC68B0D00223975 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuestionView.swift; sourceTree = "<group>"; };
+		B751BBA62BD6842300AADCD3 /* SelfQuestionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfQuestionList.swift; sourceTree = "<group>"; };
+		B751BBA92BD68DC500AADCD3 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		B751BBAC2BD692EC00AADCD3 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		B751BBAE2BD6977300AADCD3 /* MinorityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityView.swift; sourceTree = "<group>"; };
 		B760DAE12BB8F88400664A10 /* Root.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		B76258EF2BBF9EC300463203 /* RealmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmViewModel.swift; sourceTree = "<group>"; };
+		B76344452BE7742700260F8E /* GameCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCountView.swift; sourceTree = "<group>"; };
+		B76344472BE7754100260F8E /* GameGenreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGenreView.swift; sourceTree = "<group>"; };
+		B76344492BE78AE300260F8E /* GenreButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreButton.swift; sourceTree = "<group>"; };
+		B763444B2BE7901400260F8E /* GenreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewModel.swift; sourceTree = "<group>"; };
 		B767EB552BBAEEC000266B02 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B767EB572BBAF13D00266B02 /* Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time.swift; sourceTree = "<group>"; };
 		B7785D8C2BC6386000ECC340 /* WinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerView.swift; sourceTree = "<group>"; };
+		B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultAnnouncementView.swift; sourceTree = "<group>"; };
 		B7828A6B2BC7AB4E00C4AE08 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		B78297E72BC8BA3000655492 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		B7871FA32BE386C8005D140E /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
+		B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuestion.swift; sourceTree = "<group>"; };
+		B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImages.swift; sourceTree = "<group>"; };
 		B7FC35002BB51BA5002A87A6 /* MinorityGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinorityGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityGameApp.swift; sourceTree = "<group>"; };
 		B7FC35052BB51BA5002A87A6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -82,8 +124,6 @@
 		B7FC35332BB51CFA002A87A6 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		B7FC35352BB51D3C002A87A6 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		B7FC35392BB51DEF002A87A6 /* StartGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameView.swift; sourceTree = "<group>"; };
-		B7FC353F2BB52135002A87A6 /* EditGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameView.swift; sourceTree = "<group>"; };
-		B7FC35412BB52380002A87A6 /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		B7FC35432BB523BC002A87A6 /* RuleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleGameView.swift; sourceTree = "<group>"; };
 		B7FC35452BB52792002A87A6 /* DiscussionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionView.swift; sourceTree = "<group>"; };
 		B7FC35472BB52906002A87A6 /* VoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteListView.swift; sourceTree = "<group>"; };
@@ -99,8 +139,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B74CBD872BD52E1F0087D7C3 /* FirebaseFirestoreSwift in Frameworks */,
 				B76258EE2BBE936400463203 /* RealmSwift in Frameworks */,
 				B76258EC2BBE936400463203 /* Realm in Frameworks */,
+				B792C69E2BD3C3CD002BCD96 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +178,82 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B751BBA82BD68A0D00AADCD3 /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				B751BBA92BD68DC500AADCD3 /* BlurView.swift */,
+			);
+			path = Progress;
+			sourceTree = "<group>";
+		};
+		B751BBAB2BD691B000AADCD3 /* Answer */ = {
+			isa = PBXGroup;
+			children = (
+				B751BBAC2BD692EC00AADCD3 /* AnswerView.swift */,
+				B751BBAE2BD6977300AADCD3 /* MinorityView.swift */,
+			);
+			path = Answer;
+			sourceTree = "<group>";
+		};
+		B7684D492BE871B700D15C0F /* FireStore */ = {
+			isa = PBXGroup;
+			children = (
+				B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */,
+			);
+			path = FireStore;
+			sourceTree = "<group>";
+		};
+		B7684D4A2BE8724800D15C0F /* component */ = {
+			isa = PBXGroup;
+			children = (
+				B738F0922BDE366C00CF687C /* PlayerView.swift */,
+				B738F0942BDE569B00CF687C /* CreatePlayerView.swift */,
+				B738F0962BDE83E800CF687C /* ImagePickerView.swift */,
+				B76344452BE7742700260F8E /* GameCountView.swift */,
+				B76344472BE7754100260F8E /* GameGenreView.swift */,
+				B76344492BE78AE300260F8E /* GenreButton.swift */,
+			);
+			path = component;
+			sourceTree = "<group>";
+		};
+		B7684D4B2BE8743000D15C0F /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				B7FC354D2BB52DBF002A87A6 /* ResultView.swift */,
+				B7785D8C2BC6386000ECC340 /* WinnerView.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		B7684D4C2BE874B500D15C0F /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				B7FC35312BB51C63002A87A6 /* User.swift */,
+				B7FC35332BB51CFA002A87A6 /* Game.swift */,
+				B767EB572BBAF13D00266B02 /* Time.swift */,
+				B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		B792C6A12BD3CCD9002BCD96 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		B7BFAE712BDDED3B006E2D41 /* unavailable */ = {
+			isa = PBXGroup;
+			children = (
+				B742F68E2BE0732F000728D8 /* GameCounterView.swift */,
+				B751BBA62BD6842300AADCD3 /* SelfQuestionList.swift */,
+				B751BBA42BD6786A00AADCD3 /* CreateQuestionView.swift */,
+			);
+			path = unavailable;
+			sourceTree = "<group>";
+		};
 		B7FC34F72BB51BA5002A87A6 = {
 			isa = PBXGroup;
 			children = (
@@ -160,11 +278,12 @@
 		B7FC35022BB51BA5002A87A6 /* MinorityGame */ = {
 			isa = PBXGroup;
 			children = (
+				B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */,
 				B7FC35552BB532ED002A87A6 /* App */,
+				B792C6A12BD3CCD9002BCD96 /* API */,
 				B7FC352F2BB51BE5002A87A6 /* Model */,
 				B7FC352E2BB51BC6002A87A6 /* View */,
 				B7FC352D2BB51BBA002A87A6 /* ViewModel */,
-				B7FC35072BB51BA9002A87A6 /* Assets.xcassets */,
 				B7FC35092BB51BA9002A87A6 /* Preview Content */,
 			);
 			path = MinorityGame;
@@ -203,6 +322,8 @@
 				B78297E72BC8BA3000655492 /* RootViewModel.swift */,
 				B767EB552BBAEEC000266B02 /* TimerViewModel.swift */,
 				B74E118F2BC68B0D00223975 /* AlertViewModel.swift */,
+				B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */,
+				B763444B2BE7901400260F8E /* GenreViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -210,6 +331,8 @@
 		B7FC352E2BB51BC6002A87A6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B7FC35072BB51BA9002A87A6 /* Assets.xcassets */,
+				B751BBA82BD68A0D00AADCD3 /* Progress */,
 				B7FC35502BB530B7002A87A6 /* Root */,
 				B7FC35372BB51D8E002A87A6 /* EditView */,
 				B7FC35382BB51D9E002A87A6 /* GameView */,
@@ -221,11 +344,11 @@
 			isa = PBXGroup;
 			children = (
 				B743E3C02BBD8EDE00755473 /* Realm */,
-				B7FC35312BB51C63002A87A6 /* User.swift */,
-				B7FC35332BB51CFA002A87A6 /* Game.swift */,
-				B767EB572BBAF13D00266B02 /* Time.swift */,
-				B7828A6B2BC7AB4E00C4AE08 /* Color.swift */,
+				B7684D492BE871B700D15C0F /* FireStore */,
+				B7684D4C2BE874B500D15C0F /* Game */,
 				B760DAE12BB8F88400664A10 /* Root.swift */,
+				B7828A6B2BC7AB4E00C4AE08 /* Color.swift */,
+				B7871FA32BE386C8005D140E /* RoundedCorners.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,8 +358,8 @@
 			children = (
 				B7FC35432BB523BC002A87A6 /* RuleGameView.swift */,
 				B7FC35492BB5294A002A87A6 /* VoteView.swift */,
-				B7FC354D2BB52DBF002A87A6 /* ResultView.swift */,
-				B7785D8C2BC6386000ECC340 /* WinnerView.swift */,
+				B751BBAB2BD691B000AADCD3 /* Answer */,
+				B7684D4B2BE8743000D15C0F /* Result */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -244,8 +367,10 @@
 		B7FC35372BB51D8E002A87A6 /* EditView */ = {
 			isa = PBXGroup;
 			children = (
+				B7BFAE712BDDED3B006E2D41 /* unavailable */,
+				B7684D4A2BE8724800D15C0F /* component */,
 				B7FC35392BB51DEF002A87A6 /* StartGameView.swift */,
-				B7FC353F2BB52135002A87A6 /* EditGameView.swift */,
+				B738F0902BDE2EF500CF687C /* PlayerListView.swift */,
 			);
 			path = EditView;
 			sourceTree = "<group>";
@@ -254,9 +379,9 @@
 			isa = PBXGroup;
 			children = (
 				B7FC35302BB51BF5002A87A6 /* component */,
-				B7FC35412BB52380002A87A6 /* QuestionView.swift */,
 				B7FC35452BB52792002A87A6 /* DiscussionView.swift */,
 				B7FC35472BB52906002A87A6 /* VoteListView.swift */,
+				B77C55182BDB79590045ACE2 /* ResultAnnouncementView.swift */,
 				B7FC354B2BB52D89002A87A6 /* ResultGameView.swift */,
 			);
 			path = GameView;
@@ -299,6 +424,8 @@
 			packageProductDependencies = (
 				B76258EB2BBE936400463203 /* Realm */,
 				B76258ED2BBE936400463203 /* RealmSwift */,
+				B792C69D2BD3C3CD002BCD96 /* FirebaseFirestore */,
+				B74CBD862BD52E1F0087D7C3 /* FirebaseFirestoreSwift */,
 			);
 			productName = MinorityGame;
 			productReference = B7FC35002BB51BA5002A87A6 /* MinorityGame.app */;
@@ -374,6 +501,7 @@
 			mainGroup = B7FC34F72BB51BA5002A87A6;
 			packageReferences = (
 				B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				B792C69C2BD3C3CD002BCD96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = B7FC35012BB51BA5002A87A6 /* Products */;
 			projectDirPath = "";
@@ -392,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7FC350B2BB51BA9002A87A6 /* Preview Assets.xcassets in Resources */,
+				B792C69B2BD3C154002BCD96 /* GoogleService-Info.plist in Resources */,
 				B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,28 +546,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B74CBD8B2BD5581E0087D7C3 /* QuestionViewModel.swift in Sources */,
 				B7FC35442BB523BC002A87A6 /* RuleGameView.swift in Sources */,
+				B7BB6D502BE117E4002C3BEE /* PersonImages.swift in Sources */,
 				B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */,
 				B7FC354C2BB52D89002A87A6 /* ResultGameView.swift in Sources */,
+				B763444A2BE78AE300260F8E /* GenreButton.swift in Sources */,
 				B7FC354E2BB52DBF002A87A6 /* ResultView.swift in Sources */,
-				B7FC35402BB52135002A87A6 /* EditGameView.swift in Sources */,
+				B763444C2BE7901400260F8E /* GenreViewModel.swift in Sources */,
 				B7828A6C2BC7AB4E00C4AE08 /* Color.swift in Sources */,
 				B7FC35482BB52906002A87A6 /* VoteListView.swift in Sources */,
 				B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */,
+				B76344482BE7754100260F8E /* GameGenreView.swift in Sources */,
+				B751BBAF2BD6977300AADCD3 /* MinorityView.swift in Sources */,
+				B76344462BE7742700260F8E /* GameCountView.swift in Sources */,
 				B74E11902BC68B0D00223975 /* AlertViewModel.swift in Sources */,
+				B751BBA72BD6842300AADCD3 /* SelfQuestionList.swift in Sources */,
+				B742F68F2BE07330000728D8 /* GameCounterView.swift in Sources */,
+				B751BBA52BD6786A00AADCD3 /* CreateQuestionView.swift in Sources */,
+				B738F0912BDE2EF500CF687C /* PlayerListView.swift in Sources */,
 				B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */,
-				B7FC35422BB52380002A87A6 /* QuestionView.swift in Sources */,
 				B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */,
+				B738F0952BDE569B00CF687C /* CreatePlayerView.swift in Sources */,
 				B7FC35322BB51C63002A87A6 /* User.swift in Sources */,
 				B7785D8D2BC6386000ECC340 /* WinnerView.swift in Sources */,
 				B7FC35542BB5318E002A87A6 /* GameContentView.swift in Sources */,
 				B767EB582BBAF13D00266B02 /* Time.swift in Sources */,
+				B738F0972BDE83E800CF687C /* ImagePickerView.swift in Sources */,
+				B792C6A32BD3CD01002BCD96 /* FirestoreQuestion.swift in Sources */,
 				B767EB562BBAEEC000266B02 /* TimerViewModel.swift in Sources */,
+				B77C55192BDB79590045ACE2 /* ResultAnnouncementView.swift in Sources */,
+				B738F0932BDE366C00CF687C /* PlayerView.swift in Sources */,
 				B7FC35462BB52792002A87A6 /* DiscussionView.swift in Sources */,
 				B7FC35362BB51D3C002A87A6 /* GameViewModel.swift in Sources */,
 				B760DAE22BB8F88400664A10 /* Root.swift in Sources */,
 				B78297E82BC8BA3000655492 /* RootViewModel.swift in Sources */,
+				B751BBAA2BD68DC500AADCD3 /* BlurView.swift in Sources */,
+				B7871FA42BE386C8005D140E /* RoundedCorners.swift in Sources */,
 				B7FC35522BB53141002A87A6 /* EditContentView.swift in Sources */,
+				B74CBD892BD5381B0087D7C3 /* FirestoreClient.swift in Sources */,
+				B751BBAD2BD692EC00AADCD3 /* AnswerView.swift in Sources */,
 				B7FC35342BB51CFA002A87A6 /* Game.swift in Sources */,
 				B76258F02BBF9EC300463203 /* RealmViewModel.swift in Sources */,
 				B7FC354A2BB5294A002A87A6 /* VoteView.swift in Sources */,
@@ -530,7 +677,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -587,7 +734,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -608,6 +755,7 @@
 				DEVELOPMENT_TEAM = FJVWD9ZV84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -615,7 +763,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -640,6 +788,7 @@
 				DEVELOPMENT_TEAM = FJVWD9ZV84;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -647,7 +796,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -670,7 +819,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FJVWD9ZV84;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryuji.MinorityGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -690,7 +839,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = FJVWD9ZV84;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryuji.MinorityGameTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -787,9 +936,22 @@
 				kind = branch;
 			};
 		};
+		B792C69C2BD3C3CD002BCD96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.24.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B74CBD862BD52E1F0087D7C3 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B792C69C2BD3C3CD002BCD96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
 		B76258EB2BBE936400463203 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
@@ -799,6 +961,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B76258EA2BBE936400463203 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		B792C69D2BD3C3CD002BCD96 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B792C69C2BD3C3CD002BCD96 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

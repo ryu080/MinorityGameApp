@@ -6,13 +6,26 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
 struct MinorityGameApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     @StateObject var rootViewModel = RootViewModel()
     @StateObject var gameViewModel = GameViewModel()
     @StateObject var dateViewModel = RealmViewModel()
     @StateObject var alertViewModel = AlertViewModel()
+    @StateObject var questionViewModel = QuestionViewModel()
+    @StateObject var genreViewModel = GenreViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -21,6 +34,8 @@ struct MinorityGameApp: App {
                 .environmentObject(gameViewModel)
                 .environmentObject(dateViewModel)
                 .environmentObject(alertViewModel)
+                .environmentObject(questionViewModel)
+                .environmentObject(genreViewModel)
         }
     }
 }

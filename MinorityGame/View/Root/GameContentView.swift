@@ -15,12 +15,12 @@ struct GameContentView: View {
         NavigationView {
             Group {
                 switch rootViewModel.gameView {
-                case .questionView:
-                    QuestionView()
                 case .discussionView:
                     DiscussionView()
                 case .voteListView:
                     VoteListView()
+                case .resultAnnouncementView:
+                    ResultAnnouncementView()
                 case .resultGameView:
                     ResultGameView()
                 }
@@ -32,8 +32,14 @@ struct GameContentView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Text("ゲーム数:\(gameViewModel.game.nowGameCount)/\(gameViewModel.game.maxGameCount)")
                         .font(.title3)
-                        .foregroundStyle(Color.champagne)
+                        .foregroundStyle(Color.white)
                         .fontWeight(.black)
+                }
+                ToolbarItem(placement: .principal) {
+                    Text("ジャンル\n\(gameViewModel.game.questions.first!.genre)")
+                        .foregroundColor(Color.white)
+                        .fontWeight(.black)
+                        .font(.title2)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -42,6 +48,7 @@ struct GameContentView: View {
                         Text("ルール")
                             .font(.title3)
                             .fontWeight(.black)
+                            .foregroundStyle(.white)
                     }
                 }
             }
