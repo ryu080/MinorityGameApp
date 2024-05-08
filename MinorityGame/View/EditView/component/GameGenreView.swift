@@ -18,26 +18,24 @@ struct GameGenreView: View {
                 HStack{
                     Spacer()
                     GenreButton(buttonText: "日常", buttonColor: .gray, backgroundColor: .white, tapButtonColor: .mint, tapBackgroundColor: .mint.opacity(0.2), buttonIndex: 0)
-                        .environmentObject(genreViewModel)
                     Spacer()
                     GenreButton(buttonText: "恋愛", buttonColor: .gray, backgroundColor: .white, tapButtonColor: .mint, tapBackgroundColor: .mint.opacity(0.2), buttonIndex: 1)
-                        .environmentObject(genreViewModel)
                     Spacer()
                 }
                 Spacer()
                 HStack{
                     Spacer()
                     GenreButton(buttonText: "価値観", buttonColor: .gray, backgroundColor: .white, tapButtonColor: .mint, tapBackgroundColor: .mint.opacity(0.2), buttonIndex: 2)
-                        .environmentObject(genreViewModel)
                     Spacer()
                     GenreButton(buttonText: "もしも", buttonColor: .gray, backgroundColor: .white, tapButtonColor: .mint, tapBackgroundColor: .mint.opacity(0.2), buttonIndex: 3)
-                        .environmentObject(genreViewModel)
                     Spacer()
                 }
                 Spacer()
             }
         }
-        .frame(width: 250,height: 150)
+        .modifier(FrameFitToDevices(iPhone: (width: 250, height: 120),
+                               iPhoneSE: (width: 230, height: 100),
+                               iPad: (width: 600, height: 200)))
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)

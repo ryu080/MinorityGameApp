@@ -146,7 +146,6 @@ final class RealmViewModel: ObservableObject {
                     }
                 }
             }
-            print(realm.objects(RealmQuestion.self))
         } catch {
             print("Error saving questions to Realm: \(error)")
         }

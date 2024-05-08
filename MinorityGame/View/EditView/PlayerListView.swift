@@ -31,14 +31,16 @@ struct PlayerListView: View {
                 TabView(selection: $selection) {
                     VStack{
                         Text("問題数")
-                            .font(.title)
+                            .modifier(TextFitToDevices(iPhone: 23, iPhoneSE: 20, iPad: 50))
                             .fontWeight(.bold)
                             .foregroundStyle(.black)
-                            .frame(width: 250,height: 50)
+                            .modifier(FrameFitToDevices(iPhone: (width: 250, height: 40),
+                                                   iPhoneSE: (width: 230, height: 30),
+                                                   iPad: (width: 600, height: 100)))
                             .background(.white)
-                            .cornerRadius(15)
+                            .cornerRadius(10)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 15)
+                                RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.mint, lineWidth: 1)
                             )
                             .shadow(radius: 5)
@@ -65,14 +67,16 @@ struct PlayerListView: View {
                     }.tag(0)
                     VStack{
                         Text("ジャンル")
-                            .font(.title)
+                            .modifier(TextFitToDevices(iPhone: 23, iPhoneSE: 20, iPad: 50))
                             .fontWeight(.bold)
                             .foregroundStyle(.black)
-                            .frame(width: 250,height: 50)
+                            .modifier(FrameFitToDevices(iPhone: (width: 250, height: 40),
+                                                   iPhoneSE: (width: 230, height: 30),
+                                                   iPad: (width: 600, height: 100)))
                             .background(.white)
-                            .cornerRadius(15)
+                            .cornerRadius(10)
                             .overlay(
-                                RoundedRectangle(cornerRadius: 15)
+                                RoundedRectangle(cornerRadius: 10)
                                     .stroke(Color.mint, lineWidth: 1)
                             )
                             .shadow(radius: 5)
@@ -99,7 +103,9 @@ struct PlayerListView: View {
                     }.tag(1)
                 }
                 .tabViewStyle(.page)
-                .frame(height: 350)
+                .modifier(FrameFitToDevices(iPhone: (width: nil, height: 300),
+                                       iPhoneSE: (width: nil, height: 250),
+                                       iPad: (width: nil, height: 400)))
                 Spacer()
                 ZStack{
                     RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
@@ -113,11 +119,13 @@ struct PlayerListView: View {
                                     isShowCreatePlayerView.toggle()
                                 } label: {
                                     Text("プレイヤー追加")
-                                        .font(.title2)
+                                        .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 50))
                                         .fontWeight(.bold)
                                         .tint(.white)
                                 }
-                                .frame(width: 300,height: 50)
+                                .modifier(FrameFitToDevices(iPhone: (width: 300, height: 50),
+                                                            iPhoneSE: (width: 230, height: 40),
+                                                            iPad: (width: 600, height: 100)))
                                 .background(.mint.opacity(0.8))
                                 .cornerRadius(10)
                                 .overlay(
@@ -126,10 +134,12 @@ struct PlayerListView: View {
                                 )
                             } else {
                                 Text("プレイヤー追加")
-                                    .font(.title2)
+                                    .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 50))
                                     .fontWeight(.bold)
                                     .foregroundStyle(.white)
-                                    .frame(width: 300,height: 50)
+                                    .modifier(FrameFitToDevices(iPhone: (width: 300, height: 50),
+                                                                iPhoneSE: (width: 230, height: 40),
+                                                                iPad: (width: 600, height: 100)))
                                     .background(.gray.opacity(0.8))
                                     .cornerRadius(10)
                                     .overlay(
@@ -138,7 +148,6 @@ struct PlayerListView: View {
                                     )
                             }
                         }
-                        .padding(10)
                         Spacer()
                         ScrollView( .vertical) {
                             Spacer()
@@ -156,31 +165,41 @@ struct PlayerListView: View {
                             .padding()
                             .background(.gray.opacity(0.2))
                             .cornerRadius(10)
-                            Spacer()
-                            Button {
-                                if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (true,true) {
-                                    alertViewModel.gameStartAlert(gameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
-                                }else if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (false,true){
-                                    alertViewModel.playerCountAlert()
-                                }else{
-                                    alertViewModel.genreAlert()
-                                }
-                            } label: {
-                                Text("ゲームスタート")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .tint(.white)
+                        }
+                        .modifier(FrameFitToDevices(iPhone: (width: 350, height: 220),
+                                                     iPhoneSE: (width: 350, height: 180),
+                                                     iPad: (width: 800, height: 300)))
+                        Spacer()
+                        Button {
+                            if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (true,true) {
+                                alertViewModel.gameStartAlert(gameCount: gameViewModel.game.maxGameCount, genre: genreViewModel.genreName!)
+                            }else if gameViewModel.limitUserCount(genre: genreViewModel.genreName) == (false,true){
+                                alertViewModel.playerCountAlert()
+                            }else{
+                                alertViewModel.genreAlert()
                             }
-                            .frame(width: 200,height: 50)
-                            .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing))
-                            .cornerRadius(10)
-                            .padding()
-                            Spacer()
-                        }.frame(width: UIScreen.main.bounds.width-20)
-                    }
-                }
-                .frame(height:UIScreen.main.bounds.height/1.5)
-
+                        } label: {
+                            Text("ゲームスタート")
+                                .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 50))
+                                .fontWeight(.bold)
+                                .tint(.white)
+                        }
+                        .modifier(FrameFitToDevices(iPhone: (width: 300, height: 50),
+                                                    iPhoneSE: (width: 230, height: 40),
+                                                    iPad: (width: 600, height: 100)))
+                        .background(.yellow.opacity(0.8))
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.yellow, lineWidth: 3)
+                        )
+                        Spacer()
+                    }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
+                                                 iPhoneSE: (width: nil, height: 400),
+                                                 iPad: (width: nil, height: 800)))
+                }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
+                                             iPhoneSE: (width: nil, height: 400),
+                                             iPad: (width: nil, height: 800)))
             }
             .sheet(isPresented: $isShowCreatePlayerView, content: {
                 CreatePlayerView()
@@ -217,7 +236,6 @@ struct PlayerListView: View {
                 }
             }
             .edgesIgnoringSafeArea(.all)
-
         }
     }
 }

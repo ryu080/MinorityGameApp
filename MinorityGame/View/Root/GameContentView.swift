@@ -36,7 +36,7 @@ struct GameContentView: View {
                         .fontWeight(.black)
                 }
                 ToolbarItem(placement: .principal) {
-                    Text("ジャンル\n\(gameViewModel.game.questions.first!.genre)")
+                    Text(gameViewModel.game.questions.first!.genre)
                         .foregroundColor(Color.white)
                         .fontWeight(.black)
                         .font(.title2)

@@ -59,16 +59,17 @@ struct VoteListView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(Color.bittersweet, lineWidth: 3)
                         }
-                }.frame(width: UIScreen.main.bounds.width-20,height: 100)
+                }.frame(width: UIScreen.main.bounds.width-20,height: UIScreen.main.bounds.height/10)
 
                 ZStack {
                     RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
+                        .compositingGroup()
                         .shadow(radius: 5)
-                    VStack {
+                    VStack (spacing:UIScreen.main.bounds.height/25){
                         Text("投票するプレイヤーを選んでください")
                             .font(.title2)
                             .fontWeight(.black)
-                            .padding(.vertical,20)
+                            .padding(.top,UIScreen.main.bounds.height/25)
                         ScrollView( .vertical) {
                             Spacer()
                             LazyVGrid(columns:columns) {
@@ -88,39 +89,38 @@ struct VoteListView: View {
                             .padding()
                             .background(.gray.opacity(0.2))
                             .cornerRadius(10)
-                            if gameViewModel.voteComplete(){
-                                Button {
-                                    rootViewModel.nextGameView(nextView: .resultAnnouncementView)
-                                } label: {
-                                    Text("結果へ進む")
-                                        .font(.title)
-                                        .fontWeight(.black)
-                                        .foregroundStyle(Color.white)
-                                }
-                                .frame(width: 300,height: 50)
-                                .background(.mint.opacity(0.8))
-                                .cornerRadius(10)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.mint, lineWidth: 3)
-                                )
-                                .padding(30)
-                            }else {
+                        }
+                        .frame(width: UIScreen.main.bounds.width-20)
+                        if gameViewModel.voteComplete(){
+                            Button {
+                                rootViewModel.nextGameView(nextView: .resultAnnouncementView)
+                            } label: {
                                 Text("結果へ進む")
                                     .font(.title)
                                     .fontWeight(.black)
                                     .foregroundStyle(Color.white)
-                                    .frame(width: 300,height: 50)
-                                    .background(.gray.opacity(0.8))
-                                    .cornerRadius(10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.gray, lineWidth: 3)
-                                    )
-                                    .padding(30)
                             }
+                            .frame(width: 300,height: 50)
+                            .background(.mint.opacity(0.8))
+                            .cornerRadius(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.mint, lineWidth: 3)
+                            )
+                        }else {
+                            Text("結果へ進む")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
+                                .frame(width: 300,height: 50)
+                                .background(.gray.opacity(0.8))
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray, lineWidth: 3)
+                                )
                         }
-                        .frame(width: UIScreen.main.bounds.width-20)
+
                         Spacer()
                     }
                     .frame(height:UIScreen.main.bounds.height/1.9)

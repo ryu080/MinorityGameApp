@@ -21,11 +21,14 @@ struct GameCountView: View {
                         gameViewModel.gameCountDown()
                     } label: {
                         Image(systemName: "minus")
-                            .font(.title2)
+                            .modifier(TextFitToDevices(iPhone: 20, iPhoneSE: 15, iPad: 30))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                     }
-                    .frame(width: 40,height: 40)
+                    .modifier(FrameFitToDevices(iPhone: (width: 30, height: 30),
+                                                   iPhoneSE: (width: 25, height: 25),
+                                                   iPad: (width: 50, height: 50)))
+
                     .background(.mint.opacity(0.8))
                     .clipShape(Circle())
                     .overlay(
@@ -34,7 +37,7 @@ struct GameCountView: View {
                     )
                     Spacer()
                     Text("\(gameViewModel.game.maxGameCount)")
-                        .font(.system(size: 60))
+                        .modifier(TextFitToDevices(iPhone: 60, iPhoneSE: 50, iPad: 100))
                         .fontWeight(.bold)
                         .foregroundStyle(.black)
                     Spacer()
@@ -42,13 +45,16 @@ struct GameCountView: View {
                         gameViewModel.gameCountUp()
                     } label: {
                         Image(systemName: "plus")
-                            .font(.title2)
+                            .modifier(TextFitToDevices(iPhone: 20, iPhoneSE: 15, iPad: 30))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                     }
-                    .frame(width: 40,height: 40)
+                    .modifier(FrameFitToDevices(iPhone: (width: 30, height: 30),
+                                                   iPhoneSE: (width: 25, height: 25),
+                                                   iPad: (width: 50, height: 50)))
                     .background(.mint.opacity(0.8))
-                    .clipShape(Circle())                        .overlay(
+                    .clipShape(Circle())                        
+                    .overlay(
                         Circle()
                             .stroke(Color.mint, lineWidth: 3)
                     )
@@ -57,7 +63,9 @@ struct GameCountView: View {
                 Spacer()
             }
         }
-        .frame(width: 250,height: 150)
+        .modifier(FrameFitToDevices(iPhone: (width: 250, height: 120),
+                               iPhoneSE: (width: 230, height: 100),
+                               iPad: (width: 600, height: 200)))
         .cornerRadius(20)
         .overlay(
             RoundedRectangle(cornerRadius: 20)

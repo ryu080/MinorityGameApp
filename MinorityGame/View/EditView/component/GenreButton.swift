@@ -22,11 +22,13 @@ struct GenreButton: View {
             genreViewModel.updateButtonState(buttonIndex: buttonIndex)
         } label: {
             Text(buttonText)
-                .font(.title2)
+                .modifier(TextFitToDevices(iPhone: 20, iPhoneSE: 17, iPad: 40))
                 .bold()
                 .foregroundStyle( genreViewModel.buttonStates[buttonIndex] ? tapButtonColor: buttonColor)
         }
-        .frame(width: 90,height: 40)
+        .modifier(FrameFitToDevices(iPhone: (width: 80, height: 35),
+                               iPhoneSE: (width: 80, height: 30),
+                               iPad: (width: 200, height: 70)))
         .background(genreViewModel.buttonStates[buttonIndex] ? tapBackgroundColor: backgroundColor)
         .cornerRadius(10)
         .overlay(

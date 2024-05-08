@@ -102,12 +102,12 @@ struct DiscussionView: View {
                     ZStack {
                         RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
                             .shadow(radius: 5)
-                        VStack{
+                        VStack(spacing:UIScreen.main.bounds.height/40){
                             Text("【第\(gameViewModel.game.nowGameCount)門】")
                                 .font(.system(size: 35))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.black)
-                                .padding(5)
+                                .padding(.top,UIScreen.main.bounds.height/40)
                             Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
                                 .font(.title)
                                 .bold()
@@ -121,45 +121,46 @@ struct DiscussionView: View {
                                 }
                             HStack {
                                 Text(questionViewModel.question?.choice1 ?? "北海道")
-                                    .font(.title)
+                                    .font(.title2)
                                     .bold()
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.electricBlue)
                                     .frame(width: 160,height: 100)
-                                    .background(Color.electricBlue)
+                                    .background(Color.electricBlue.opacity(0.2))
                                     .cornerRadius(20)
                                     .overlay() {
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.electricBlue, lineWidth: 3)
+                                            .stroke(Color.electricBlue, lineWidth: 2)
                                     }
                                 Spacer()
                                 Text(questionViewModel.question?.choice2 ?? "沖縄県")
-                                    .font(.title)
+                                    .font(.title2)
                                     .bold()
-                                    .foregroundStyle(Color.white)
+                                    .foregroundStyle(Color.bittersweet)
                                     .frame(width: 160, height: 100)
-                                    .background(Color.bittersweet)
+                                    .background(Color.bittersweet.opacity(0.2))
                                     .cornerRadius(20)
                                     .overlay() {
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.bittersweet, lineWidth: 3)
+                                            .stroke(Color.bittersweet, lineWidth: 2)
                                     }
-                            }.frame(width: UIScreen.main.bounds.width-20,height: 140)
-                            Button(action: {
-                                alertViewModel.discussionAlert()
-                            }, label: {
-                                Text("投票画面へ")
-                                    .font(.title)
-                                    .fontWeight(.black)
-                                    .foregroundStyle(Color.white)
-                            })
-                            .frame(width: UIScreen.main.bounds.width-20,height: 50)
-                            .background(.mint.opacity(0.8))
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.mint, lineWidth: 3)
-                            )
-
+                            }.frame(width: UIScreen.main.bounds.width-20)
+                            VStack{
+                                Button(action: {
+                                    alertViewModel.discussionAlert()
+                                }, label: {
+                                    Text("投票画面へ")
+                                        .font(.title)
+                                        .fontWeight(.black)
+                                        .foregroundStyle(Color.white)
+                                })
+                                .frame(width: 300,height: 50)
+                                .background(.mint.opacity(0.8))
+                                .cornerRadius(10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.mint, lineWidth: 3)
+                                )
+                            }
                             Spacer()
                         }.frame(height:UIScreen.main.bounds.height/1.5)
                     }

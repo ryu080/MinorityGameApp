@@ -13,6 +13,7 @@ struct WinnerView: View {
     var body: some View {
         ZStack {
             Color.clear
+                .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 Text("🎉You are unique🎉")
@@ -34,13 +35,14 @@ struct WinnerView: View {
                                     .background(.yellow)
                                     .cornerRadius(10)
                                     .padding(5)
-                            }.scaleEffect(x: 2.8, y: 2.8)
-                                .frame(width: 300,height: 450)
+                            }
+                            .scaleEffect(x: 2, y: 2)
+                            .frame(width:190, height: 300)
                         }
                     }
                     .padding()
                 }
-                .frame(height: 450)
+                .frame(width: UIScreen.main.bounds.width-20,height: 300)
                 .background(.black.opacity(0.2))
                 .cornerRadius(10)
                 Spacer()

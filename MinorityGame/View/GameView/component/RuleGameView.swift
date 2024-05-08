@@ -28,7 +28,7 @@ struct RuleGameView: View {
                     VStack {
                         VStack {
                             Text("Unique ONEは1番ユニークな人を決める")
-                                .font(.system(size: 18))
+                                .font(.system(size: 15))
                                 .fontWeight(.bold)
                                 .foregroundStyle(Color.white)
                             Text("価値観ゲームです")

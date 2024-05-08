@@ -13,6 +13,7 @@
 		B738F0972BDE83E800CF687C /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738F0962BDE83E800CF687C /* ImagePickerView.swift */; };
 		B742F68F2BE07330000728D8 /* GameCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B742F68E2BE0732F000728D8 /* GameCounterView.swift */; };
 		B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B743E3C12BBD8F2600755473 /* RealmModel.swift */; };
+		B744902D2BE9A72F005D2342 /* FrameFitToDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B744902C2BE9A72F005D2342 /* FrameFitToDevices.swift */; };
 		B74CBD872BD52E1F0087D7C3 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B74CBD862BD52E1F0087D7C3 /* FirebaseFirestoreSwift */; };
 		B74CBD892BD5381B0087D7C3 /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */; };
 		B74CBD8B2BD5581E0087D7C3 /* QuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */; };
@@ -40,7 +41,7 @@
 		B792C69B2BD3C154002BCD96 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */; };
 		B792C69E2BD3C3CD002BCD96 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B792C69D2BD3C3CD002BCD96 /* FirebaseFirestore */; };
 		B792C6A32BD3CD01002BCD96 /* FirestoreQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */; };
-		B7BB6D502BE117E4002C3BEE /* PersonImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */; };
+		B7B8A9342BEA09B700EFD9CA /* TextFitToDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B8A9332BEA09B700EFD9CA /* TextFitToDevices.swift */; };
 		B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */; };
 		B7FC35062BB51BA5002A87A6 /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FC35052BB51BA5002A87A6 /* MainContentView.swift */; };
 		B7FC35082BB51BA9002A87A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7FC35072BB51BA9002A87A6 /* Assets.xcassets */; };
@@ -86,6 +87,7 @@
 		B738F0962BDE83E800CF687C /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		B742F68E2BE0732F000728D8 /* GameCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCounterView.swift; sourceTree = "<group>"; };
 		B743E3C12BBD8F2600755473 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		B744902C2BE9A72F005D2342 /* FrameFitToDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameFitToDevices.swift; sourceTree = "<group>"; };
 		B74CBD882BD5381B0087D7C3 /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		B74CBD8A2BD5581E0087D7C3 /* QuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewModel.swift; sourceTree = "<group>"; };
 		B74E118F2BC68B0D00223975 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 		B7871FA32BE386C8005D140E /* RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorners.swift; sourceTree = "<group>"; };
 		B792C69A2BD3C154002BCD96 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B792C6A22BD3CD01002BCD96 /* FirestoreQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreQuestion.swift; sourceTree = "<group>"; };
-		B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonImages.swift; sourceTree = "<group>"; };
+		B7B8A9332BEA09B700EFD9CA /* TextFitToDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFitToDevices.swift; sourceTree = "<group>"; };
 		B7FC35002BB51BA5002A87A6 /* MinorityGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinorityGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7FC35032BB51BA5002A87A6 /* MinorityGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinorityGameApp.swift; sourceTree = "<group>"; };
 		B7FC35052BB51BA5002A87A6 /* MainContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B744902B2BE9A60A005D2342 /* ViewModifier */ = {
+			isa = PBXGroup;
+			children = (
+				B744902C2BE9A72F005D2342 /* FrameFitToDevices.swift */,
+				B7B8A9332BEA09B700EFD9CA /* TextFitToDevices.swift */,
+			);
+			path = ViewModifier;
+			sourceTree = "<group>";
+		};
 		B751BBA82BD68A0D00AADCD3 /* Progress */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,7 +242,6 @@
 				B7FC35312BB51C63002A87A6 /* User.swift */,
 				B7FC35332BB51CFA002A87A6 /* Game.swift */,
 				B767EB572BBAF13D00266B02 /* Time.swift */,
-				B7BB6D4F2BE117E4002C3BEE /* PersonImages.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -332,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FC35072BB51BA9002A87A6 /* Assets.xcassets */,
+				B744902B2BE9A60A005D2342 /* ViewModifier */,
 				B751BBA82BD68A0D00AADCD3 /* Progress */,
 				B7FC35502BB530B7002A87A6 /* Root */,
 				B7FC35372BB51D8E002A87A6 /* EditView */,
@@ -548,8 +559,8 @@
 			files = (
 				B74CBD8B2BD5581E0087D7C3 /* QuestionViewModel.swift in Sources */,
 				B7FC35442BB523BC002A87A6 /* RuleGameView.swift in Sources */,
-				B7BB6D502BE117E4002C3BEE /* PersonImages.swift in Sources */,
 				B743E3C22BBD8F2600755473 /* RealmModel.swift in Sources */,
+				B7B8A9342BEA09B700EFD9CA /* TextFitToDevices.swift in Sources */,
 				B7FC354C2BB52D89002A87A6 /* ResultGameView.swift in Sources */,
 				B763444A2BE78AE300260F8E /* GenreButton.swift in Sources */,
 				B7FC354E2BB52DBF002A87A6 /* ResultView.swift in Sources */,
@@ -566,6 +577,7 @@
 				B751BBA52BD6786A00AADCD3 /* CreateQuestionView.swift in Sources */,
 				B738F0912BDE2EF500CF687C /* PlayerListView.swift in Sources */,
 				B7FC353A2BB51DEF002A87A6 /* StartGameView.swift in Sources */,
+				B744902D2BE9A72F005D2342 /* FrameFitToDevices.swift in Sources */,
 				B7FC35042BB51BA5002A87A6 /* MinorityGameApp.swift in Sources */,
 				B738F0952BDE569B00CF687C /* CreatePlayerView.swift in Sources */,
 				B7FC35322BB51C63002A87A6 /* User.swift in Sources */,

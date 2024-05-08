@@ -28,27 +28,35 @@ struct PlayerView: View {
                 if let playerImageData, let uiImage = UIImage(data: playerImageData) {
                             Image(uiImage: uiImage)
                         .resizable()
-                        .frame(width: 60,height: 80)
+                        .modifier(FrameFitToDevices(iPhone: (width: 54, height: 72),
+                                                    iPhoneSE: (width: 54, height: 72),
+                                                    iPad: (width: 105, height: 140)))
                         .cornerRadius(7)
                         .scaledToFit()
 
                 }else{
                     Image("person0")
                         .resizable()
-                        .frame(width: 60,height: 80)
+                        .modifier(FrameFitToDevices(iPhone: (width: 54, height: 72),
+                                                    iPhoneSE: (width: 54, height: 72),
+                                                    iPad: (width: 105, height: 140)))
                         .cornerRadius(7)
                         .scaledToFit()
                 }
                 Spacer()
                 Text(name)
-                    .frame(width: 75)
-                    .font(.system(size: 12))
+                    .modifier(FrameFitToDevices(iPhone: (width: 69, height: nil),
+                                                iPhoneSE: (width: 69, height: nil),
+                                                iPad: (width: 120, height: nil)))
+                    .modifier(TextFitToDevices(iPhone: 12, iPhoneSE: 12, iPad: 20))
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .lineLimit(1)
                 Spacer()
             }
-        }.frame(width: 75,height: 100)
+        }.modifier(FrameFitToDevices(iPhone: (width: 69, height: 92),
+                                     iPhoneSE: (width: 69, height: 92),
+                                     iPad: (width: 120, height: 160)))
     }
 }
 

@@ -24,13 +24,15 @@ struct VoteView: View {
             VStack {
                 Spacer()
                 PlayerView(playerImageData: user.imageData, name: user.name, backgroundColor: .mint, opacity: 0.7)
-                    .scaleEffect(x: 1.5, y: 1.5)
+                    .scaleEffect(x: 1.3, y: 1.3)
                 Spacer()
                 ZStack {
-                    Color.white
+                    RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
+                        .compositingGroup()
+                        .shadow(radius: 5)
                     VStack {
                         Text("どちらかを選んでください")
-                            .font(.system(size: 30))
+                            .font(.system(size: 25))
                             .fontWeight(.black)
                             .foregroundStyle(Color.black)
                             .frame(width: UIScreen.main.bounds.width-20)
@@ -52,7 +54,7 @@ struct VoteView: View {
                                 vote = 1
                                 buttonColor = false
                             }
-                            .font(.title)
+                            .font(.title2)
                             .bold()
                             .foregroundStyle(Color.white)
                             .frame(width: 160,height: 100)
@@ -67,7 +69,7 @@ struct VoteView: View {
                                 vote = 2
                                 buttonColor = true
                             }
-                            .font(.title)
+                            .font(.title2)
                             .bold()
                             .foregroundStyle(Color.white)
                             .frame(width: 160, height: 100)
@@ -135,9 +137,7 @@ struct VoteView: View {
                     }
 
                 }
-                .frame(width: UIScreen.main.bounds.width,height:UIScreen.main.bounds.height/1.5)
-                .cornerRadius(50)
-                .shadow(radius: 5)
+                .frame(width: UIScreen.main.bounds.width,height:UIScreen.main.bounds.height/1.6)
             }
             .transition(.move(edge: .bottom))
             .edgesIgnoringSafeArea(.all)

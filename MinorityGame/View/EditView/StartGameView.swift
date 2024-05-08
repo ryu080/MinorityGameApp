@@ -51,22 +51,22 @@ struct StartGameView: View {
                         VStack {
                             Spacer()
                             Text("Unique")
-                                .font(.system(size: 80))
+                                .modifier(TextFitToDevices(iPhone: 80, iPhoneSE: 70, iPad: 120))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
                             Text("ONE")
-                                .font(.system(size: 140))
+                                .modifier(TextFitToDevices(iPhone: 140, iPhoneSE: 120, iPad: 200))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
                             Spacer()
-                            VStack(spacing:15){
+                            VStack(spacing:20){
                                 Button {
                                     realmViewModel.deleteGame(primaryKey: 0)
                                     gameViewModel.setPreviousUsers(realm: realmViewModel)
                                     rootViewModel.nextEditView(nextView: .playerListView)
                                 } label: {
                                     Text("新規ゲームを始める")
-                                        .font(.title)
+                                        .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 50))
                                         .fontWeight(.black)
                                         .foregroundStyle(Color.white)
                                 }
@@ -80,12 +80,11 @@ struct StartGameView: View {
                                 if realmViewModel.readGame(primaryKey: 0)?.users != nil {
                                     Button {
                                         gameViewModel.game = realmViewModel.readGame(primaryKey: 0)!
-                                        print(gameViewModel.game)
                                         gameViewModel.continueGame()
                                         rootViewModel.nextGameView(nextView: .discussionView)
                                     } label: {
                                         Text("続きから再開する")
-                                            .font(.title)
+                                            .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 50))
                                             .fontWeight(.black)
                                             .foregroundStyle(Color.white)
                                     }

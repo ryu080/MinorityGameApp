@@ -17,14 +17,10 @@ struct ResultGameView: View {
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .topLeading, endPoint: .bottomTrailing)                .edgesIgnoringSafeArea(.all)
-            VStack {
-                Spacer()
-                Group {
+            VStack(spacing:UIScreen.main.bounds.height/60) {
                     if isShowResult {
-                        Group{
                             ResultView()
-                        }
-                        Spacer()
+                            .frame(height: 400)
                         if gameViewModel.game.nowGameCount < gameViewModel.game.maxGameCount {
                             Button("次のゲームへ") {
                                 gameViewModel.continueGame()
@@ -68,9 +64,10 @@ struct ResultGameView: View {
                                 realmViewModel.deleteGame(primaryKey: 0)
                             }
                         }
+                        Spacer()
                     } else {
                         WinnerView(winnerUser: gameViewModel.winnerUser())
-                            .cornerRadius(20)
+                            .frame(height: 400)
                         Button("ホーム"){
                             gameViewModel.resetGame()
                             rootViewModel.nextEditView(nextView: .startGameView)
@@ -88,9 +85,7 @@ struct ResultGameView: View {
                         )
                         Spacer()
                     }
-                }
-                Spacer()
-            }.padding(20)
+            }
         }
     }
 }
