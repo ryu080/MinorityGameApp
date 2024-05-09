@@ -20,19 +20,20 @@ struct AnswerView: View {
             VStack {
                 Spacer()
                 Text(choice)
-                    .font(.system(size: 50))
+                    .modifier(TextFitToDevices(iPhone: 50, iPhoneSE: 40, iPad: 80))
                     .foregroundStyle(.white)
                     .fontWeight(.black)
-                    .padding()
+                    .padding(.horizontal,10)
+                    .padding(10)
                     .background(color)
                     .cornerRadius(10)
                 Text("\(count)")
-                    .font(.system(size: 150))
+                    .modifier(TextFitToDevices(iPhone: 150, iPhoneSE: 130, iPad: 200))
                     .foregroundStyle(.white)
                     .fontWeight(.black)
                 Spacer()
             }
-        }.frame(width: UIScreen.main.bounds.width)
+        }
     }
 }
 

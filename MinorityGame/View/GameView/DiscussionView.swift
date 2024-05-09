@@ -134,11 +134,11 @@ struct DiscussionView: View {
                                         .modifier(FrameFitToDevices(iPhone: (width: 160, height: 100),
                                                                     iPhoneSE: (width: 140, height: 80),
                                                                     iPad: (width: 300, height: 180)))
-                                        .background(Color.electricBlue.opacity(0.2))
+                                        .background(Color.white)
                                         .cornerRadius(20)
                                         .overlay() {
                                             RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.electricBlue, lineWidth: 2)
+                                                .stroke(Color.gray, lineWidth: 2)
                                         }
                                     Spacer()
                                     Text(questionViewModel.question?.choice2 ?? "沖縄県")
@@ -148,11 +148,11 @@ struct DiscussionView: View {
                                         .modifier(FrameFitToDevices(iPhone: (width: 160, height: 100),
                                                                     iPhoneSE: (width: 140, height: 80),
                                                                     iPad: (width: 300, height: 180)))
-                                        .background(Color.bittersweet.opacity(0.2))
+                                        .background(Color.white)
                                         .cornerRadius(20)
                                         .overlay() {
                                             RoundedRectangle(cornerRadius: 20)
-                                                .stroke(Color.bittersweet, lineWidth: 2)
+                                                .stroke(Color.gray, lineWidth: 2)
                                         }
                                 }.modifier(FrameFitToDevices(iPhone: (width: 350, height: nil),
                                                              iPhoneSE: (width: 320, height: nil),
@@ -179,8 +179,8 @@ struct DiscussionView: View {
                                 }
                                 Spacer()
                             }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 480),
-                                                         iPhoneSE: (width: nil, height: 350),
-                                                         iPad: (width: nil, height: 700)))
+                                                         iPhoneSE: (width: nil, height: 370),
+                                                         iPad: (width: nil, height: 750)))
                             Spacer()
                         }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
                                                      iPhoneSE: (width: nil, height: 400),

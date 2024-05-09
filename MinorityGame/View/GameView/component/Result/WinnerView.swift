@@ -17,13 +17,12 @@ struct WinnerView: View {
             VStack {
                 Spacer()
                 Text("🎉You are unique🎉")
-                    .font(.system(size: 38))
+                    .modifier(TextFitToDevices(iPhone: 38, iPhoneSE: 34, iPad: 50))
                     .fontWeight(.black)
                     .foregroundStyle(Color.yellow)
                     .frame(width: UIScreen.main.bounds.width)
                 Spacer()
                 ScrollView( .vertical) {
-                    Spacer()
                     LazyVGrid(columns:columns) {
                         ForEach(winnerUser){user in
                             VStack{
@@ -31,20 +30,27 @@ struct WinnerView: View {
                                 Text("\(user.totalPoints)")
                                     .fontWeight(.black)
                                     .foregroundStyle(.white)
-                                    .frame(width: 80)
+                                    .modifier(FrameFitToDevices(iPhone: (width: 69, height: nil),
+                                                                iPhoneSE: (width: 69, height: nil),
+                                                                iPad: (width: 120, height: nil)))
                                     .background(.yellow)
                                     .cornerRadius(10)
-                                    .padding(5)
+                                    .padding(10)
                             }
                             .scaleEffect(x: 2, y: 2)
-                            .frame(width:190, height: 300)
+                            .modifier(FrameFitToDevices(iPhone: (width: 180, height: 220),
+                                                         iPhoneSE: (width: 180, height: 220),
+                                                         iPad: (width: 260, height: 380)))
                         }
+                        .padding(.vertical,10)
                     }
-                    .padding()
                 }
-                .frame(width: UIScreen.main.bounds.width-20,height: 300)
-                .background(.black.opacity(0.2))
+                .modifier(FrameFitToDevices(iPhone: (width: 350, height: 200),
+                                             iPhoneSE: (width: 320, height: 170),
+                                             iPad: (width: 800, height: 800)))
+                .background(.white.opacity(0.8))
                 .cornerRadius(10)
+
                 Spacer()
             }
         }

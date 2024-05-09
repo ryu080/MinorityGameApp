@@ -46,29 +46,29 @@ struct VoteListView: View {
                             Text(questionViewModel.question?.choice1 ?? "北海道")
                                 .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 35))
                                 .bold()
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.electricBlue)
                                 .modifier(FrameFitToDevices(iPhone: (width: 160, height: 50),
                                                             iPhoneSE: (width: 140, height: 40),
                                                             iPad: (width: 300, height: 90)))
-                                .background(Color.electricBlue)
+                                .background(Color.white)
                                 .cornerRadius(10)
                                 .overlay() {
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.electricBlue, lineWidth: 3)
+                                        .stroke(Color.gray, lineWidth: 3)
                                 }
                             Spacer()
                             Text(questionViewModel.question?.choice2 ?? "沖縄県")
                                 .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 35))
                                 .bold()
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.bittersweet)
                                 .modifier(FrameFitToDevices(iPhone: (width: 160, height: 50),
                                                             iPhoneSE: (width: 140, height: 40),
                                                             iPad: (width: 300, height: 90)))
-                                .background(Color.bittersweet)
+                                .background(Color.white)
                                 .cornerRadius(10)
                                 .overlay() {
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.bittersweet, lineWidth: 3)
+                                        .stroke(Color.gray, lineWidth: 3)
                                 }
                         }
                         Spacer()

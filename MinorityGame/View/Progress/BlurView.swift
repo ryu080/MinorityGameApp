@@ -24,7 +24,7 @@ struct BlurView: View {
         VStack {
             Spacer()
             ProgressView()
-                .scaleEffect(x: 10, y: 10, anchor: .center)
+                .scaleEffect(x: 9, y: 9, anchor: .center)
                 .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
             Spacer()
             HStack(spacing: 1) {
