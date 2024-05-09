@@ -39,12 +39,12 @@ struct DiscussionView: View {
                     VStack(spacing:0) {
                         Spacer()
                         Text("Thinking Time")
-                            .font(.title)
+                            .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 40))
                             .fontWeight(.black)
                             .foregroundStyle(Color.white)
                         Text(timerViewModel.dateFormat(minutes: timerViewModel.timeCount.minutesCount,
                                                        seconds: timerViewModel.timeCount.secondsCount))
-                        .font(.system(size: 50))
+                        .modifier(TextFitToDevices(iPhone: 50, iPhoneSE: 40, iPad: 80))
                         .fontWeight(.black)
                         .foregroundStyle(Color.white)
                         HStack {
@@ -55,20 +55,20 @@ struct DiscussionView: View {
                                         timerViewModel.startCountDown()
                                     }, label: {
                                         Image(systemName: "play.fill")
-                                            .font(.title)
+                                            .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 40))
                                     })
                                 } else {
                                     Button(action: {
                                         timerViewModel.stopCountDown()
                                     }, label: {
                                         Image(systemName: "pause.fill")
-                                            .font(.title)
+                                            .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 40))
                                     })
                                 }
                             }
                             Spacer()
                             Text("1min")
-                                .font(.title)
+                                .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 40))
                                 .fontWeight(.black)
                                 .foregroundStyle(Color.white)
                             Spacer()
@@ -76,7 +76,7 @@ struct DiscussionView: View {
                                 timerViewModel.minusMinutes()
                             }, label: {
                                 Image(systemName: "minus")
-                                    .font(.title3)
+                                    .modifier(TextFitToDevices(iPhone: 20, iPhoneSE: 18, iPad: 30))
                                     .foregroundStyle(.red)
                                     .bold()
                             })
@@ -85,12 +85,14 @@ struct DiscussionView: View {
                                 timerViewModel.plusMinutes()
                             }, label: {
                                 Image(systemName: "plus")
-                                    .font(.title3)
+                                    .modifier(TextFitToDevices(iPhone: 20, iPhoneSE: 18, iPad: 30))
                                     .bold()
                             })
                             Spacer()
                         }
-                        .frame(width: 200,height: 40)
+                        .modifier(FrameFitToDevices(iPhone: (width: 200, height: 40),
+                                                    iPhoneSE: (width: 200, height: 35),
+                                                    iPad: (width: 300, height: 50)))
                         .background(Color.mint.opacity(0.7))
                         .cornerRadius(20)
                         .overlay() {
@@ -102,69 +104,91 @@ struct DiscussionView: View {
                     ZStack {
                         RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
                             .shadow(radius: 5)
-                        VStack(spacing:UIScreen.main.bounds.height/40){
-                            Text("【第\(gameViewModel.game.nowGameCount)門】")
-                                .font(.system(size: 35))
-                                .fontWeight(.black)
-                                .foregroundStyle(Color.black)
-                                .padding(.top,UIScreen.main.bounds.height/40)
-                            Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
-                                .font(.title)
-                                .bold()
-                                .foregroundStyle(Color.white)
-                                .frame(width: UIScreen.main.bounds.width-20, height:150)
-                                .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom))
-                                .cornerRadius(20)
-                                .overlay() {
-                                    RoundedRectangle(cornerRadius: 20)
-                                        .stroke(Color.mint, lineWidth: 3)
-                                }
-                            HStack {
-                                Text(questionViewModel.question?.choice1 ?? "北海道")
-                                    .font(.title2)
+                        VStack {
+                            VStack {
+                                Spacer()
+                                Text("【第\(gameViewModel.game.nowGameCount)門】")
+                                    .modifier(TextFitToDevices(iPhone: 35, iPhoneSE: 30, iPad: 50))
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.black)
+                                Spacer()
+                                Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
+                                    .modifier(TextFitToDevices(iPhone: 28, iPhoneSE: 23, iPad: 40))
                                     .bold()
-                                    .foregroundStyle(Color.electricBlue)
-                                    .frame(width: 160,height: 100)
-                                    .background(Color.electricBlue.opacity(0.2))
+                                    .foregroundStyle(Color.white)
+                                    .modifier(FrameFitToDevices(iPhone: (width: 350, height: 150),
+                                                                iPhoneSE: (width: 320, height: 130),
+                                                                iPad: (width: 800, height: 250)))
+                                    .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom))
                                     .cornerRadius(20)
                                     .overlay() {
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.electricBlue, lineWidth: 2)
+                                            .stroke(Color.mint, lineWidth: 3)
                                     }
                                 Spacer()
-                                Text(questionViewModel.question?.choice2 ?? "沖縄県")
-                                    .font(.title2)
-                                    .bold()
-                                    .foregroundStyle(Color.bittersweet)
-                                    .frame(width: 160, height: 100)
-                                    .background(Color.bittersweet.opacity(0.2))
-                                    .cornerRadius(20)
-                                    .overlay() {
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.bittersweet, lineWidth: 2)
-                                    }
-                            }.frame(width: UIScreen.main.bounds.width-20)
-                            VStack{
-                                Button(action: {
-                                    alertViewModel.discussionAlert()
-                                }, label: {
-                                    Text("投票画面へ")
-                                        .font(.title)
-                                        .fontWeight(.black)
-                                        .foregroundStyle(Color.white)
-                                })
-                                .frame(width: 300,height: 50)
-                                .background(.mint.opacity(0.8))
-                                .cornerRadius(10)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.mint, lineWidth: 3)
-                                )
-                            }
+                                HStack {
+                                    Text(questionViewModel.question?.choice1 ?? "北海道")
+                                        .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 35))
+                                        .bold()
+                                        .foregroundStyle(Color.electricBlue)
+                                        .modifier(FrameFitToDevices(iPhone: (width: 160, height: 100),
+                                                                    iPhoneSE: (width: 140, height: 80),
+                                                                    iPad: (width: 300, height: 180)))
+                                        .background(Color.electricBlue.opacity(0.2))
+                                        .cornerRadius(20)
+                                        .overlay() {
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.electricBlue, lineWidth: 2)
+                                        }
+                                    Spacer()
+                                    Text(questionViewModel.question?.choice2 ?? "沖縄県")
+                                        .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 35))
+                                        .bold()
+                                        .foregroundStyle(Color.bittersweet)
+                                        .modifier(FrameFitToDevices(iPhone: (width: 160, height: 100),
+                                                                    iPhoneSE: (width: 140, height: 80),
+                                                                    iPad: (width: 300, height: 180)))
+                                        .background(Color.bittersweet.opacity(0.2))
+                                        .cornerRadius(20)
+                                        .overlay() {
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(Color.bittersweet, lineWidth: 2)
+                                        }
+                                }.modifier(FrameFitToDevices(iPhone: (width: 350, height: nil),
+                                                             iPhoneSE: (width: 320, height: nil),
+                                                             iPad: (width: 800, height: nil)))
+                                Spacer()
+                                VStack{
+                                    Button(action: {
+                                        alertViewModel.discussionAlert()
+                                    }, label: {
+                                        Text("投票画面へ")
+                                            .modifier(TextFitToDevices(iPhone: 30, iPhoneSE: 25, iPad: 40))
+                                            .fontWeight(.black)
+                                            .foregroundStyle(Color.white)
+                                    })
+                                    .modifier(FrameFitToDevices(iPhone: (width: 300, height: 50),
+                                                                iPhoneSE: (width: 230, height: 40),
+                                                                iPad: (width: 600, height: 100)))
+                                    .background(.mint.opacity(0.8))
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.mint, lineWidth: 3)
+                                    )
+                                }
+                                Spacer()
+                            }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 480),
+                                                         iPhoneSE: (width: nil, height: 350),
+                                                         iPad: (width: nil, height: 700)))
                             Spacer()
-                        }.frame(height:UIScreen.main.bounds.height/1.5)
+                        }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
+                                                     iPhoneSE: (width: nil, height: 400),
+                                                     iPad: (width: nil, height: 800)))
                     }
-                    .frame(height:UIScreen.main.bounds.height/1.5)
+                    .modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
+                                                                     iPhoneSE: (width: nil, height: 400),
+                                                                     iPad: (width: nil, height: 800)))
                 }
                 .transition(.move(edge: .bottom))
                 .edgesIgnoringSafeArea(.all)

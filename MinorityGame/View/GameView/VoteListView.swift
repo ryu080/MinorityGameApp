@@ -24,108 +24,145 @@ struct VoteListView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack{
                 Spacer()
-                Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
-                    .font(.title)
-                    .bold()
-                    .foregroundStyle(Color.white)
-                    .frame(width: UIScreen.main.bounds.width-20, height:150)
-                    .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom))
-                    .cornerRadius(20)
-                    .overlay() {
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.mint, lineWidth: 3)
-                    }
-                HStack {
-                    Text(questionViewModel.question?.choice1 ?? "北海道")
-                        .font(.title2)
-                        .bold()
-                        .foregroundStyle(.white)
-                        .frame(width: 160,height: 50)
-                        .background(Color.electricBlue)
-                        .cornerRadius(10)
-                        .overlay() {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.electricBlue, lineWidth: 3)
-                        }
+                VStack{
                     Spacer()
-                    Text(questionViewModel.question?.choice2 ?? "沖縄県")
-                        .font(.title2)
-                        .bold()
-                        .foregroundStyle(.white)
-                        .frame(width: 160, height: 50)
-                        .background(Color.bittersweet)
-                        .cornerRadius(10)
-                        .overlay() {
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.bittersweet, lineWidth: 3)
+                    VStack{
+                        Spacer()
+                        Text(questionViewModel.question?.text ?? "旅行に行くならどっち？")
+                            .modifier(TextFitToDevices(iPhone: 28, iPhoneSE: 23, iPad: 40))
+                            .bold()
+                            .foregroundStyle(Color.white)
+                            .modifier(FrameFitToDevices(iPhone: (width: 350, height: 150),
+                                                        iPhoneSE: (width: 320, height: 130),
+                                                        iPad: (width: 800, height: 250)))
+                            .background(LinearGradient(gradient: Gradient(colors: [.blue, .mint]), startPoint: .top, endPoint: .bottom))
+                            .cornerRadius(20)
+                            .overlay() {
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.mint, lineWidth: 3)
+                            }
+                        Spacer()
+                        HStack {
+                            Text(questionViewModel.question?.choice1 ?? "北海道")
+                                .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 35))
+                                .bold()
+                                .foregroundStyle(.white)
+                                .modifier(FrameFitToDevices(iPhone: (width: 160, height: 50),
+                                                            iPhoneSE: (width: 140, height: 40),
+                                                            iPad: (width: 300, height: 90)))
+                                .background(Color.electricBlue)
+                                .cornerRadius(10)
+                                .overlay() {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.electricBlue, lineWidth: 3)
+                                }
+                            Spacer()
+                            Text(questionViewModel.question?.choice2 ?? "沖縄県")
+                                .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 35))
+                                .bold()
+                                .foregroundStyle(.white)
+                                .modifier(FrameFitToDevices(iPhone: (width: 160, height: 50),
+                                                            iPhoneSE: (width: 140, height: 40),
+                                                            iPad: (width: 300, height: 90)))
+                                .background(Color.bittersweet)
+                                .cornerRadius(10)
+                                .overlay() {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.bittersweet, lineWidth: 3)
+                                }
                         }
-                }.frame(width: UIScreen.main.bounds.width-20,height: UIScreen.main.bounds.height/10)
-
+                        Spacer()
+                    }.modifier(FrameFitToDevices(iPhone: (width: 350, height: 250),
+                                                 iPhoneSE: (width: 320, height: 200),
+                                                 iPad: (width: 800, height: 400)))
+                    Spacer()
+                }.modifier(FrameFitToDevices(iPhone: (width: 350, height: UIScreen.main.bounds.height-600),
+                                             iPhoneSE: (width: 320, height: UIScreen.main.bounds.height-430),
+                                             iPad: (width: 800, height: UIScreen.main.bounds.height-900)))
                 ZStack {
                     RoundedCorners(color: .white, tl: 50, tr: 50, bl: 0, br: 0)
                         .compositingGroup()
                         .shadow(radius: 5)
-                    VStack (spacing:UIScreen.main.bounds.height/25){
-                        Text("投票するプレイヤーを選んでください")
-                            .font(.title2)
-                            .fontWeight(.black)
-                            .padding(.top,UIScreen.main.bounds.height/25)
-                        ScrollView( .vertical) {
+                    VStack {
+                        VStack {
                             Spacer()
-                            LazyVGrid(columns:columns) {
-                                ForEach(gameViewModel.game.users){user in
-                                    if user.question == 0{
-                                        Button{
-                                            voteUser = user
-                                            isShowVoteView.toggle()
-                                        }label: {
-                                            PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor: .mint,opacity: 0.3).padding(8)
+                            Text("投票するプレイヤーを選んでください")
+                                .modifier(TextFitToDevices(iPhone: 20, iPhoneSE: 18, iPad: 50))
+                                .fontWeight(.black)
+                            Spacer()
+                            ScrollView( .vertical) {
+                                Spacer()
+                                LazyVGrid(columns:columns) {
+                                    ForEach(gameViewModel.game.users){user in
+                                        if user.question == 0{
+                                            Button{
+                                                voteUser = user
+                                                isShowVoteView.toggle()
+                                            }label: {
+                                                PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor: .mint,opacity: 0.3)
+                                                    .padding()
+                                            }
+                                        }else{
+                                            PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor:.gray,opacity: 0.3)
+                                                .padding()
                                         }
-                                    }else{
-                                        PlayerView(playerImageData:user.imageData, name: user.name, backgroundColor:.gray,opacity: 0.3).padding(8)
                                     }
                                 }
+                                .padding()
+                                .background(.gray.opacity(0.2))
+                                .cornerRadius(10)
                             }
-                            .padding()
-                            .background(.gray.opacity(0.2))
-                            .cornerRadius(10)
-                        }
-                        .frame(width: UIScreen.main.bounds.width-20)
-                        if gameViewModel.voteComplete(){
-                            Button {
-                                rootViewModel.nextGameView(nextView: .resultAnnouncementView)
-                            } label: {
-                                Text("結果へ進む")
-                                    .font(.title)
-                                    .fontWeight(.black)
-                                    .foregroundStyle(Color.white)
-                            }
-                            .frame(width: 300,height: 50)
-                            .background(.mint.opacity(0.8))
-                            .cornerRadius(10)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(Color.mint, lineWidth: 3)
-                            )
-                        }else {
-                            Text("結果へ進む")
-                                .font(.title)
-                                .fontWeight(.black)
-                                .foregroundStyle(Color.white)
-                                .frame(width: 300,height: 50)
-                                .background(.gray.opacity(0.8))
+                            .modifier(FrameFitToDevices(iPhone: (width: 350, height: 220),
+                                                        iPhoneSE: (width: 350, height: 180),
+                                                        iPad: (width: 800, height: 300)))
+                            Spacer()
+                            if gameViewModel.voteComplete(){
+                                Button {
+                                    rootViewModel.nextGameView(nextView: .resultAnnouncementView)
+                                } label: {
+                                    Text("結果へ進む")
+                                        .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 50))
+                                        .fontWeight(.black)
+                                        .foregroundStyle(Color.white)
+                                }
+                                .modifier(FrameFitToDevices(iPhone: (width: 300, height: 50),
+                                                            iPhoneSE: (width: 230, height: 40),
+                                                            iPad: (width: 600, height: 100)))
+                                .background(.mint.opacity(0.8))
                                 .cornerRadius(10)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
-                                        .stroke(Color.gray, lineWidth: 3)
+                                        .stroke(Color.mint, lineWidth: 3)
                                 )
-                        }
+                            }else {
+                                Text("結果へ進む")
+                                    .modifier(TextFitToDevices(iPhone: 25, iPhoneSE: 20, iPad: 50))
+                                    .fontWeight(.black)
+                                    .foregroundStyle(Color.white)
+                                    .modifier(FrameFitToDevices(iPhone: (width: 300, height: 50),
+                                                                iPhoneSE: (width: 230, height: 40),
+                                                                iPad: (width: 600, height: 100)))
+                                    .background(.gray.opacity(0.8))
+                                    .cornerRadius(10)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.gray, lineWidth: 3)
+                                    )
+                            }
 
+                            Spacer()
+                        }
+                        .modifier(FrameFitToDevices(iPhone: (width: nil, height: 480),
+                                                    iPhoneSE: (width: nil, height: 350),
+                                                    iPad: (width: nil, height: 700)))
                         Spacer()
-                    }
-                    .frame(height:UIScreen.main.bounds.height/1.9)
+                    }.modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
+                                                 iPhoneSE: (width: nil, height: 400),
+                                                 iPad: (width: nil, height: 800)))
                 }
-                .frame(height:UIScreen.main.bounds.height/1.9)
+                .modifier(FrameFitToDevices(iPhone: (width: nil, height: 550),
+                                            iPhoneSE: (width: nil, height: 400),
+                                            iPad: (width: nil, height: 800)))
             }
             .edgesIgnoringSafeArea(.all)
         }
